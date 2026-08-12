@@ -19,6 +19,51 @@
   --hijau:#2E6B4F;       /* correct */
   --garis:rgba(22,40,63,.14);
 }
+html[data-tema="gelap"]{
+  --kertas:#141C26;
+  --kertas2:#1C2733;
+  --tinta:#E8DFC9;
+  --tinta-lembut:#9FB0C2;
+  --emas:#D6A93F;
+  --emas-terang:#8A6B22;
+  --merah:#D46A72;
+  --hijau:#5FB98A;
+  --garis:rgba(232,223,201,.16);
+}
+html[data-tema="gelap"] body{
+  background-image:
+    radial-gradient(circle at 12% 8%, rgba(214,169,63,.09), transparent 42%),
+    radial-gradient(circle at 88% 92%, rgba(212,106,114,.07), transparent 46%);
+}
+html[data-tema="gelap"] mark{
+  background:linear-gradient(transparent 55%, rgba(214,169,63,.45) 55%);
+}
+html[data-tema="gelap"] .chip{background:var(--emas);color:#141C26}
+html[data-tema="gelap"] .chip:hover{background:var(--emas-terang);color:var(--tinta)}
+html[data-tema="gelap"] .halaman-bar{background:#0A1119}
+html[data-tema="gelap"] nav{background:rgba(20,28,38,.97)}
+html[data-tema="gelap"] header{background:linear-gradient(180deg,rgba(28,39,51,.85),transparent)}
+html[data-tema="gelap"] .k-seg i.isi{background:var(--emas);border-color:var(--emas)}
+html[data-tema="gelap"] .lubang{background:rgba(214,169,63,.14)}
+html[data-tema="gelap"] .bank{background:rgba(232,223,201,.04)}
+html[data-tema="gelap"] .pil,html[data-tema="gelap"] select,
+html[data-tema="gelap"] .n-kunci li,html[data-tema="gelap"] table,
+html[data-tema="gelap"] .peta-anak span,html[data-tema="gelap"] #cari{background:#101922}
+html[data-tema="gelap"] tbody tr:nth-child(odd){background:#18222D}
+html[data-tema="gelap"] .kata{color:var(--tinta)}
+html[data-tema="gelap"] th{background:#0D141C;color:var(--tinta)}
+html[data-tema="gelap"] .bhg-huruf,
+html[data-tema="gelap"] .peta-c-tajuk{background:var(--merah);color:#141C26}
+html[data-tema="gelap"] .peta-pusat{background:var(--emas);color:#141C26}
+html[data-tema="gelap"] .btn{background:var(--emas);color:#141C26;border-color:var(--emas)}
+html[data-tema="gelap"] .btn:hover{background:var(--merah);border-color:var(--merah);color:#141C26}
+html[data-tema="gelap"] .btn.kedua{background:transparent;color:var(--tinta);border-color:var(--garis)}
+html[data-tema="gelap"] .tab[aria-selected="true"],
+html[data-tema="gelap"] .g-btn[aria-pressed="true"]{background:var(--emas);color:#141C26;border-color:var(--emas)}
+html[data-tema="gelap"] .g-fasal{color:#141C26}
+html[data-tema="gelap"] .skor.penuh{color:#141C26}
+html[data-tema="gelap"] .kata.tanda-salah{color:#141C26}
+html{transition:background-color .25s}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{
@@ -154,6 +199,20 @@ nav{
 .lubang.sasar{background:var(--emas-terang);border-bottom-color:var(--merah)}
 .lubang:focus-visible{outline:3px solid var(--merah);outline-offset:2px}
 
+.buka-jwp{
+  font-family:'Noto Naskh Arabic',serif;font-size:15px;font-weight:700;cursor:pointer;
+  background:transparent;color:var(--emas);border:1.5px dashed var(--emas);
+  border-radius:2px 10px 2px 10px;padding:3px 14px;margin-inline-start:8px;line-height:1.7;
+  transition:.15s;vertical-align:middle;
+}
+.buka-jwp:hover{background:rgba(176,132,40,.15)}
+.buka-jwp.terbuka{border-style:solid;background:rgba(176,132,40,.13)}
+.buka-jwp:focus-visible{outline:2px solid var(--merah);outline-offset:2px}
+.jwp[hidden]{display:none!important}
+.jwp{display:block;margin-top:7px;padding:9px 14px;border-radius:3px;
+  background:rgba(176,132,40,.14);border-right:3px solid var(--emas);
+  color:var(--tinta);font-weight:600;line-height:1.95}
+.nota-p{font-weight:400;color:var(--tinta-lembut)}
 /* jawapan sebenar (bukan pilihan murid) */
 .jawapan{
   border-color:var(--emas)!important;background:rgba(176,132,40,.14)!important;
@@ -215,6 +274,7 @@ select.salah{border-color:var(--merah);background:rgba(140,47,57,.08)}
   border-top:1px solid var(--garis);flex-wrap:wrap}
 .susun-baris:first-of-type{border-top:none}
 .susun-baris select{flex:0 0 92px;min-width:92px;text-align:center}
+.susun-mk{width:100%;margin:4px 0 0}
 .susun-teks{flex:1;font-size:clamp(18px,3.6vw,22px);min-width:180px}
 /* jawapan bertulis */
 textarea{
@@ -290,6 +350,25 @@ textarea:focus-visible{outline:3px solid var(--merah);outline-offset:2px}
 .hal-tab[aria-selected="true"]{color:var(--kertas2);border-bottom-color:var(--emas)}
 .hal-tab:focus-visible{outline:3px solid var(--emas-terang);outline-offset:-4px}
 nav{top:62px}
+.simpan-baris{display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  margin-top:9px;padding-top:8px;border-top:1px solid var(--garis)}
+.simpan-nota{font-size:13px;color:var(--hijau);font-weight:600}
+.simpan-masa{font-size:13px;color:var(--tinta-lembut)}
+.padam-btn{
+  margin-inline-start:auto;font-family:'Noto Naskh Arabic',serif;font-size:14px;
+  background:transparent;border:1px solid var(--garis);color:var(--tinta-lembut);
+  padding:4px 14px;border-radius:2px 10px 2px 10px;cursor:pointer;line-height:1.7;
+}
+.padam-btn:hover{border-color:var(--merah);color:var(--merah)}
+.padam-btn:focus-visible{outline:2px solid var(--merah);outline-offset:2px}
+@media(max-width:560px){.simpan-nota{font-size:12px}}
+.tema-btn{
+  flex:0 0 auto;background:transparent;border:none;color:rgba(245,237,220,.6);
+  font-size:22px;cursor:pointer;padding:0 18px;transition:.18s;line-height:1;
+}
+.tema-btn:hover{color:var(--emas);transform:scale(1.12)}
+.tema-btn:focus-visible{outline:2px solid var(--emas);outline-offset:-4px}
+html[data-tema="gelap"] .tema-btn{color:var(--emas)}
 /* ---- nota ---- */
 .n-blok{background:var(--kertas2);border:1px solid var(--garis);border-radius:4px;
   padding:24px 22px;margin-bottom:26px}
@@ -388,6 +467,7 @@ tbody td:first-child{font-weight:700}
     <button class="hal-tab" data-hal="nota"    role="tab" aria-selected="false">نوتا</button>
     <button class="hal-tab" data-hal="kuiz"    role="tab" aria-selected="true">كويز</button>
     <button class="hal-tab" data-hal="glosari" role="tab" aria-selected="false">ݢلوساري</button>
+    <button class="tema-btn" id="temaBtn" title="تukar tema" aria-label="توكر تيما">☾</button>
   </div>
 </div>
 
@@ -398,6 +478,11 @@ tbody td:first-child{font-weight:700}
       <span class="k-besar" id="kBesar">٠ / ٤٠٠</span>
       <span class="k-label">سوالن دجواب</span>
       <span class="k-betul" id="kBetul" hidden></span>
+    </div>
+    <div class="simpan-baris">
+      <span class="simpan-nota">✓ جواڤن دسيمڤن سچارا اوتوماتيك دالم ڤلايار اين</span>
+      <span class="simpan-masa" id="statSimpan" hidden></span>
+      <button type="button" class="padam-btn" onclick="padamSemua()">ڤادم سموا</button>
     </div>
     <div class="k-fasal" id="kFasal"></div>
   </div>
@@ -569,6 +654,7 @@ function bhgSusun(t){
               ${s.betul.map((_,k)=>`<option value="${k+1}">${AR(k+1)}</option>`).join('')}
             </select>
             <div class="susun-teks">${esc(teks)}</div>
+            <p class="maklum susun-mk" hidden></p>
           </div>`).join('')}
       </div>`;
     }).join('')}
@@ -700,6 +786,137 @@ function kakiSet(){
   </div>`;
 }
 
+
+
+
+/* ====== TEMA ====== */
+const KUNCI_TEMA = 'akidah_tema';
+function pasangTema(t){
+  document.documentElement.dataset.tema = t;
+  const b = document.getElementById('temaBtn');
+  if (b){ b.textContent = t === 'gelap' ? '☀' : '☾'; }
+  try{ localStorage.setItem(KUNCI_TEMA, t); }catch(e){}
+}
+(function(){
+  let t;
+  try{ t = localStorage.getItem(KUNCI_TEMA); }catch(e){}
+  if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'gelap' : 'cerah';
+  pasangTema(t);
+})();
+document.getElementById('temaBtn').onclick = () =>
+  pasangTema(document.documentElement.dataset.tema === 'gelap' ? 'cerah' : 'gelap');
+
+/* ====== MAKLUM BALAS: JAWAPAN TERSEMBUNYI ====== */
+function tulisMaklum(mk, ok, jawapan, nota){
+  if (!mk) return;
+  mk.hidden = false;
+  mk.classList.remove('ok','no');
+  mk.classList.add('maklum', ok ? 'ok' : 'no');
+  if (ok){
+    mk.innerHTML = '✓ بتول' + (nota ? ' <span class="nota-p">— ' + esc(nota) + '</span>' : '');
+    return;
+  }
+  mk.innerHTML =
+    '✗ ساله ' +
+    '<button type="button" class="buka-jwp">تونجوق جواڤن</button>' +
+    '<span class="jwp" hidden>' + esc(jawapan) +
+      (nota ? ' <span class="nota-p">— ' + esc(nota) + '</span>' : '') +
+    '</span>';
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('.buka-jwp');
+  if (!b) return;
+  const jwp = b.nextElementSibling;
+  const buka = jwp.hidden;
+  jwp.hidden = !buka;
+  b.textContent = buka ? 'سمبوڽيكن' : 'تونجوق جواڤن';
+  b.classList.toggle('terbuka', buka);
+});
+
+/* ====== SIMPAN AUTOMATIK ====== */
+const KUNCI_SIMPAN = 'akidah_d6_v1';
+
+function kunciSel(s){
+  if (s.dataset.padan  !== undefined) return 'p'  + s.dataset.padan;
+  if (s.dataset.susun  !== undefined) return 'su' + s.dataset.susun + '|' + s.dataset.teks;
+  if (s.dataset.sebab  !== undefined) return 'sb' + s.dataset.sebab + '|' + s.dataset.jns;
+  if (s.dataset.ganti  !== undefined) return 'g'  + s.dataset.ganti;
+  return '';
+}
+
+function simpan(){
+  try{
+    const sesi = {};
+    document.querySelectorAll('.bhg').forEach(bhg=>{
+      const d = { r:{}, s:{}, l:{}, k:{} };
+      bhg.querySelectorAll('input[type=radio]:checked').forEach(i=> d.r[i.name] = i.value);
+      bhg.querySelectorAll('select').forEach(s=>{ if(s.value!=='') d.s[kunciSel(s)] = s.value; });
+      bhg.querySelectorAll('.lubang').forEach(l=>{ if(l.dataset.kata) d.l[l.dataset.lubang] = l.dataset.kata; });
+      bhg.querySelectorAll('.kata.tanda-salah').forEach(k=>{
+        d.k[k.closest('.soalan').dataset.i] = k.dataset.k; });
+      if (Object.keys(d.r).length || Object.keys(d.s).length ||
+          Object.keys(d.l).length || Object.keys(d.k).length) sesi[bhg.dataset.set] = d;
+    });
+    localStorage.setItem(KUNCI_SIMPAN, JSON.stringify({
+      v:1, masa: Date.now(), skor: skorSet, sesi
+    }));
+    tunjukSimpan();
+  }catch(e){ /* storan penuh atau disekat — abaikan */ }
+}
+
+function muat(){
+  let data;
+  try{ data = JSON.parse(localStorage.getItem(KUNCI_SIMPAN) || 'null'); }catch(e){ return; }
+  if (!data || !data.sesi) return;
+
+  document.querySelectorAll('.bhg').forEach(bhg=>{
+    const d = data.sesi[bhg.dataset.set]; if(!d) return;
+    // radio
+    Object.entries(d.r||{}).forEach(([nama,nilai])=>{
+      const el = bhg.querySelector(`input[name="${nama}"][value="${nilai}"]`);
+      if (el) el.checked = true;
+    });
+    // select
+    bhg.querySelectorAll('select').forEach(s=>{
+      const v = (d.s||{})[kunciSel(s)];
+      if (v !== undefined && [...s.options].some(o=>o.value===v)) s.value = v;
+    });
+    // seret & lepas
+    Object.entries(d.l||{}).forEach(([idx,kata])=>{
+      const lub = bhg.querySelector(`.lubang[data-lubang="${idx}"]`);
+      const chip = [...bhg.querySelectorAll('.chip')].find(c=>c.dataset.kata===kata && !c.disabled);
+      if (lub && chip) letakKata(lub, chip);
+    });
+    // perkataan salah
+    Object.entries(d.k||{}).forEach(([i,k])=>{
+      const el = bhg.querySelector(`.soalan[data-i="${i}"] .kata[data-k="${k}"]`);
+      if (el) el.classList.add('tanda-salah');
+    });
+  });
+
+  // pulihkan markah + maklum balas
+  Object.keys(data.skor||{}).forEach(setId=>{
+    const bhg = document.querySelector(`.bhg[data-set="${setId}"]`);
+    if (bhg) semak(bhg, true);
+  });
+  tunjukSimpan(data.masa);
+}
+
+function tunjukSimpan(masa){
+  const el = document.getElementById('statSimpan'); if(!el) return;
+  const t = new Date(masa || Date.now());
+  const dua = n => AR(String(n).padStart(2,'0'));
+  el.textContent = 'دسيمڤن ' + dua(t.getDate()) + '/' + dua(t.getMonth()+1) +
+                   ' · ' + dua(t.getHours()) + ':' + dua(t.getMinutes());
+  el.hidden = false;
+}
+
+function padamSemua(){
+  if (!confirm('ڤادم سموا جواڤن ياڠ تله دسيمڤن؟\n\nPadam semua jawapan yang disimpan?')) return;
+  try{ localStorage.removeItem(KUNCI_SIMPAN); }catch(e){}
+  location.reload();
+}
+
 /* ====== KAUNTER KEMAJUAN ====== */
 const skorSet = {};   // data-set -> markah selepas disemak
 
@@ -765,9 +982,10 @@ function kemasKini(){
   if (adaSkor) kb.textContent = '✓ بتول: ' + AR(betulJum);
 }
 
-document.addEventListener('change', kemasKini);
+document.addEventListener('change', ()=>{ kemasKini(); simpan(); });
 document.addEventListener('click', e => {
-  if (e.target.closest('.pil, .lubang, .chip, .kata, .ulang')) setTimeout(kemasKini, 0);
+  if (e.target.closest('.pil, .lubang, .chip, .kata, .ulang'))
+    setTimeout(()=>{ kemasKini(); simpan(); }, 0);
 });
 
 /* ====== TAB ====== */
@@ -923,7 +1141,7 @@ document.querySelectorAll('.hal-tab').forEach(b=>
 
 binaNota(); binaGlosari();
 
-binaKaunter(); kemasKini();
+binaKaunter(); muat(); kemasKini();
 
 /* ====== SERET & LEPAS ====== */
 let dipilih = null;
@@ -995,7 +1213,7 @@ document.addEventListener('click', e => {
   if (e.target.classList.contains('ulang')) ulang(e.target.closest('.bhg'));
 });
 
-function semak(bhg){
+function semak(bhg, senyap){
   const t = BANK.find(x => x.id === bhg.dataset.topik);
   const jenis = bhg.dataset.jenis;
   let betul = 0;
@@ -1011,13 +1229,12 @@ function semak(bhg){
       [[sk,okK],[ss,okS]].forEach(([el,ok])=>{
         el.classList.remove('betul','salah'); el.classList.add(ok?'betul':'salah');
       });
-      const ok = okK && okS, mk = sq.querySelector('.maklum');
-      mk.hidden = false; mk.className = 'maklum ' + (ok?'ok':'no');
-      mk.textContent = ok ? '✓ بتول'
-        : '✗ ساله — كسن: ' + d.kesan[m.ka] + ' | سبب: ' + d.sebab[m.sa];
+      const ok = okK && okS;
+      tulisMaklum(sq.querySelector('.maklum'), ok,
+        'كسن: ' + d.kesan[m.ka] + ' | سبب: ' + d.sebab[m.sa]);
       if (ok) betul++;
     });
-    return siapSkor(bhg, betul);
+    return siapSkor(bhg, betul, senyap);
   }
   if (jenis === 'kelas'){
     const d = BANK3[t.id].kelas;
@@ -1026,16 +1243,14 @@ function semak(bhg){
       const pilih = sq.querySelector('input:checked');
       const ok = pilih && +pilih.value === m.b;
       sq.querySelectorAll('.pil').forEach((p,j)=>{
-        p.classList.remove('betul','salah');
-        if (j === m.b) p.classList.add('betul');
-        else if (pilih && +pilih.value === j) p.classList.add('salah');
+        p.classList.remove('betul','salah','jawapan');
+        const dipilihIni = pilih && +pilih.value === j;
+        if (dipilihIni) p.classList.add(j === m.b ? 'betul' : 'salah');
       });
-      const mk = sq.querySelector('.maklum');
-      mk.hidden = false; mk.className = 'maklum ' + (ok?'ok':'no');
-      mk.textContent = ok ? '✓ بتول' : '✗ ساله — جواڤن: ' + d.bins[m.b];
+      tulisMaklum(sq.querySelector('.maklum'), ok, 'جواڤن: ' + d.bins[m.b]);
       if (ok) betul++;
     });
-    return siapSkor(bhg, betul);
+    return siapSkor(bhg, betul, senyap);
   }
   if (jenis === 'tindak'){
     const d = BANK3[t.id].tindak;
@@ -1046,15 +1261,12 @@ function semak(bhg){
       sq.querySelectorAll('.pil').forEach((p,j)=>{
         p.classList.remove('betul','salah','jawapan');
         const dipilihIni = pilih && +pilih.value === j;
-        if (j === m.a) p.classList.add(dipilihIni ? 'betul' : 'jawapan');
-        else if (dipilihIni) p.classList.add('salah');
+        if (dipilihIni) p.classList.add(j === m.a ? 'betul' : 'salah');
       });
-      const mk = sq.querySelector('.maklum');
-      mk.hidden = false; mk.className = 'maklum ' + (ok?'ok':'no');
-      mk.textContent = (ok ? '✓ بتول — ' : '✗ ساله — جواڤن: ' + m.o[m.a] + ' — ') + m.prinsip;
+      tulisMaklum(sq.querySelector('.maklum'), ok, 'جواڤن: ' + m.o[m.a], m.prinsip);
       if (ok) betul++;
     });
-    return siapSkor(bhg, betul);
+    return siapSkor(bhg, betul, senyap);
   }
   if (jenis === 'salah'){
     const d = BANK3[t.id].salah;
@@ -1066,19 +1278,15 @@ function semak(bhg){
       const okGanti = sel.value !== '' && +sel.value === m.a;
       sq.querySelectorAll('.kata').forEach(k=>{
         k.classList.remove('betul','salah','jawapan');
-        const ini = +k.dataset.k === m.salah;
-        if (ini && okKata)       k.classList.add('betul');   // dipilih & betul
-        else if (ini)            k.classList.add('jawapan'); // jawapan sebenar
-        else if (ditanda === k)  k.classList.add('salah');   // pilihan yang salah
+        if (ditanda === k) k.classList.add(okKata ? 'betul' : 'salah');
       });
       sel.classList.remove('betul','salah'); sel.classList.add(okGanti?'betul':'salah');
-      const ok = okKata && okGanti, mk = sq.querySelector('.maklum');
-      mk.hidden = false; mk.className = 'maklum ' + (ok?'ok':'no');
-      mk.textContent = ok ? '✓ بتول'
-        : '✗ ساله — ڤركاتاءن ساله: «' + m.kata[m.salah] + '» ݢنتيڽ: ' + m.ganti[m.a];
+      const ok = okKata && okGanti;
+      tulisMaklum(sq.querySelector('.maklum'), ok,
+        'ڤركاتاءن ساله: «' + m.kata[m.salah] + '» ݢنتيڽ: ' + m.ganti[m.a]);
       if (ok) betul++;
     });
-    return siapSkor(bhg, betul);
+    return siapSkor(bhg, betul, senyap);
   }
   if (jenis === 'padan'){
     const d = BANK2[t.id].padan;
@@ -1086,23 +1294,23 @@ function semak(bhg){
       const i = +sel.dataset.padan, ok = sel.value === d[i].m;
       sel.classList.remove('betul','salah'); sel.classList.add(ok?'betul':'salah');
       const mk = sel.closest('.padan-baris').querySelector('.maklum');
-      mk.hidden = false; mk.className = 'padan-jwp maklum ' + (ok?'ok':'no');
-      mk.textContent = ok ? '✓ بتول' : '✗ ساله — جواڤن: ' + d[i].m;
+      tulisMaklum(mk, ok, 'جواڤن: ' + d[i].m);
       if (ok) betul++;
     });
-    return siapSkor(bhg, betul);
+    return siapSkor(bhg, betul, senyap);
   }
   if (jenis === 'susun'){
     const sets = BANK2[t.id].susun;
     bhg.querySelectorAll('[data-susun]').forEach(sel => {
       const s = sets[+sel.dataset.susun];
       const kedudukan = s.betul.indexOf(sel.dataset.teks) + 1;
-      const ok = +sel.value === kedudukan;
+      const ok = sel.value !== '' && +sel.value === kedudukan;
       sel.classList.remove('betul','salah'); sel.classList.add(ok?'betul':'salah');
-      if (!ok) sel.title = 'جواڤن: ' + kedudukan;
+      tulisMaklum(sel.closest('.susun-baris').querySelector('.susun-mk'), ok,
+                  'كدودوقن بتول: ' + AR(kedudukan));
       if (ok) betul++;
     });
-    return siapSkor(bhg, betul);
+    return siapSkor(bhg, betul, senyap);
   }
   if (jenis === 'kenal'){
     const d = BANK2[t.id].kenal;
@@ -1113,15 +1321,12 @@ function semak(bhg){
       sq.querySelectorAll('.pil').forEach((p,j)=>{
         p.classList.remove('betul','salah','jawapan');
         const dipilihIni = pilih && +pilih.value === j;
-        if (j === m.a) p.classList.add(dipilihIni ? 'betul' : 'jawapan');
-        else if (dipilihIni) p.classList.add('salah');
+        if (dipilihIni) p.classList.add(j === m.a ? 'betul' : 'salah');
       });
-      const mk = sq.querySelector('.maklum');
-      mk.hidden = false; mk.className = 'maklum ' + (ok?'ok':'no');
-      mk.textContent = ok ? '✓ بتول' : '✗ ساله — جواڤن: ' + m.o[m.a];
+      tulisMaklum(sq.querySelector('.maklum'), ok, 'جواڤن: ' + m.o[m.a]);
       if (ok) betul++;
     });
-    return siapSkor(bhg, betul);
+    return siapSkor(bhg, betul, senyap);
   }
 
   bhg.querySelectorAll('.soalan').forEach(sq => {
@@ -1137,8 +1342,7 @@ function semak(bhg){
       sq.querySelectorAll('.pil').forEach((p, j) => {
         p.classList.remove('betul','salah','jawapan');
         const dipilihIni = pilih && +pilih.value === j;
-        if (j === m.a) p.classList.add(dipilihIni ? 'betul' : 'jawapan');
-        else if (dipilihIni) p.classList.add('salah');
+        if (dipilihIni) p.classList.add(j === m.a ? 'betul' : 'salah');
       });
     }
     else if (jenis === 'tf'){
@@ -1149,8 +1353,8 @@ function semak(bhg){
       sq.querySelectorAll('.pil').forEach((p, j) => {
         p.classList.remove('betul','salah');
         const nilaiP = j === 0;                      // pilihan pertama = بتول
-        if (nilaiP === m.a) p.classList.add('betul');
-        else if (pilih && (pilih.value === '1') === nilaiP) p.classList.add('salah');
+        if (pilih && (pilih.value === '1') === nilaiP)
+          p.classList.add(nilaiP === m.a ? 'betul' : 'salah');
       });
     }
     else {
@@ -1163,28 +1367,26 @@ function semak(bhg){
     }
 
     if (ok) betul++;
-    maklum.hidden = false;
-    maklum.className = 'maklum ' + (ok ? 'ok' : 'no');
-    maklum.textContent = ok ? '✓ بتول' : '✗ ساله — جواڤن: ' + betulTeks;
+    tulisMaklum(maklum, ok, 'جواڤن: ' + betulTeks);
   });
 
   skorSet[bhg.dataset.set] = betul;
-  kemasKini();
+  kemasKini(); simpan();
   const skor = bhg.querySelector('.skor');
   skor.hidden = false;
   skor.textContent = 'سكور: ' + AR(betul) + ' / ١٠';
   skor.classList.toggle('penuh', betul === 10);
-  skor.scrollIntoView({block:'nearest', behavior:'smooth'});
+  if (!senyap) skor.scrollIntoView({block:'nearest', behavior:'smooth'});
 }
 
-function siapSkor(bhg, betul){
+function siapSkor(bhg, betul, senyap){
   skorSet[bhg.dataset.set] = betul;
-  kemasKini();
+  kemasKini(); simpan();
   const skor = bhg.querySelector('.skor');
   skor.hidden = false;
   skor.textContent = 'سكور: ' + AR(betul) + ' / ١٠';
   skor.classList.toggle('penuh', betul === 10);
-  skor.scrollIntoView({block:'nearest', behavior:'smooth'});
+  if (!senyap) skor.scrollIntoView({block:'nearest', behavior:'smooth'});
 }
 
 function ulang(bhg){
@@ -1204,7 +1406,7 @@ function ulang(bhg){
   bhg.querySelectorAll('.maklum').forEach(m => { m.hidden = true; m.textContent = ''; });
   const s = bhg.querySelector('.skor'); s.hidden = true; s.classList.remove('penuh');
   dipilih = null;
-  kemasKini();
+  kemasKini(); simpan();
   bhg.scrollIntoView({block:'start', behavior:'smooth'});
 }
 </script>
