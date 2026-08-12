@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="ms" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>كويز عقيدة تاهون ٦</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --kertas:#F5EDDC;      /* aged paper */
+  --kertas2:#FBF6EB;
+  --tinta:#16283F;       /* manuscript ink navy */
+  --tinta-lembut:#3E5570;
+  --emas:#B08428;        /* songket gold */
+  --emas-terang:#E3C775;
+  --merah:#8C2F39;       /* songket red */
+  --hijau:#2E6B4F;       /* correct */
+  --garis:rgba(22,40,63,.14);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--kertas);
+  background-image:
+    radial-gradient(circle at 12% 8%, rgba(176,132,40,.07), transparent 42%),
+    radial-gradient(circle at 88% 92%, rgba(140,47,57,.06), transparent 46%);
+  color:var(--tinta);
+  font-family:'Noto Naskh Arabic', serif;
+  font-size:19px; line-height:2.1;
+  padding-bottom:80px;
+}
+.wrap{max-width:940px;margin:0 auto;padding:0 18px}
+
+/* ---------- Kepala ---------- */
+header{
+  text-align:center;padding:46px 18px 30px;
+  border-bottom:3px double var(--emas);
+  background:linear-gradient(180deg,rgba(251,246,235,.9),transparent);
+}
+.bunga{color:var(--emas);font-size:26px;letter-spacing:.5em;margin-bottom:14px;line-height:1}
+h1{
+  font-family:'Amiri',serif;font-weight:700;
+  font-size:clamp(34px,7vw,54px);margin:0 0 10px;line-height:1.5;
+}
+.sub{font-size:clamp(17px,3.4vw,21px);color:var(--tinta-lembut);margin:0}
+.sub-latin{font-family:'Inter',sans-serif;font-size:13px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--emas);margin-top:12px;direction:ltr}
+
+/* ---------- Tab tajuk ---------- */
+nav{
+  position:sticky;top:0;z-index:20;background:rgba(245,237,220,.97);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--garis);
+  padding:12px 0;margin-bottom:34px;
+}
+.tabs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:0 14px}
+.tab{
+  font-family:'Noto Naskh Arabic',serif;font-size:clamp(18px,3.6vw,23px);font-weight:600;
+  background:transparent;color:var(--tinta-lembut);
+  border:2px solid var(--garis);border-radius:2px 14px 2px 14px;
+  padding:9px 20px;cursor:pointer;transition:.18s;line-height:1.7;
+}
+.tab:hover{border-color:var(--emas);color:var(--tinta)}
+.tab[aria-selected="true"]{background:var(--tinta);color:var(--kertas2);border-color:var(--tinta)}
+.tab:focus-visible{outline:3px solid var(--merah);outline-offset:2px}
+
+/* ---------- Panel topik ---------- */
+.topik{display:none}
+.topik.aktif{display:block;animation:masuk .3s ease}
+@keyframes masuk{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.topik-kepala{text-align:center;margin-bottom:8px}
+.topik-kepala h2{font-family:'Amiri',serif;font-size:clamp(30px,6vw,44px);margin:0 0 6px;line-height:1.5}
+.topik-kepala .ltn{font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--emas);direction:ltr}
+
+/* ---------- Kotak dalil ---------- */
+.dalil{
+  background:var(--kertas2);border:1px solid var(--garis);
+  border-right:5px solid var(--emas);border-radius:3px;
+  padding:20px 22px;margin:26px 0 34px;
+}
+.dalil h3{font-family:'Amiri',serif;font-size:24px;margin:0 0 14px;color:var(--merah)}
+.dalil-item{padding:12px 0;border-top:1px dotted var(--garis)}
+.dalil-item:first-of-type{border-top:none}
+.ayat{font-family:'Amiri',serif;font-size:clamp(22px,4.6vw,29px);line-height:2.2;margin:0 0 6px}
+.rujuk{font-size:16px;color:var(--emas);font-weight:600;margin:0 0 4px}
+.makna{font-size:17px;color:var(--tinta-lembut);margin:0}
+
+/* ---------- Bahagian soalan ---------- */
+.bhg{
+  background:var(--kertas2);border:1px solid var(--garis);border-radius:4px;
+  padding:26px 22px;margin-bottom:30px;
+}
+.bhg-kepala{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+  padding-bottom:14px;margin-bottom:20px;border-bottom:2px solid var(--emas)}
+.bhg-huruf{
+  font-family:'Amiri',serif;font-size:30px;font-weight:700;color:var(--kertas2);
+  background:var(--merah);width:46px;height:46px;flex:0 0 46px;
+  display:grid;place-items:center;border-radius:50%;line-height:1;
+}
+.bhg-kepala h3{font-size:clamp(21px,4.2vw,27px);margin:0;font-weight:700}
+.bhg-kepala .arahan{font-size:16px;color:var(--tinta-lembut);width:100%;margin:0}
+
+.soalan{padding:18px 0;border-top:1px solid var(--garis)}
+.soalan:first-of-type{border-top:none;padding-top:0}
+.s-teks{display:flex;gap:12px;align-items:flex-start;margin-bottom:12px}
+.s-no{
+  font-family:'Amiri',serif;font-weight:700;font-size:22px;color:var(--emas);
+  flex:0 0 40px;text-align:center;line-height:1.9;
+}
+.s-body{flex:1;font-size:clamp(19px,3.8vw,23px);line-height:2}
+
+/* pilihan */
+.pilihan{display:grid;gap:9px;padding-right:52px}
+@media(max-width:560px){.pilihan{padding-right:0}}
+.pil{
+  display:flex;gap:11px;align-items:flex-start;
+  border:2px solid var(--garis);border-radius:3px;background:var(--kertas);
+  padding:10px 14px;cursor:pointer;transition:.15s;font-size:clamp(18px,3.6vw,21px);line-height:1.95;
+}
+.pil:hover{border-color:var(--emas-terang)}
+.pil input{margin:0;width:22px;height:22px;flex:0 0 22px;margin-top:9px;accent-color:var(--tinta);cursor:pointer}
+.pil:has(input:checked){border-color:var(--tinta);background:#fff}
+.pil:has(input:focus-visible){outline:3px solid var(--merah);outline-offset:2px}
+
+/* betul/salah */
+.bs{display:flex;gap:12px;padding-right:52px;flex-wrap:wrap}
+@media(max-width:560px){.bs{padding-right:0}}
+.bs .pil{flex:1 1 150px;justify-content:center;font-weight:600}
+
+/* seret & lepas */
+.bank{
+  display:flex;flex-wrap:wrap;gap:10px;padding:16px;margin-bottom:22px;
+  background:var(--kertas);border:2px dashed var(--emas-terang);border-radius:4px;min-height:74px;
+}
+.bank-label{width:100%;font-size:15px;color:var(--tinta-lembut);margin:0 0 4px}
+.chip{
+  font-family:'Noto Naskh Arabic',serif;font-size:clamp(18px,3.6vw,22px);font-weight:600;
+  background:var(--tinta);color:var(--kertas2);border:none;
+  padding:7px 18px;border-radius:2px 12px 2px 12px;cursor:grab;line-height:1.9;
+  transition:.15s;user-select:none;
+}
+.chip:hover{background:var(--tinta-lembut)}
+.chip.dipilih{background:var(--merah);box-shadow:0 0 0 3px var(--emas-terang)}
+.chip:focus-visible{outline:3px solid var(--merah);outline-offset:2px}
+.chip[disabled]{opacity:.25;cursor:default}
+.lubang{
+  display:inline-block;min-width:130px;min-height:44px;vertical-align:middle;
+  border-bottom:3px solid var(--emas);background:rgba(176,132,40,.08);
+  border-radius:3px;padding:2px 12px;margin:0 6px;cursor:pointer;transition:.15s;
+  font-weight:600;text-align:center;line-height:2.2;
+}
+.lubang.sasar{background:var(--emas-terang);border-bottom-color:var(--merah)}
+.lubang:focus-visible{outline:3px solid var(--merah);outline-offset:2px}
+
+/* jawapan sebenar (bukan pilihan murid) */
+.jawapan{
+  border-color:var(--emas)!important;background:rgba(176,132,40,.14)!important;
+  border-style:dashed!important;position:relative;
+}
+.kata.jawapan{border-color:var(--emas)!important;background:rgba(176,132,40,.2)!important;border-style:dashed!important}
+.jawapan::after{
+  content:'← جواڤن';font-size:14px;color:var(--emas);font-weight:700;
+  margin-inline-start:auto;padding-inline-start:10px;white-space:nowrap;
+}
+.kata.jawapan::after{content:''}
+/* keputusan */
+.betul{border-color:var(--hijau)!important;background:rgba(46,107,79,.09)!important}
+.salah{border-color:var(--merah)!important;background:rgba(140,47,57,.08)!important}
+.lubang.betul{background:rgba(46,107,79,.15)!important;border-bottom-color:var(--hijau)!important}
+.lubang.salah{background:rgba(140,47,57,.12)!important;border-bottom-color:var(--merah)!important}
+.maklum{font-size:17px;margin:10px 0 0;padding-right:52px;font-weight:600}
+@media(max-width:560px){.maklum{padding-right:0}}
+.maklum.ok{color:var(--hijau)}
+.maklum.no{color:var(--merah)}
+
+.tindakan{display:flex;gap:12px;align-items:center;flex-wrap:wrap;
+  margin-top:24px;padding-top:20px;border-top:2px solid var(--emas)}
+.btn{
+  font-family:'Noto Naskh Arabic',serif;font-size:clamp(19px,3.8vw,23px);font-weight:700;
+  background:var(--tinta);color:var(--kertas2);border:2px solid var(--tinta);
+  padding:11px 32px;border-radius:2px 14px 2px 14px;cursor:pointer;transition:.18s;line-height:1.8;
+}
+.btn:hover{background:var(--merah);border-color:var(--merah)}
+.btn:focus-visible{outline:3px solid var(--merah);outline-offset:3px}
+.btn.kedua{background:transparent;color:var(--tinta)}
+.btn.kedua:hover{background:var(--tinta);color:var(--kertas2)}
+.skor{
+  font-family:'Amiri',serif;font-size:clamp(22px,4.4vw,28px);font-weight:700;
+  padding:6px 20px;border-radius:3px;background:var(--kertas);border:2px solid var(--emas);
+}
+.skor.penuh{background:var(--hijau);color:#fff;border-color:var(--hijau)}
+footer{text-align:center;padding:36px 18px;color:var(--tinta-lembut);font-size:15px}
+footer .bunga{font-size:20px;margin-bottom:10px}
+
+/* padankan */
+.padan-baris{display:flex;gap:12px;align-items:center;flex-wrap:wrap;
+  padding:12px 0;border-top:1px solid var(--garis)}
+.padan-baris:first-of-type{border-top:none}
+.padan-t{flex:0 0 190px;font-weight:700;font-size:clamp(19px,3.8vw,23px)}
+select{
+  font-family:'Noto Naskh Arabic',serif;font-size:clamp(17px,3.4vw,20px);
+  padding:9px 12px;border:2px solid var(--garis);border-radius:3px;
+  background:var(--kertas);color:var(--tinta);flex:1;min-width:200px;line-height:1.9;cursor:pointer;
+}
+select:focus-visible{outline:3px solid var(--merah);outline-offset:2px}
+select.betul{border-color:var(--hijau);background:rgba(46,107,79,.09)}
+select.salah{border-color:var(--merah);background:rgba(140,47,57,.08)}
+.padan-jwp{width:100%;font-size:16px;font-weight:600;margin:4px 0 0}
+/* susun */
+.susun-set{margin-bottom:24px}
+.susun-tajuk{font-weight:700;font-size:clamp(19px,3.8vw,23px);margin:0 0 12px}
+.susun-baris{display:flex;gap:12px;align-items:center;padding:9px 0;
+  border-top:1px solid var(--garis);flex-wrap:wrap}
+.susun-baris:first-of-type{border-top:none}
+.susun-baris select{flex:0 0 92px;min-width:92px;text-align:center}
+.susun-teks{flex:1;font-size:clamp(18px,3.6vw,22px);min-width:180px}
+/* jawapan bertulis */
+textarea{
+  font-family:'Noto Naskh Arabic',serif;font-size:clamp(18px,3.6vw,21px);line-height:2;
+  width:100%;min-height:88px;padding:12px 14px;border:2px solid var(--garis);
+  border-radius:3px;background:var(--kertas);color:var(--tinta);resize:vertical;
+}
+textarea:focus-visible{outline:3px solid var(--merah);outline-offset:2px}
+.model{
+  background:rgba(176,132,40,.12);border-right:4px solid var(--emas);
+  padding:12px 16px;margin:12px 0 0;border-radius:3px;font-size:clamp(17px,3.4vw,20px)
+}
+.model b{color:var(--merah)}
+.tanda{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap;align-items:center}
+.tanda .lbl{font-size:16px;color:var(--tinta-lembut)}
+.tbtn{
+  font-family:'Noto Naskh Arabic',serif;font-size:18px;font-weight:700;cursor:pointer;
+  padding:7px 20px;border-radius:2px 12px 2px 12px;border:2px solid var(--garis);
+  background:var(--kertas);color:var(--tinta);line-height:1.8;transition:.15s;
+}
+.tbtn:hover{border-color:var(--emas)}
+.tbtn.pilih-ok{background:var(--hijau);color:#fff;border-color:var(--hijau)}
+.tbtn.pilih-no{background:var(--merah);color:#fff;border-color:var(--merah)}
+.tbtn:focus-visible{outline:3px solid var(--merah);outline-offset:2px}
+
+.dua-pilih{display:flex;gap:14px;flex-wrap:wrap;padding-right:52px}
+@media(max-width:560px){.dua-pilih{padding-right:0}}
+.mini{display:flex;align-items:center;gap:8px;flex:1 1 300px;font-size:16px;color:var(--tinta-lembut)}
+.mini select{flex:1}
+.ganti{padding-right:52px;margin-top:10px;max-width:520px}
+@media(max-width:560px){.ganti{padding-right:0}}
+.pil-bin{font-weight:600}
+.ayat-salah{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.kata{
+  font-family:'Noto Naskh Arabic',serif;font-size:clamp(18px,3.6vw,22px);line-height:1.9;
+  background:transparent;border:2px dashed transparent;border-radius:3px;
+  padding:2px 8px;cursor:pointer;color:var(--tinta);transition:.13s;
+}
+.kata:hover{border-color:var(--emas-terang);background:rgba(176,132,40,.1)}
+.kata.tanda-salah{background:var(--merah);color:var(--kertas2);border-color:var(--merah)}
+.kata.betul{background:rgba(46,107,79,.2);border-color:var(--hijau);border-style:solid}
+.kata.salah{background:rgba(140,47,57,.16);border-color:var(--merah);border-style:solid}
+.kata:focus-visible{outline:3px solid var(--merah);outline-offset:2px}
+/* kaunter */
+.kaunter{max-width:940px;margin:0 auto;padding:10px 18px 2px}
+.kaunter-atas{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.k-besar{font-family:'Amiri',serif;font-size:clamp(21px,4vw,26px);font-weight:700}
+.k-label{font-size:14px;color:var(--tinta-lembut)}
+.k-betul{margin-inline-start:auto;font-size:15px;font-weight:600;color:var(--hijau)}
+.k-fasal{display:flex;gap:14px;flex-wrap:wrap}
+.k-blok{display:flex;align-items:center;gap:6px}
+.k-nama{font-size:13px;color:var(--tinta-lembut);flex:0 0 auto}
+.k-seg{display:flex;gap:3px}
+.k-seg i{
+  width:11px;height:15px;border-radius:2px;display:block;cursor:pointer;
+  border:1px solid var(--garis);background:transparent;transition:.15s;
+}
+.k-seg i:hover{transform:scaleY(1.25)}
+.k-seg i.isi{background:var(--emas-terang);border-color:var(--emas)}
+.k-seg i.ok{background:var(--hijau);border-color:var(--hijau)}
+.k-seg i.sebahagian{background:var(--merah);border-color:var(--merah);opacity:.75}
+@media(max-width:560px){.k-seg i{width:9px;height:13px}.k-nama{display:none}}
+
+/* ---- bar halaman ---- */
+.halaman-bar{position:sticky;top:0;z-index:30;background:var(--tinta);padding:0}
+.halaman-tabs{max-width:940px;margin:0 auto;display:flex}
+.hal-tab{
+  flex:1;font-family:'Amiri',serif;font-size:clamp(21px,4.4vw,27px);font-weight:700;
+  background:transparent;color:rgba(245,237,220,.55);border:none;border-bottom:4px solid transparent;
+  padding:15px 8px 12px;cursor:pointer;transition:.18s;line-height:1.6;
+}
+.hal-tab:hover{color:var(--kertas2)}
+.hal-tab[aria-selected="true"]{color:var(--kertas2);border-bottom-color:var(--emas)}
+.hal-tab:focus-visible{outline:3px solid var(--emas-terang);outline-offset:-4px}
+nav{top:62px}
+/* ---- nota ---- */
+.n-blok{background:var(--kertas2);border:1px solid var(--garis);border-radius:4px;
+  padding:24px 22px;margin-bottom:26px}
+.n-kepala{display:flex;align-items:center;gap:12px;padding-bottom:12px;margin-bottom:16px;
+  border-bottom:2px solid var(--emas)}
+.n-ikon{font-size:24px;line-height:1}
+.n-kepala h3{margin:0;font-size:clamp(21px,4.2vw,27px);font-weight:700}
+.n-ringkas p{font-size:clamp(19px,3.8vw,23px);line-height:2.15;margin:0 0 14px}
+mark{background:linear-gradient(transparent 55%, var(--emas-terang) 55%);color:inherit;
+  padding:0 2px;font-weight:700}
+.n-kunci{list-style:none;padding:0;margin:0}
+.n-kunci li{
+  position:relative;padding:11px 40px 11px 14px;margin-bottom:8px;
+  background:var(--kertas);border-right:4px solid var(--emas);border-radius:3px;
+  font-size:clamp(18px,3.6vw,22px);line-height:1.95;
+}
+.n-kunci li::before{content:'◆';position:absolute;right:14px;top:11px;color:var(--emas);font-size:14px}
+.n-jadual{margin-bottom:22px}
+.n-jadual h4{font-size:clamp(19px,3.8vw,22px);margin:0 0 10px;color:var(--merah)}
+.jd-bungkus{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;min-width:440px;background:var(--kertas)}
+th,td{border:1px solid var(--garis);padding:11px 13px;text-align:right;
+  font-size:clamp(16px,3.2vw,19px);line-height:1.9;vertical-align:top}
+th{background:var(--tinta);color:var(--kertas2);font-weight:700}
+tbody tr:nth-child(odd){background:var(--kertas2)}
+tbody td:first-child{font-weight:700}
+.n-tip{background:rgba(176,132,40,.13);border-right:4px solid var(--emas);
+  border-radius:3px;padding:13px 16px;margin-bottom:11px}
+.n-tip b{display:block;color:var(--merah);font-size:clamp(17px,3.4vw,20px);margin-bottom:4px}
+.n-tip span{font-size:clamp(17px,3.4vw,20px);line-height:1.95}
+/* ---- peta minda ---- */
+.peta{padding:6px 0}
+.peta-pusat{
+  display:inline-block;background:var(--tinta);color:var(--kertas2);
+  font-family:'Amiri',serif;font-size:clamp(22px,4.4vw,28px);font-weight:700;
+  padding:11px 30px;border-radius:3px 18px 3px 18px;margin-bottom:6px;line-height:1.7;
+}
+.peta-cabang{position:relative;padding:16px 26px 4px 0;margin-right:26px;
+  border-right:3px solid var(--emas)}
+.peta-cabang::before{content:'';position:absolute;right:-3px;top:30px;width:20px;height:3px;
+  background:var(--emas)}
+.peta-c-tajuk{
+  display:inline-block;background:var(--merah);color:var(--kertas2);font-weight:700;
+  font-size:clamp(18px,3.6vw,22px);padding:7px 20px;border-radius:2px 14px 2px 14px;
+  margin-bottom:9px;line-height:1.8;
+}
+.peta-anak{display:flex;flex-wrap:wrap;gap:8px;padding-right:14px}
+.peta-anak span{
+  background:var(--kertas);border:2px solid var(--emas-terang);border-radius:2px 12px 2px 12px;
+  padding:6px 15px;font-size:clamp(16px,3.2vw,20px);line-height:1.85;
+}
+/* ---- glosari ---- */
+.g-alat{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:20px}
+#cari{
+  flex:1 1 260px;font-family:'Noto Naskh Arabic',serif;font-size:clamp(18px,3.6vw,21px);
+  padding:12px 16px;border:2px solid var(--garis);border-radius:3px;
+  background:var(--kertas2);color:var(--tinta);line-height:1.9;
+}
+#cari:focus-visible{outline:3px solid var(--merah);outline-offset:2px}
+.g-tapis{display:flex;gap:7px;flex-wrap:wrap}
+.g-btn{
+  font-family:'Noto Naskh Arabic',serif;font-size:17px;font-weight:600;cursor:pointer;
+  padding:8px 17px;border:2px solid var(--garis);border-radius:2px 12px 2px 12px;
+  background:var(--kertas2);color:var(--tinta-lembut);line-height:1.8;transition:.15s;
+}
+.g-btn:hover{border-color:var(--emas)}
+.g-btn[aria-pressed="true"]{background:var(--tinta);color:var(--kertas2);border-color:var(--tinta)}
+.g-btn:focus-visible{outline:3px solid var(--merah);outline-offset:2px}
+.g-senarai{display:grid;gap:10px}
+.g-item{
+  background:var(--kertas2);border:1px solid var(--garis);border-right:4px solid var(--emas);
+  border-radius:3px;padding:15px 18px;
+}
+.g-atas{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:5px}
+.g-istilah{font-family:'Amiri',serif;font-weight:700;font-size:clamp(21px,4.2vw,26px);line-height:1.7}
+.g-fasal{font-size:13px;color:var(--kertas2);background:var(--emas);
+  padding:3px 11px;border-radius:20px;font-weight:600}
+.g-def{margin:0;font-size:clamp(17px,3.4vw,20px);line-height:2;color:var(--tinta-lembut)}
+.g-kosong{text-align:center;padding:40px 20px;color:var(--tinta-lembut);font-size:19px}
+.g-kira{font-size:15px;color:var(--tinta-lembut);margin:0 0 14px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media print{nav{display:none}.topik{display:block!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="bunga">❁ ❁ ❁</div>
+  <h1>كويز عقيدة</h1>
+  <p class="sub">تاهون ٦ &nbsp;·&nbsp; ٤٠٠ سوالن &nbsp;·&nbsp; امڤت فصل</p>
+  <p class="sub-latin">Kuiz Akidah Tahun 6</p>
+</header>
+
+<div class="halaman-bar">
+  <div class="halaman-tabs" role="tablist">
+    <button class="hal-tab" data-hal="nota"    role="tab" aria-selected="false">نوتا</button>
+    <button class="hal-tab" data-hal="kuiz"    role="tab" aria-selected="true">كويز</button>
+    <button class="hal-tab" data-hal="glosari" role="tab" aria-selected="false">ݢلوساري</button>
+  </div>
+</div>
+
+<nav id="navKuiz">
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <div class="kaunter">
+    <div class="kaunter-atas">
+      <span class="k-besar" id="kBesar">٠ / ٤٠٠</span>
+      <span class="k-label">سوالن دجواب</span>
+      <span class="k-betul" id="kBetul" hidden></span>
+    </div>
+    <div class="k-fasal" id="kFasal"></div>
+  </div>
+</nav>
+
+<nav id="navNota" hidden><div class="tabs" role="tablist" id="tabsNota"></div></nav>
+
+<div class="wrap" id="isi"></div>
+<div class="wrap" id="isiNota" hidden></div>
+<div class="wrap" id="isiGlosari" hidden></div>
+
+<footer>
+  <div class="bunga">❁</div>
+  نوتا · كويز (١٠ بهاݢين × ١٠ سوالن ستياڤ فصل) · ݢلوساري ايستيله. تكن «سمق جواڤن» اونتوق مليهت كڤوتوسن سرتا-مرتا.
+</footer>
+
+<script>
+/* ====== BANK SOALAN ====== */
+const BANK = [{"id":"f1","tab":"فصل ١","title":"شهادتين","latin":"Fasal 1 — Syahadatain","dalil":[{"ayat":"مَن يُطِعِ ٱلرَّسُولَ فَقَدْ أَطَاعَ ٱللَّهَ","rujuk":"سورة النساء، اية ٨٠","makna":"سسياڤ ياڠ منطاعتي رسول، مك سسوڠݢوهڽ اي تله منطاعتي الله."},{"ayat":"قُلْ إِنَّ صَلَاتِى وَنُسُكِى وَمَحْيَاىَ وَمَمَاتِى لِلَّهِ رَبِّ ٱلْعَٰلَمِينَ","rujuk":"سورة الانعام، اية ١٦٢","makna":"كاتاكنله: سسوڠݢوهڽ صلاتكو، عبادتكو، هيدوڤكو دان ماتيكو اداله اونتوق الله، توهن سكالين عالم."}],"mcq":[{"q":"اڤاكه مقصود شهادتين؟","o":["دوا كليمه ڤڠاكوان دالم إسلام","دوا واكتو صلاة","دوا هاري راي","دوا جنيس ڤواسا"],"a":0},{"q":"برڤاكه بيلڠن روكون شهادة؟","o":["دوا","تيݢ","امڤت","ليما"],"a":1},{"q":"روكون شهادة ياڠ برمقصود منيبوت دڠن ليده اياله:","o":["تصديق","عمل","اقرار","نية"],"a":2},{"q":"«تصديق» برمقصود:","o":["منيبوت دڠن ليده","ممبنركن دان مياكيني دڠن هاتي","ممبوقتيكن دڠن ڤربواتن","ممباچ دڠن كواة"],"a":1},{"q":"«عمل» دالم روكون شهادة برمقصود:","o":["ممبوقتيكن ڤڠاكوان دڠن ڤربواتن","مڠهافل كليمه شهادة","منولس شهادة","مندڠر شهادة"],"a":0},{"q":"اورڠ ياڠ منولق شهادة ديكيرا سباݢاي:","o":["مؤمن","صالح","كافير","مسلم"],"a":2},{"q":"كليمه ڤرتام شهادة مڠاكو بهاوا:","o":["تياد توهن ملائينكن الله","نبي محمد ﷺ ڤسوروه الله","صلاة ايت واجب","القرءان ايت بنر"],"a":0},{"q":"كليمه كدوا شهادة مڠاكو بهاوا:","o":["الله ايت اسا","نبي محمد ﷺ ڤسوروه الله","اخيرة ايت بنر","ملائكة ايت اد"],"a":1},{"q":"سورة النساء اية ٨٠ مڠاجر بهاوا منطاعتي رسول سام دڠن:","o":["منطاعتي ابو بكر","منطاعتي الله","منطاعتي ڤميمڤين","منطاعتي ايبو باڤ"],"a":1},{"q":"اورڠ ياڠ برشهادة دان مڠهاياتيڽ اكن مندڤت:","o":["هرتا ياڠ باڽق","جامينن كسلامتن دنيا دان اخيرة","ڤڠكت ياڠ تيڠݢي","اومور ياڠ ڤنجڠ"],"a":1}],"tf":[{"q":"شهادتين اداله كونچي ماسوق إسلام.","a":true},{"q":"چوكوڤ سكادر منيبوت شهادة تنڤا سبارڠ عمل.","a":false},{"q":"اقرار برمقصود ممبنركن دڠن هاتي.","a":false},{"q":"روكون شهادة اد تيݢ ڤركارا.","a":true},{"q":"اورڠ ياڠ منولق شهادة اكن منريما عذاب دأخيرة.","a":true},{"q":"كليمه شهادة ڤرتام بركاءيتن دڠن نبي محمد ﷺ.","a":false},{"q":"تصديق دلاكوكن دڠن هاتي.","a":true},{"q":"عمل برمقصود ڤربواتن سهارين ياڠ ممبوقتيكن ايمان.","a":true},{"q":"شهادة ممبيذاكن انتارا اورڠ مسلم دان اورڠ كافير.","a":true},{"q":"اورڠ ياڠ برشهادة تيدق ڤرلو منطاعتي رسول.","a":false}],"dd":{"bank":["دوا","ليده","هاتي","عمل","كافير","الله","رسول","كسلامتن","تصديق","اقرار"],"q":[{"t":["شهادتين برمقصود ","  كليمه ڤڠاكوان."],"a":"دوا"},{"t":["اقرار دلاكوكن دڠن ","."],"a":"ليده"},{"t":["تصديق دلاكوكن دڠن ","."],"a":"هاتي"},{"t":["","  برمقصود ممبوقتيكن دڠن ڤربواتن."],"a":"عمل"},{"t":["اورڠ ياڠ منولق شهادة ديكيرا ","."],"a":"كافير"},{"t":["كليمه ڤرتام مڠاكو تياد توهن ملائينكن ","."],"a":"الله"},{"t":["كليمه كدوا مڠاكو نبي محمد ﷺ اداله ","  الله."],"a":"رسول"},{"t":["اورڠ برشهادة مندڤت جامينن ","  دنيا دان اخيرة."],"a":"كسلامتن"},{"t":["ممبنركن دڠن هاتي ديسبوت ","."],"a":"تصديق"},{"t":["منيبوت دڠن ليده ديسبوت ","."],"a":"اقرار"}]}},{"id":"f2","tab":"فصل ٢","title":"صفة٢ اورڠ برشهادة","latin":"Fasal 2 — Sifat Orang Bersyahadah","dalil":[{"ayat":"إِنَّ أَكْرَمَكُمْ عِندَ ٱللَّهِ أَتْقَىٰكُمْ","rujuk":"سورة الحجرات، اية ١٣","makna":"سسوڠݢوهڽ اورڠ ياڠ ڤاليڠ مليا انتارا كامو دسيسي الله اياله اورڠ ياڠ ڤاليڠ برتقوى."},{"ayat":"وَٱخْفِضْ جَنَاحَكَ لِمَنِ ٱتَّبَعَكَ مِنَ ٱلْمُؤْمِنِينَ","rujuk":"سورة الشعراء، اية ٢١٥","makna":"دان رنداهكنله ديريمو ترهادڤ اورڠ٢ ياڠ مڠيكوتيمو، ياءيت اورڠ٢ برايمان."},{"ayat":"وَلَا تَا۟يْـَٔسُوا۟ مِن رَّوْحِ ٱللَّهِ","rujuk":"سورة يوسف، اية ٨٧","makna":"دان جاڠنله كامو برڤوتوس اسا درڤد رحمة الله."}],"mcq":[{"q":"برڤاكه بيلڠن صفة اوتام اورڠ ياڠ برشهادة؟","o":["دوا","تيݢ","امڤت","ليما"],"a":2},{"q":"صحابة ياڠ تركنل تاهن ديسيقسا كران ممڤرتاهنكن شهادة اياله:","o":["بلال بن رباح","سلمان الفارسي","خالد بن الوليد","معاذ بن جبل"],"a":0},{"q":"«تقوى» برمقصود:","o":["برأني ملاون موسوه","منطاعتي سوروهن الله دان منجاءوهي لارڠنڽ","بلاجر دڠن راجين","برسدقه ستياڤ هاري"],"a":1},{"q":"«مراقبة» برمقصود راس:","o":["تاكوت كڤد منوسيا","سنتياس ديڤرهاتي اوليه الله","سديه دان كچيوا","مالو كڤد كاون"],"a":1},{"q":"«تواضع» برمقصود:","o":["سومبوڠ دان اڠكوه","رنده ديري، تيدق سومبوڠ","سوك ممبنتو","ڤنديق كات٢"],"a":1},{"q":"ابن سينا مڠولڠ ممباچ كتاب اريسطوطل سبڽق:","o":["١٠ كالي","٢٠ كالي","٣٠ كالي","٤٠ كالي"],"a":3},{"q":"سياڤاكه ياڠ هوراينڽ ممبنتو ابن سينا مماهمي اريسطوطل؟","o":["الفارابي","الغزالي","ابن رشد","ابن خلدون"],"a":0},{"q":"دليل «إِنَّ أَكْرَمَكُمْ عِندَ ٱللَّهِ أَتْقَىٰكُمْ» ترداڤت دالم:","o":["سورة النساء","سورة يوسف","سورة الحجرات","سورة الشعراء"],"a":2},{"q":"كيسه اسماء بنت ابو بكر منونجوقكن صفة:","o":["ڤموره","برأني","مالو","سبر"],"a":1},{"q":"دليل «جاڠن برڤوتوس اسا درڤد رحمة الله» منداسري صفة:","o":["تواضع","سنتياس برأوسها","تقوى","برأني"],"a":1}],"tf":[{"q":"اورڠ ياڠ برأني هاڽ تاكوت كڤد الله.","a":true},{"q":"تقوى برمقصود منطاعتي الله دان منجاءوهي لارڠنڽ.","a":true},{"q":"تواضع برمقصود براس ديري لبيه باءيق درڤد اورڠ لاءين.","a":false},{"q":"بلال بن رباح ممڤرتاهنكن شهادهڽ والاوڤون ديسيقسا.","a":true},{"q":"كيسه ابن سينا مڠاجر كيت سوڤايا موده ڤوتوس اسا.","a":false},{"q":"مراقبة برمقصود راس سنتياس ديڤرهاتي اوليه الله.","a":true},{"q":"اورڠ برتقوى ڤاليڠ مليا دسيسي الله.","a":true},{"q":"صفة برأني برمقصود بربوات سسوكا هاتي تنڤا فيكير.","a":false},{"q":"ابو بكر منمني رسول الله ﷺ سماس هجرة كݢوا ثور.","a":true},{"q":"سموا منوسيا سام تارف سباݢاي همبا الله، جادي كيت تيدق ڤاتوت سومبوڠ.","a":true}],"dd":{"bank":["برأني","تقوى","تواضع","برأوسها","بلال","الفارابي","مراقبة","الحجرات","اسماء","ابن سينا"],"q":[{"t":["صفة ","  برمقصود رنده ديري دان تيدق سومبوڠ."],"a":"تواضع"},{"t":["صفة ","  برمقصود منطاعتي الله دان منجاءوهي لارڠنڽ."],"a":"تقوى"},{"t":["","  بن رباح تاهن ديسيقسا دمي ممڤرتاهنكن شهادة."],"a":"بلال"},{"t":["راس سنتياس ديڤرهاتي اوليه الله ديسبوت ","."],"a":"مراقبة"},{"t":["","  مڠولڠ ممباچ كتاب اريسطوطل امڤت ڤولوه كالي."],"a":"ابن سينا"},{"t":["هوراين ","  ممبنتو ابن سينا مماهمي فلسفه اريسطوطل."],"a":"الفارابي"},{"t":["دليل تقوى ترداڤت دالم سورة ","، اية ١٣."],"a":"الحجرات"},{"t":["صفة ","  برمقصود سڠݢوڤ برتيندق بنر والاوڤون سوكر."],"a":"برأني"},{"t":["","  بنت ابو بكر منولوڠ رسول الله ﷺ سماس هجرة."],"a":"اسماء"},{"t":["اورڠ ياڠ سنتياس ","  تيدق موده ڤوتوس اسا."],"a":"برأوسها"}]}},{"id":"f3","tab":"فصل ٣","title":"إسلام سباݢاي ميزان","latin":"Fasal 3 — Islam Sebagai Mizan","dalil":[{"ayat":"وَمَا خَلَقْتُ ٱلْجِنَّ وَٱلْإِنسَ إِلَّا لِيَعْبُدُونِ","rujuk":"سورة الذاريات، اية ٥٦","makna":"دان تيدقله اكو منجاديكن جين دان منوسيا ملائينكن اونتوق مريك مڽمبهكو."},{"ayat":"إِنَّ ٱلصَّلَوٰةَ تَنْهَىٰ عَنِ ٱلْفَحْشَآءِ وَٱلْمُنكَرِ","rujuk":"سورة العنكبوت، اية ٤٥","makna":"سسوڠݢوهڽ صلاة ايت منچݢه درڤد ڤربواتن كجي دان موڠكر."},{"ayat":"وَلَا يَغْتَب بَّعْضُكُم بَعْضًا","rujuk":"سورة الحجرات، اية ١٢","makna":"دان جاڠنله ستڠه كامو مڠومڤت ستڠه ياڠ لاءين."}],"mcq":[{"q":"«ميزان» برمقصود:","o":["نراچا اتاو الت تيمبڠ","بوكو چاتتن","جالن راي","ڤينتو مسجد"],"a":0},{"q":"عقيدة ياڠ بنر مستي برداسركن:","o":["عادت دان كبياساءن","القرءان دان السنة","ڤندڤت راماي","ميمڤي"],"a":1},{"q":"عبادة خصوص اياله عبادة ياڠ:","o":["دلاكوكن ايكوت سوكا هاتي","ديتتڤكن چارا اوليه نبي محمد ﷺ","هاڽ اونتوق اورڠ دواس","دلاكوكن سكالي ستاهن"],"a":1},{"q":"ماناكه چونتوه عبادة عموم؟","o":["صلاة","ڤواسا رمضان","بلاجر دان بكرجا","حج"],"a":2},{"q":"عمل ياڠ برلندسكن إسلام تربنتوق درڤد:","o":["نية دان تيندقن","هرتا دان ڤڠكت","ايلمو دان اومور","كواسا دان نام"],"a":0},{"q":"برڤاكه بيلڠن اخلاق موليا ياڠ دسنارايكن دالم فصل اين؟","o":["ليما","توجوه","سمبيلن","سڤولوه"],"a":3},{"q":"«ورع» برمقصود:","o":["برهاتي٢ انتارا حلال دان حرام","برأني برچاكڤ","بايق هاتي","بربلنجا سديكيت"],"a":0},{"q":"«قدوه حسنة» برمقصود:","o":["اورڠ ياڠ كاي","چونتوه تلادن ياڠ باءيق","ݢورو مڠاجي","كتاب ڤنتيڠ"],"a":1},{"q":"ڤرانن سأورڠ باڤ دالم كلوارݢ إسلام اياله:","o":["منديديق دڠن كاسيه سايڠ","منچاري رزقي حلال دان مميمڤين كلوارݢ","تاعت كڤد ايبو باڤ","مندواكن ايبو باڤ"],"a":1},{"q":"دليل «صلاة منچݢه ڤربواتن كجي دان موڠكر» ترداڤت دالم سورة:","o":["الذاريات","العنكبوت","الحجرات","البقرة"],"a":1}],"tf":[{"q":"ميزان برمقصود نراچا اونتوق منيمبڠ بتول اتاو ساله سسواتو ڤربواتن.","a":true},{"q":"عقيدة بوليه برداسركن ڤندڤت راماي سهاج.","a":false},{"q":"صلاة دان ڤواسا اداله چونتوه عبادة خصوص.","a":true},{"q":"بكرجا منچاري رزقي حلال بوليه منجادي عبادة.","a":true},{"q":"«ورع» برمقصود سوك ممبري سدقه.","a":false},{"q":"مموليهارا ليده برمقصود منجاءوهي فتنه دان مڠومڤت.","a":true},{"q":"ايبو برڤرانن منديديق دان مڽورهكن كاسيه سايڠ.","a":true},{"q":"انق تيدق ڤرلو مندواكن ايبو باڤڽ.","a":false},{"q":"اخلاق موليا برسومبركن القرءان دان سنة رسول الله ﷺ.","a":true},{"q":"عبادة عموم اداله ڤربواتن ياڠ منيالهي شرع.","a":false}],"dd":{"bank":["ميزان","عقيدة","خصوص","عموم","ورع","تواضع","ڤموره","قدوه حسنة","باڤ","ايبو"],"q":[{"t":["","  برمقصود نراچا اتاو الت تيمبڠ عمل."],"a":"ميزان"},{"t":["","  اياله كڤرچاياءن دالم هاتي برداسركن القرءان دان السنة."],"a":"عقيدة"},{"t":["صلاة دان ڤواسا اداله چونتوه عبادة ","."],"a":"خصوص"},{"t":["بلاجر دان بكرجا اداله چونتوه عبادة ","."],"a":"عموم"},{"t":["","  برمقصود برهاتي٢ انتارا حلال دان حرام."],"a":"ورع"},{"t":["صفة ","  برمقصود رنده ديري سسام منوسيا."],"a":"تواضع"},{"t":["صفة ","  برمقصود سوك برصدقه دان ممبنتو."],"a":"ڤموره"},{"t":["منجادي چونتوه تلادن ياڠ باءيق ديسبوت ","."],"a":"قدوه حسنة"},{"t":["سأورڠ ","  برڤرانن منچاري رزقي حلال دان مميمڤين كلوارݢ."],"a":"باڤ"},{"t":["سأورڠ ","  برڤرانن منديديق دان مڽورهكن كاسيه سايڠ."],"a":"ايبو"}]}},{"id":"f4","tab":"فصل ٤","title":"كيقينن ترهادڤ إسلام","latin":"Fasal 4 — Keyakinan Seorang Muslim","dalil":[{"ayat":"صِبْغَةَ ٱللَّهِ ۖ وَمَنْ أَحْسَنُ مِنَ ٱللَّهِ صِبْغَةً","rujuk":"سورة البقرة، اية ١٣٨","makna":"چلوڤن الله، دان سياڤاكه ياڠ لبيه باءيق چلوڤنڽ درڤد الله؟"},{"ayat":"وَلَقَدْ بَعَثْنَا فِى كُلِّ أُمَّةٍ رَّسُولًا","rujuk":"سورة النحل، اية ٣٦","makna":"دان سسوڠݢوهڽ كامي تله مڠوتوسكن رسول ڤد ستياڤ اومت."}],"mcq":[{"q":"«ربانية» برمقصود إسلام:","o":["برسومبركن الله، بوكن چيڤتاءن منوسيا","دأمالكن اوليه اورڠ عرب سهاج","بربنتوق چريتا لام","برأوبه ايكوت زمان"],"a":0},{"q":"«شمول» برمقصود إسلام:","o":["موده دفهمي","مڽلوروه، مرڠكومي سموا اسڤيك كهيدوڤن","هاڽ اونتوق عبادة","ڤنديق دان رڠكس"],"a":1},{"q":"«علمية» برمقصود إسلام برداسركن:","o":["سڠكاءن","ايلمو","عادت","ڤرايسان"],"a":1},{"q":"إسلام «سسواي دڠن فطره» برمقصود سلاري دڠن:","o":["كهيندق هاوا نفسو","نالوري سمولا جادي منوسيا","بودايا بارت","اوندڠ٢ نݢارا"],"a":1},{"q":"سومبر اوندڠ٢ إسلام اياله:","o":["فيكيرن منوسيا","وحي درڤد الله","ڤرستوجوان راماي","عادت لام"],"a":1},{"q":"كلمهن اوتام اوندڠ٢ چيڤتاءن منوسيا اياله:","o":["ترلالو ڤنجڠ","برأوبه٢ دان تيدق سمڤورنا","سوسه دباچ","تيدق برتوليس"],"a":1},{"q":"«صبغة الله» برمقصود:","o":["چلوڤن اتاو اچوان الله","نام سورة","ساتو جنيس عبادة","كتاب لام"],"a":0},{"q":"إسلام برسيفت «سدرهان» برمقصود:","o":["مورح دان سنڠ","سيمبڠ انتارا دنيا دان اخيرة","سديكيت هوكومڽ","هاڽ اونتوق اورڠ مسكين"],"a":1},{"q":"دليل «كامي تله مڠوتوسكن رسول ڤد ستياڤ اومت» ترداڤت دالم سورة:","o":["البقرة","النحل","الحجرات","يوسف"],"a":1},{"q":"إسلام برسيفت «سجاݢت» (اونيۏرسل) برمقصود سسواي اونتوق:","o":["اورڠ عرب سهاج","سموا بڠسا، زمان دان تمڤت","اورڠ دواس سهاج","نݢارا إسلام سهاج"],"a":1}],"tf":[{"q":"إسلام اداله اݢام ياڠ لڠكڤ دان سمڤورنا.","a":true},{"q":"ربانية برمقصود إسلام چيڤتاءن منوسيا.","a":false},{"q":"شمول برمقصود إسلام مرڠكومي روحاني دان جسماني.","a":true},{"q":"اوندڠ٢ چيڤتاءن منوسيا ككل دان تيدق برأوبه.","a":false},{"q":"اوندڠ٢ إسلام برسومبركن وحي درڤد الله.","a":true},{"q":"إسلام هاڽ سسواي اونتوق زمان دهولو سهاج.","a":false},{"q":"علمية برمقصود إسلام برداسركن ايلمو، بوكن سڠكاءن.","a":true},{"q":"إسلام سسواي دڠن فطره سمولا جادي منوسيا.","a":true},{"q":"إسلام مڠاجر كيت برسيكڤ ملامڤاو دالم سݢالا ڤركارا.","a":false},{"q":"إسلام سسواي اونتوق سموا بڠسا دان تمڤت.","a":true}],"dd":{"bank":["ربانية","شمول","علمية","فطره","سدرهان","سجاݢت","وحي","صبغة","النحل","منوسيا"],"q":[{"t":["","  برمقصود إسلام برسومبركن الله، بوكن چيڤتاءن منوسيا."],"a":"ربانية"},{"t":["","  برمقصود مڽلوروه، مرڠكومي سموا اسڤيك كهيدوڤن."],"a":"شمول"},{"t":["","  برمقصود إسلام برداسركن ايلمو، بوكن سڠكاءن."],"a":"علمية"},{"t":["إسلام سلاري دڠن ","  سمولا جادي منوسيا."],"a":"فطره"},{"t":["إسلام برسيفت ","، ياءيت سيمبڠ انتارا دنيا دان اخيرة."],"a":"سدرهان"},{"t":["إسلام برسيفت ","، سسواي اونتوق سموا بڠسا دان زمان."],"a":"سجاݢت"},{"t":["اوندڠ٢ إسلام برسومبركن ","  درڤد الله."],"a":"وحي"},{"t":["اوندڠ٢ چيڤتاءن ","  موده برأوبه دان تيدق سمڤورنا."],"a":"منوسيا"},{"t":["","  الله برمقصود چلوڤن اتاو اچوان الله ياڠ ترباءيق."],"a":"صبغة"},{"t":["دليل ڤڠوتوسن رسول ترداڤت دالم سورة ","، اية ٣٦."],"a":"النحل"}]}}];
+
+const BANK2 = {"f1":{"padan":[{"t":"شهادتين","m":"دوا كليمه ڤڠاكوان دالم إسلام"},{"t":"اقرار","m":"منيبوت دڠن ليده"},{"t":"تصديق","m":"ممبنركن دان مياكيني دڠن هاتي"},{"t":"عمل","m":"ممبوقتيكن ڤڠاكوان دڠن ڤربواتن"},{"t":"كافير","m":"اورڠ ياڠ منولق كبنرن شهادة"},{"t":"مسلم","m":"اورڠ ياڠ منريما دان مڠاكو شهادة"},{"t":"لا إله إلا الله","m":"تياد توهن ملائينكن الله"},{"t":"محمد رسول الله","m":"نبي محمد ﷺ ڤسوروه الله"},{"t":"سورة النساء ٨٠","m":"منطاعتي رسول سام دڠن منطاعتي الله"},{"t":"جامينن شهادة","m":"كسلامتن د دنيا دان د اخيرة"}],"susun":[{"tajuk":"سوسون لڠكه سأورڠ ماسوق إسلام:","betul":["مندڠر دعوة إسلام","مماهمي مقصود شهادة","مياكيني دڠن هاتي","ملفظكن دوا كليمه شهادة","مڠعملكن اجرن إسلام"]},{"tajuk":"سوسون كليمه شهادة ڤرتام دڠن بتول:","betul":["أَشْهَدُ","أَن","لَّآ إِلَٰهَ","إِلَّا","ٱللَّهُ"]}],"kenal":[{"q":"كنل ڤستي روكون شهادة ياڠ دلاكوكن دڠن ليده:","o":["تصديق","اقرار","عمل","نية"],"a":1},{"q":"كنل ڤستي روكون شهادة ياڠ دلاكوكن دڠن هاتي:","o":["اقرار","عمل","تصديق","سبر"],"a":2},{"q":"كنل ڤستي روكون شهادة ياڠ دلاكوكن دڠن اڠݢوتا بادن:","o":["عمل","اقرار","تصديق","ذكر"],"a":0},{"q":"كنل ڤستي كليمه شهادة ياڠ برتاليان دڠن كأساءن الله:","o":["كليمه كدوا","كليمه ڤرتام","كدوا-دواڽ","تياد"],"a":1},{"q":"كنل ڤستي كليمه شهادة ياڠ برتاليان دڠن كرسولن:","o":["كليمه ڤرتام","كليمه كدوا","كليمه كتيݢ","تياد"],"a":1},{"q":"كنل ڤستي ݢولوڠن ياڠ منولق شهادة:","o":["مسلم","مؤمن","كافير","صالح"],"a":2},{"q":"كنل ڤستي سورة ياڠ مڽاتاكن منطاعتي رسول سام دڠن منطاعتي الله:","o":["سورة النساء","سورة يوسف","سورة النحل","سورة البقرة"],"a":0},{"q":"كنل ڤستي ڤرنياتاءن ياڠ منونجوقكن عمل شهادة:","o":["مڠهافل كليمه شهادة","منونايكن صلاة ليما واكتو","مندڠر چراميه","منولس شهادة"],"a":1},{"q":"كنل ڤستي حاصيل باݢي اورڠ ياڠ برشهادة دان مڠهاياتيڽ:","o":["هرتا ملیمڤه","جامينن كسلامتن دنيا دان اخيرة","اومور ڤنجڠ","ڤڠكت تيڠݢي"],"a":1},{"q":"كنل ڤستي بيلڠن كليمه دالم شهادتين:","o":["ساتو","دوا","تيݢ","امڤت"],"a":1}],"nyata":[{"q":"ڽاتاكن مقصود شهادتين.","a":"دوا كليمه ڤڠاكوان: تياد توهن ملائينكن الله، دان نبي محمد ﷺ ڤسوروه الله."},{"q":"ڽاتاكن تيݢ روكون شهادة.","a":"اقرار، تصديق دان عمل."},{"q":"ڽاتاكن مقصود اقرار.","a":"منيبوت دوا كليمه شهادة دڠن ليده."},{"q":"ڽاتاكن مقصود تصديق.","a":"ممبنركن دان مياكيني دوا كليمه شهادة دڠن هاتي."},{"q":"ڽاتاكن مقصود عمل دالم روكون شهادة.","a":"ممبوقتيكن ڤڠاكوان شهادة دڠن ڤربواتن سهارين."},{"q":"ڽاتاكن كسن كڤد اورڠ ياڠ منولق شهادة.","a":"دي ديكيرا كافير دان اكن منريما عذاب د اخيرة."},{"q":"ڽاتاكن كسن كڤد اورڠ ياڠ منريما شهادة.","a":"دي مندڤت جامينن كسلامتن د دنيا دان د اخيرة."},{"q":"ڽاتاكن مقصود كليمه ڤرتام شهادة.","a":"اكو برساكسي بهاوا تياد توهن ياڠ برحق دسمبه ملائينكن الله."},{"q":"ڽاتاكن مقصود كليمه كدوا شهادة.","a":"اكو برساكسي بهاوا نبي محمد ﷺ ايت ڤسوروه الله."},{"q":"ڽاتاكن ساتو تڠݢوڠجواب اورڠ ياڠ برشهادة.","a":"منطاعتي سݢالا سوروهن الله دان منيڠݢلكن لارڠنڽ، سرتا مڠيكوت سنة رسول الله ﷺ."}],"contoh":[{"q":"بريكن ساتو چونتوه ڤربواتن ياڠ منونجوقكن اقرار.","a":"منيبوت دوا كليمه شهادة دڠن جلس، چونتوهڽ سماس اذان اتاو سماس مسوق إسلام."},{"q":"بريكن ساتو چونتوه ڤربواتن ياڠ منونجوقكن تصديق.","a":"مياكيني دالم هاتي بهاوا هاڽ الله ياڠ برحق دسمبه، والاوڤون تيدق داڤت مليهتڽ."},{"q":"بريكن دوا چونتوه عمل باݢي اورڠ ياڠ برشهادة.","a":"منونايكن صلاة ليما واكتو دان برڤواسا د بولن رمضان."},{"q":"بريكن ساتو چونتوه تڠݢوڠجواب هارين اورڠ برشهادة د رومه.","a":"منطاعتي ايبو باڤ دان منولوڠ مريك دڠن اخلاق ياڠ باءيق."},{"q":"بريكن ساتو چونتوه تڠݢوڠجواب اورڠ برشهادة د سكوله.","a":"برچاكڤ بنر، تيدق منيڤو دالم ڤڤريقساءن، دان مڠهورمتي ݢورو."},{"q":"بريكن ساتو چونتوه ڤربواتن ياڠ برچڠݢه دڠن شهادة.","a":"مڽمبه اتاو ممينتا ڤرتولوڠن كڤد سلاءين الله (شرك)."},{"q":"بريكن ساتو چونتوه چارا منطاعتي رسول الله ﷺ.","a":"مڠيكوت سنة بݢيندا سڤرتي ممبري سلام دان ماكن دڠن تاڠن كانن."},{"q":"بريكن ساتو چونتوه اورڠ ياڠ برشهادة تتاڤي تيدق برعمل.","a":"اورڠ ياڠ منيبوت شهادة تتاڤي سڠاج منيڠݢلكن صلاة تنڤا عذور."},{"q":"بريكن ساتو چونتوه ڤركاتاءن ياڠ منونجوقكن كأساءن الله.","a":"لا إله إلا الله — تياد توهن ملائينكن الله."},{"q":"بريكن ساتو چونتوه ڤربواتن مڽاتاكن شكور اتس نعمة إسلام.","a":"مڠوچڤ الحمد لله دان منمبه عبادة سرتا بلاجر ايلمو اݢام."}],"situasi":[{"q":"احمد منيبوت كليمه شهادة تتاڤي دي تيدق ڤرنه منونايكن صلاة. اڤاكه روكون شهادة ياڠ تيدق دسمڤورناكن اوليهڽ؟ مڠاڤ؟","a":"روكون عمل. كران شهادة مستي دبوقتيكن دڠن ڤربواتن، بوكن سكادر سبوتن د مولوت."},{"q":"سماس ڤڤريقساءن، كاون اندا مڠاجق منيڤو. اڤاكه تيندقن اندا سباݢاي اورڠ ياڠ برشهادة؟","a":"منولق دڠن سوڤن دان تيدق منيڤو، كران اورڠ برشهادة مستي جوجور دان سدر الله سنتياس مليهت."},{"q":"سأورڠ راكن بركات دي ڤرچاي كڤد الله دالم هاتي سهاج، تنڤا ڤرلو مڽبوتڽ. اڤاكه ڤندڠن اندا؟","a":"ايت بلوم چوكوڤ. شهادة ممرلوكن اقرار (سبوتن)، تصديق (هاتي) دان عمل (ڤربواتن)."},{"q":"اندا مليهت راكن ممينتا ڤرتولوڠن كڤد بندا ياڠ دأڠݢڤ برتواه. اڤ ياڠ ڤاتوت اندا لاكوكن؟","a":"مناسيحتيڽ دڠن باءيق بهاوا ڤرتولوڠن هاڽ درڤد الله، دان ڤربواتن ايت بوليه ممباوا كڤد شرك."},{"q":"باڤ اندا مڽوروه اندا ملاكوكن ڤركارا ياڠ برلاونن دڠن ڤرينته الله. اڤ ياڠ اندا لاكوكن؟","a":"منولق دڠن سوڤن دان تتڤ برأخلاق باءيق، كران كتاعتن كڤد الله دأوتاماكن."},{"q":"سأورڠ كاون بارو مماسوق إسلام. اڤاكه ناصيحت ڤرتام ياڠ سسواي اندا بريكن؟","a":"مڠاجرڽ مماهمي مقصود شهادة سرتا مڠعملكنڽ دالم كهيدوڤن، بوكن سكادر مڠهافل."},{"q":"اندا ترلوڤا منونايكن صلاة عصر كران برياده. اڤ ياڠ ڤاتوت اندا لاكوكن؟","a":"سݢرا مڠقضاء صلاة ترسبوت دان براوسها منجاݢ واكتو صلاة ڤد ماس هادڤن."},{"q":"راكن اندا مڠعجيق اورڠ ياڠ راجين كمسجد. اڤاكه تيندقن اندا؟","a":"مننتڠ ڤربواتن ايت دڠن سوڤن دان مڽاتاكن بهاوا مڠعجيق عبادة اداله ساله."},{"q":"اندا ديبري ڤيليهن انتارا واڠ ياڠ ديڤرأوليه دڠن چارا تيدق جوجور اتاو تتڤ ميسكين. اڤ ڤيليهن اندا؟","a":"منولق واڠ ترسبوت، كران اورڠ برشهادة يقين رزقي درڤد الله دان مستي مڠيكوت چارا حلال."},{"q":"كاون اندا بركات: «شهادة چوكوڤ دسبوت سكالي سهاج، سلڤس ايت بيبس بوات اڤ سهاج.» بتولكن كفهمنڽ.","a":"شهادة اداله ڤڠاكوان ياڠ ممباوا تڠݢوڠجواب سڤنجڠ حايت اونتوق منطاعتي الله دان رسولڽ."}],"betul":[{"q":"«شهادتين برمقصود تيݢ كليمه ڤڠاكوان دالم إسلام.»","a":"ساله — شهادتين برمقصود دوا كليمه ڤڠاكوان."},{"q":"«اقرار برمقصود ممبنركن دڠن هاتي.»","a":"ساله — اقرار برمقصود منيبوت دڠن ليده؛ ممبنركن دڠن هاتي ايت تصديق."},{"q":"«عمل برمقصود مڠهافل كليمه شهادة دڠن باءيق.»","a":"ساله — عمل برمقصود ممبوقتيكن ڤڠاكوان دڠن ڤربواتن."},{"q":"«اورڠ ياڠ منولق شهادة تتڤ ديكيرا مسلم.»","a":"ساله — اورڠ ياڠ منولق شهادة ديكيرا كافير."},{"q":"«كليمه ڤرتام شهادة برتاليان دڠن كرسولن نبي محمد ﷺ.»","a":"ساله — كليمه ڤرتام برتاليان دڠن كأساءن الله."},{"q":"«چوكوڤ منيبوت شهادة تنڤا ڤرلو مياكيني دالم هاتي.»","a":"ساله — شهادة مستي دسرتاي تصديق، ياءيت كياكينن دالم هاتي."},{"q":"«منطاعتي رسول تيدق اد كاءيتن دڠن منطاعتي الله.»","a":"ساله — منطاعتي رسول سام دڠن منطاعتي الله (سورة النساء اية ٨٠)."},{"q":"«اورڠ ياڠ برشهادة تيدق ڤرلو منونايكن سبارڠ تڠݢوڠجواب.»","a":"ساله — اورڠ برشهادة برتڠݢوڠجواب منطاعتي الله دان مڠيكوت سنة رسول."},{"q":"«روكون شهادة اد امڤت ڤركارا.»","a":"ساله — روكون شهادة اد تيݢ: اقرار، تصديق دان عمل."},{"q":"«شهادة هاڽ ڤنتيڠ سماس هامڤير مننيڠݢل دنيا سهاج.»","a":"ساله — شهادة ڤنتيڠ سڤنجڠ حايت دان مستي دهاياتي ستياڤ هاري."}]},"f2":{"padan":[{"t":"برأني","m":"سڠݢوڤ ممڤرتاهنكن كبنرن والاوڤون سوكر"},{"t":"تقوى","m":"منطاعتي سوروهن الله دان منجاءوهي لارڠنڽ"},{"t":"مراقبة","m":"راس سنتياس ديڤرهاتي اوليه الله"},{"t":"تواضع","m":"رنده ديري دان تيدق سومبوڠ"},{"t":"بلال بن رباح","m":"صحابة ياڠ تاهن ديسيقسا دمي شهادة"},{"t":"اسماء بنت ابو بكر","m":"منولوڠ رسول الله ﷺ سماس هجرة"},{"t":"ابن سينا","m":"مڠولڠ ممباچ كتاب اريسطوطل ٤٠ كالي"},{"t":"الفارابي","m":"هوراينڽ ممبنتو ابن سينا مماهمي فلسفه"},{"t":"سورة الحجرات ١٣","m":"اورڠ ڤاليڠ مليا اياله ياڠ ڤاليڠ برتقوى"},{"t":"سورة يوسف ٨٧","m":"لارڠن برڤوتوس اسا درڤد رحمة الله"}],"susun":[{"tajuk":"سوسون ڤروسيس منجادي اورڠ ياڠ برتقوى:","betul":["منونتوت ايلمو اݢام","مڠنل سوروهن دان لارڠن الله","مياكيني الله سنتياس مليهت","منيڠݢلكن ڤركارا حرام","ايستقامة دالم كتاعتن"]},{"tajuk":"سوسون اوروتن كيسه ابن سينا مماهمي اريسطوطل:","betul":["ممباچ كتاب اريسطوطل","تيدق مماهمي ايسي كتاب","مڠولڠ ممباچ ٤٠ كالي","ممبلي كتاب هوراين الفارابي","اخيرڽ مماهمي مقصودڽ"]}],"kenal":[{"q":"كنل ڤستي صفة ياڠ دتونجوقكن اوليه بلال بن رباح:","o":["ڤموره","برأني","مالو","سبر"],"a":1},{"q":"كنل ڤستي صفة ياڠ برمقصود رنده ديري:","o":["تقوى","تواضع","ورع","امانه"],"a":1},{"q":"كنل ڤستي صفة ياڠ دتونجوقكن اوليه ابن سينا:","o":["سنتياس برأوسها","برأني","ڤموره","تواضع"],"a":0},{"q":"كنل ڤستي مقصود مراقبة:","o":["تاكوت كڤد منوسيا","راس سنتياس ديڤرهاتي الله","سوك برسدقه","بربوات باءيق"],"a":1},{"q":"كنل ڤستي سورة ياڠ مڽاتاكن اورڠ ڤاليڠ مليا اياله ياڠ برتقوى:","o":["الحجرات","النساء","النحل","الشعراء"],"a":0},{"q":"كنل ڤستي صحابة ياڠ منمني رسول الله ﷺ د ݢوا ثور:","o":["عمر الخطاب","ابو بكر","عثمان","علي"],"a":1},{"q":"كنل ڤستي ڤرنياتاءن ياڠ منونجوقكن صفة برأني:","o":["دياءم كران تاكوت دمارهي","بركات بنر والاوڤون ڤاهيت","مڠيكوت كاون ملاكوكن ساله","لاري درڤد مسئله"],"a":1},{"q":"كنل ڤستي لاون كڤد صفة تواضع:","o":["سبر","سومبوڠ","ڤموره","جوجور"],"a":1},{"q":"كنل ڤستي بيلڠن صفة اوتام اورڠ برشهادة:","o":["دوا","تيݢ","امڤت","ليما"],"a":2},{"q":"كنل ڤستي ڤرنياتاءن ياڠ منونجوقكن صفة تقوى:","o":["منيڠݢلكن دوسا والاوڤون تيدق دليهت اورڠ","بربوات باءيق سماس دليهت سهاج","برچاكڤ باڽق","مڠهافل ايلمو"],"a":0}],"nyata":[{"q":"ڽاتاكن امڤت صفة اورڠ ياڠ برشهادة.","a":"برأني، برتقوى، سنتياس برأوسها دان تواضع."},{"q":"ڽاتاكن مقصود تقوى.","a":"منطاعتي سݢالا سوروهن الله دان منجاءوهي سݢالا لارڠنڽ."},{"q":"ڽاتاكن مقصود تواضع.","a":"رنده ديري دان تيدق سومبوڠ سسام منوسيا."},{"q":"ڽاتاكن مقصود مراقبة.","a":"راس سنتياس دأواسي دان ديڤرهاتي اوليه الله ڤد ستياڤ ماس."},{"q":"ڽاتاكن ساتو چونتوه صحابة ياڠ برأني.","a":"بلال بن رباح، ابو بكر، اتاو اسماء بنت ابو بكر."},{"q":"ڽاتاكن ڤڠاجرن درڤد كيسه بلال بن رباح.","a":"كتݢوهن ايمان دان كبرانين ممڤرتاهنكن شهادة والاوڤون منريما سيقساءن."},{"q":"ڽاتاكن ڤڠاجرن درڤد كيسه ابن سينا.","a":"كݢيݢيهن دان كسبرن دالم منونتوت ايلمو اخيرڽ ممباوا كجاياءن."},{"q":"ڽاتاكن مڠاڤ كيت تيدق ڤاتوت سومبوڠ.","a":"كران سموا منوسيا سام تارف سباݢاي همبا الله دان سݢالا نعمة ايت ڤينجمن درڤد الله."},{"q":"ڽاتاكن دليل باݢي صفة تقوى بسرتا سورهڽ.","a":"«إِنَّ أَكْرَمَكُمْ عِندَ ٱللَّهِ أَتْقَىٰكُمْ» — سورة الحجرات، اية ١٣."},{"q":"ڽاتاكن مقصود «جاڠن برڤوتوس اسا درڤد رحمة الله».","a":"كيت مستي تروس براوسها دان بردعاء، كران رحمة الله ايت لواس."}],"contoh":[{"q":"بريكن ساتو چونتوه صفة برأني د سكوله.","a":"مننتڠ ڤربواتن بولي دان ملاڤوركنڽ كڤد ݢورو."},{"q":"بريكن ساتو چونتوه صفة تقوى سماس برسندرين.","a":"تيدق ملاكوكن ڤركارا حرام والاوڤون تياد سسياڤ مليهت."},{"q":"بريكن ساتو چونتوه صفة تواضع كڤد راكن.","a":"تيدق مڠهينا راكن ياڠ لبيه ميسكين دان تتڤ برچاكڤ سوڤن."},{"q":"بريكن ساتو چونتوه صفة سنتياس برأوسها دالم ڤلاجرن.","a":"مڠولڠكاجي ڤلاجرن ياڠ سوكر برولڠ كالي سهيڠݢ فهم."},{"q":"بريكن ساتو چونتوه صفة مراقبة دالم كهيدوڤن هارين.","a":"تيدق مڠمبيل بارڠ اورڠ لاءين والاوڤون تيدق دليهت، كران سدر الله مليهت."},{"q":"بريكن ساتو چونتوه ڤربواتن ياڠ برلاونن دڠن تواضع.","a":"ممݢه-مݢهكن هرتا اتاو كڤنداين كڤد اورڠ لاءين."},{"q":"بريكن ساتو چونتوه اورڠ ياڠ برأني منولق اجقن بوروق.","a":"منولق اجقن كاون اونتوق ڤونتيڠ سكوله والاوڤون دأعجيق."},{"q":"بريكن ساتو چونتوه صفة سبر كتيك مڠهادڤي كݢاݢلن.","a":"تيدق ڤوتوس اسا سلڤس ݢاݢل اوجين، تتاڤي برأوسها لبيه ݢيݢيه."},{"q":"بريكن ساتو چونتوه اخلاق رسول الله ﷺ ياڠ منونجوقكن تواضع.","a":"بݢيندا ملايني اورڠ ميسكين دان انق٢ دڠن لمه لمبوت دان تيدق سومبوڠ."},{"q":"بريكن ساتو چونتوه كبرانين ابو بكر.","a":"منمني رسول الله ﷺ برهجره كه مدينه دان برسمبوڽي د ݢوا ثور."}],"situasi":[{"q":"راكن اندا مڠاجق مروسقكن هرتا سكوله. اڤاكه تيندقن اندا سباݢاي اورڠ ياڠ برتقوى؟","a":"منولق دان مناسيحتيڽ، كران مروسقكن هرتا اورڠ لاءين اداله دوسا دان الله سنتياس مليهت."},{"q":"اندا مندڤت مركه ترتيڠݢي دالم كلس. باݢايمان صفة تواضع دتونجوقكن؟","a":"برشكور كڤد الله، تيدق مڽومبوڠ، دان سدي ممبنتو راكن ياڠ لمه."},{"q":"اندا ݢاݢل دالم اوجين متماتيك بوات كالي كدوا. اڤ سيكڤ ياڠ ڤاتوت؟","a":"تيدق ڤوتوس اسا، منمبه اوسها دان بردعاء — سڤرتي كݢيݢيهن ابن سينا."},{"q":"اندا ترجومڤا دومڤيت برئيسي واڠ د تڤي جالن. اڤ تيندقن اندا؟","a":"مموليڠكنڽ كڤد ڤميليق اتاو مڽرهكن كڤد ڤيهق بركواس، كران الله سنتياس مليهت."},{"q":"كاون اندا دتودوه ملاكوكن سسواتو ياڠ دي تيدق بوات. اڤ ياڠ ڤاتوت اندا لاكوكن؟","a":"برأني تمڤيل مڽاتاكن كبنرن اونتوق ممبيلا راكن ياڠ تيدق برساله."},{"q":"اندا دأولوق كران بريباده د سكوله. باݢايمان اندا برتيندق؟","a":"تتڤ تݢوه دان تروس بريباده، سڤرتي كبرانين بلال منغهادڤي عجيقن دان سيقساءن."},{"q":"اندا ديبري تڠݢوڠجواب مڽيمڤن دويت كلس. اڤ ياڠ منونجوقكن تقوى اندا؟","a":"منجاݢ امانه ايت دڠن جوجور دان تيدق مڠݢوناكنڽ اونتوق كڤنتيڠن ديري."},{"q":"سأورڠ راكن سنتياس ممݢه٢كن ككاياءن كلوارݢڽ. اڤ ناصيحت اندا؟","a":"مڠيڠتكنڽ بهاوا هرتا ايت ڤينجمن درڤد الله دان سومبوڠ ايت دبنچي."},{"q":"اندا ملیهت راكن منچونتيق دالم ڤڤريقساءن. اڤاكه تيندقن ترباءيق؟","a":"مناسيحتيڽ سچارا باءيق، دان ملاڤوركن كڤد ݢورو جك دي بردݢيل."},{"q":"اندا ديمينتا برأوچڤ د هادڤن راماي تتاڤي راس تاكوت. اڤ ياڠ ڤاتوت اندا لاكوكن؟","a":"براوسها دان بردعاء، كران تاكوت هاڽ كڤد الله دان كبرانين داتڠ درڤد كياكينن."}],"betul":[{"q":"«اورڠ ياڠ برأني اداله اورڠ ياڠ تيدق تاكوت كڤد سسياڤ ڤون ترماسوق الله.»","a":"ساله — اورڠ برأني تتڤ تاكوت كڤد الله؛ دي هاڽ تيدق تاكوت كڤد مخلوق دالم ممڤرتاهنكن كبنرن."},{"q":"«تواضع برمقصود براس ديري لبيه باءيق درڤد اورڠ لاءين.»","a":"ساله — تواضع برمقصود رنده ديري دان تيدق سومبوڠ."},{"q":"«تقوى هاڽ ڤرلو دأمالكن سماس برادا د مسجد.»","a":"ساله — تقوى ڤرلو دأمالكن د مان-مان سهاج، سام اد دليهت اورڠ اتاو تيدق."},{"q":"«ابن سينا مڠولڠ ممباچ كتاب اريسطوطل سبڽق ١٠ كالي.»","a":"ساله — بݢيندا مڠولڠ ممباچ سبڽق ٤٠ كالي."},{"q":"«مراقبة برمقصود راس تاكوت كڤد منوسيا.»","a":"ساله — مراقبة برمقصود راس سنتياس ديڤرهاتي اوليه الله."},{"q":"«كيسه ابن سينا مڠاجر كيت سوڤايا چڤت ڤوتوس اسا.»","a":"ساله — كيسهڽ مڠاجر كيت سوڤايا ݢيݢيه دان تيدق ڤوتوس اسا."},{"q":"«اورڠ ياڠ ڤاليڠ مليا دسيسي الله اياله ياڠ ڤاليڠ كاي.»","a":"ساله — ياڠ ڤاليڠ مليا اياله ياڠ ڤاليڠ برتقوى (سورة الحجرات اية ١٣)."},{"q":"«بلال بن رباح منولق شهادهڽ سلڤس ديسيقسا.»","a":"ساله — بلال تتڤ ممڤرتاهنكن شهادهڽ والاوڤون ديسيقسا."},{"q":"«صفة برأني برمقصود بربوات سسوكا هاتي تنڤا برفيكير.»","a":"ساله — برأني برمقصود سڠݢوڤ برتيندق بنر برداسركن كياكينن دان ايلمو."},{"q":"«الفارابي اداله ݢورو اريسطوطل.»","a":"ساله — الفارابي اداله علماء إسلام ياڠ منوليس هوراين كڤد كتاب اريسطوطل."}]},"f3":{"padan":[{"t":"ميزان","m":"نراچا اتاو الت تيمبڠ عمل"},{"t":"عقيدة","m":"كڤرچاياءن دالم هاتي برداسركن القرءان دان السنة"},{"t":"عبادة خصوص","m":"عبادة ياڠ ديتتڤكن چاراڽ اوليه نبي محمد ﷺ"},{"t":"عبادة عموم","m":"ڤربواتن هارين ياڠ دريضاءي الله"},{"t":"ورع","m":"برهاتي٢ انتارا حلال دان حرام"},{"t":"قدوه حسنة","m":"چونتوه تلادن ياڠ باءيق"},{"t":"ڤموره","m":"سوك برصدقه دان ممبنتو اورڠ لاءين"},{"t":"باڤ","m":"منچاري رزقي حلال دان مميمڤين كلوارݢ"},{"t":"ايبو","m":"منديديق دان مڽورهكن كاسيه سايڠ"},{"t":"انق","m":"تاعت كڤد ايبو باڤ دان مندواكن مريك"}],"susun":[{"tajuk":"سوسون ڤروسيس سسواتو عمل دنيلاي دالم إسلام:","betul":["ممڤوڽاءي نية ياڠ بتول","ملاكوكن تيندقن","منيلايڽ دڠن ميزان شريعة","مندڤت كريضاءن الله","منريما ݢنجرن ڤهالا"]},{"tajuk":"سوسون تڠݢا اخلاق سأورڠ مسلم:","betul":["منجاݢ ڤندڠن دان ليده","برسيفت ورع دالم مكانن","برلمه لمبوت سسام منوسيا","منجاݢ امانه دان جنجي","منجادي قدوه حسنة"]}],"kenal":[{"q":"كنل ڤستي مقصود ميزان:","o":["بوكو چاتتن","نراچا اتاو الت تيمبڠ","تمڤت عبادة","نام سورة"],"a":1},{"q":"كنل ڤستي دوا سومبر عقيدة ياڠ صح:","o":["عادت دان بودايا","القرءان دان السنة","ڤندڤت راماي","ميمڤي دان ايلهام"],"a":1},{"q":"كنل ڤستي چونتوه عبادة خصوص:","o":["بلاجر","بكرجا","صلاة","برسوكن"],"a":2},{"q":"كنل ڤستي چونتوه عبادة عموم:","o":["حج","بكرجا منچاري رزقي حلال","ڤواسا رمضان","زكاة"],"a":1},{"q":"كنل ڤستي مقصود ورع:","o":["برهاتي٢ انتارا حلال دان حرام","بايق هاتي","برأني برچاكڤ","سوك برديام"],"a":0},{"q":"كنل ڤستي صفة ياڠ برمقصود چونتوه تلادن ياڠ باءيق:","o":["ورع","امانه","قدوه حسنة","تواضع"],"a":2},{"q":"كنل ڤستي ڤرانن ايبو دالم كلوارݢ إسلام:","o":["منچاري رزقي","منديديق دان مڽايڠي انق","تاعت كڤد انق","ممبايرکن هوتڠ"],"a":1},{"q":"كنل ڤستي سورة ياڠ مڽاتاكن صلاة منچݢه كجي دان موڠكر:","o":["العنكبوت","الذاريات","الحجرات","النحل"],"a":0},{"q":"كنل ڤستي عناصر ياڠ ملڠكڤكن سسواتو عمل إسلام:","o":["هرتا دان ڤڠكت","نية دان تيندقن","اومور دان ايلمو","نام دان كتورونن"],"a":1},{"q":"كنل ڤستي اخلاق ياڠ برمقصود منجاءوهي فتنه دان مڠومڤت:","o":["مموليهارا ليده","ڤموره","مالو","ورع"],"a":0}],"nyata":[{"q":"ڽاتاكن مقصود إسلام سباݢاي ميزان.","a":"إسلام برتيندق سباݢاي نراچا اونتوق منيمبڠ بتول اتاو ساله سسواتو ڤربواتن برداسركن شريعة."},{"q":"ڽاتاكن دوا سومبر عقيدة ياڠ بنر.","a":"القرءان دان السنة."},{"q":"ڽاتاكن مقصود عبادة خصوص.","a":"عبادة واجب ياڠ ديتتڤكن چاراڽ اوليه نبي محمد ﷺ، سڤرتي صلاة دان ڤواسا."},{"q":"ڽاتاكن مقصود عبادة عموم.","a":"ڤربواتن ياڠ مندڤت كريضاءن الله دان تيدق منيالهي شرع، سڤرتي بلاجر دان بكرجا."},{"q":"ڽاتاكن دوا عناصر ياڠ ممبنتوق عمل برلندسكن إسلام.","a":"نية دان تيندقن."},{"q":"ڽاتاكن ليما درڤد سڤولوه اخلاق موليا سأورڠ مسلم.","a":"ورع، منوندوقكن ڤندڠن، مموليهارا ليده، مالو، دان لمه لمبوت سرتا سبر."},{"q":"ڽاتاكن مقصود ورع.","a":"برهاتي٢ ممیليه ڤركارا حلال دان منجاءوهي شبهة سرتا حرام."},{"q":"ڽاتاكن ڤرانن سأورڠ باڤ دالم كلوارݢ.","a":"منچاري رزقي حلال دان منجادي كتوا سرتا ڤميمڤين كلوارݢ."},{"q":"ڽاتاكن ڤرانن سأورڠ انق ترهادڤ ايبو باڤ.","a":"تاعت كڤد مريك دالم ڤركارا ياڠ باءيق دان سنتياس مندواكن مريك."},{"q":"ڽاتاكن مقصود قدوه حسنة.","a":"منجادي چونتوه تلادن ياڠ باءيق كڤد اورڠ لاءين."}],"contoh":[{"q":"بريكن دوا چونتوه عبادة خصوص.","a":"صلاة ليما واكتو دان ڤواسا د بولن رمضان."},{"q":"بريكن دوا چونتوه عبادة عموم.","a":"بلاجر دڠن راجين دان منولوڠ ايبو باڤ د رومه."},{"q":"بريكن ساتو چونتوه صفة ورع دالم ماكنن.","a":"منولق ماكنن ياڠ تيدق ڤستي ستاتوس حلالڽ."},{"q":"بريكن ساتو چونتوه مموليهارا ليده.","a":"تيدق مڠومڤت اتاو مڽباركن فتنه تنتڠ اورڠ لاءين."},{"q":"بريكن ساتو چونتوه صفة ڤموره.","a":"برصدقه كڤد اورڠ ميسكين والاوڤون سديكيت."},{"q":"بريكن ساتو چونتوه صفة امانه دالم كهيدوڤن مورد.","a":"مموليڠكن بارڠ ڤينجمن راكن دالم كأداءن باءيق دان تڤت واكتو."},{"q":"بريكن ساتو چونتوه ڤرانن ايبو دالم منديديق انق.","a":"مڠاجر انق ممباچ القرءان دان مندريكن صلاة سجق كچيل."},{"q":"بريكن ساتو چونتوه ڤرانن انق ياڠ صالح.","a":"منولوڠ كرجا رومه دان مندواكن كسجهتراءن ايبو باڤ."},{"q":"بريكن ساتو چونتوه منجادي قدوه حسنة كڤد راكن.","a":"منونجوقكن اخلاق باءيق سهيڠݢ راكن ترايكوت ملاكوكن كباجيقن."},{"q":"بريكن ساتو چونتوه ڤربواتن ياڠ منيالهي ميزان إسلام.","a":"منچوري اتاو منيڤو، كران ايا برتنتڠن دڠن هوكوم شريعة."}],"situasi":[{"q":"اندا دأتوركن ڤكرجاءن ياڠ ݢاجيڽ ليمڤه تتاڤي سومبرڽ ميراݢوكن. اڤاكه ڤرتيمبڠن اندا؟","a":"منولقڽ كران صفة ورع منونتوت كيت برهاتي٢ انتارا حلال دان حرام."},{"q":"راكن اندا ممبوك چريتا بوروق تنتڠ كاون لاءين. اڤ تيندقن اندا؟","a":"مڠهنتيكن ڤربوالن ايت كران مڠومڤت ديلارڠ، سباݢايمان سورة الحجرات اية ١٢."},{"q":"اندا سيبوق بلاجر سهيڠݢ هامڤير ترتيڠݢل صلاة مغرب. اڤ كأوتاماءن اندا؟","a":"منونايكن صلاة ترلبيه دهولو، كران عبادة خصوص واجب دان ترتتڤ واكتوڽ."},{"q":"اندا مليهت كاون بواڠ سمڤه مروات-راڤيت. اڤ ياڠ ڤاتوت اندا لاكوكن؟","a":"مناسيحتيڽ دان ممونݢوت سمڤه ايت — منجاݢ كبرسيهن جوݢ سباهاݢين درڤد عبادة عموم."},{"q":"ايبو اندا مماڠݢيل كتيك اندا سدڠ برماءين. اڤ تيندقن اندا؟","a":"سݢرا مڽهوت دان منمويڽ، كران تاعت كڤد ايبو باڤ اداله تڠݢوڠجواب انق."},{"q":"اندا دبري واڠ لبيهن اوليه ڤنجاج دڠن تيدق سڠاج. اڤ تيندقن اندا؟","a":"مموليڠكن واڠ ترسبوت، كران امانه دان كجوجورن اداله اخلاق مسلم."},{"q":"كاون اندا بركات بلاجر بوكن عبادة كران ايا بوكن صلاة. بتولكن كفهمنڽ.","a":"بلاجر اداله عبادة عموم كران ايا مندڤت كريضاءن الله دان تيدق منيالهي شرع."},{"q":"اندا ملیهت راكن ديسيسيهكن كران ميسكين. اڤ تيندقن اندا؟","a":"برماءين برسامڽ دان مڽاتاكن بهاوا كموليأن دنيلاي دڠن تقوى، بوكن هرتا."},{"q":"باڤ اندا ڤولڠ لتيه سلڤس بكرجا. باݢايمان اندا منونجوقكن اخلاق موليا؟","a":"مڽمبوتڽ دڠن سلام، منولوڠ مريڠنكن بيبنن دان تيدق مڠݢڠݢو ريحتڽ."},{"q":"اندا ديڤيليه سباݢاي كتوا كلس. باݢايمان اندا منجادي قدوه حسنة؟","a":"منونجوقكن چونتوه ياڠ باءيق سڤرتي منڤتي ماس، جوجور دان اديل كڤد سموا راكن."}],"betul":[{"q":"«ميزان برمقصود بوكو چاتتن عمل مليكت.»","a":"ساله — ميزان برمقصود نراچا اتاو الت تيمبڠ عمل."},{"q":"«عقيدة بوليه دباڠونكن برداسركن عادت دان ڤندڤت راماي.»","a":"ساله — عقيدة مستي برداسركن القرءان دان السنة."},{"q":"«بكرجا منچاري رزقي حلال بوكن عبادة.»","a":"ساله — ايا اداله عبادة عموم كران مندڤت كريضاءن الله."},{"q":"«عبادة خصوص بوليه دلاكوكن مڠيكوت چارا سنديري.»","a":"ساله — عبادة خصوص مستي مڠيكوت چارا ياڠ ديتتڤكن اوليه نبي محمد ﷺ."},{"q":"«ورع برمقصود سوك ممبري صدقه كڤد اورڠ ميسكين.»","a":"ساله — ورع برمقصود برهاتي٢ انتارا حلال دان حرام؛ ممبري صدقه ايت ڤموره."},{"q":"«مڠومڤت راكن دبنركن جك چريتاڽ بنر.»","a":"ساله — مڠومڤت تتڤ ديلارڠ والاوڤون چريتا ايت بنر (سورة الحجرات اية ١٢)."},{"q":"«انق تيدق ڤرلو مندواكن ايبو باڤڽ.»","a":"ساله — مندواكن ايبو باڤ اداله تڠݢوڠجواب انق ياڠ صالح."},{"q":"«اخلاق موليا برسومبركن عادت مشاركت سماس.»","a":"ساله — اخلاق موليا برسومبركن القرءان دان سنة رسول الله ﷺ."},{"q":"«صلاة تيدق ممڤوڽاءي كسن ترهادڤ اخلاق سسأورڠ.»","a":"ساله — صلاة منچݢه درڤد ڤربواتن كجي دان موڠكر (سورة العنكبوت اية ٤٥)."},{"q":"«ڤرانن ايبو اياله منچاري رزقي دان مميمڤين كلوارݢ.»","a":"ساله — ايت ڤرانن باڤ؛ ايبو برڤرانن منديديق دان مڽورهكن كاسيه سايڠ."}]},"f4":{"padan":[{"t":"ربانية","m":"برسومبركن الله، بوكن چيڤتاءن منوسيا"},{"t":"شمول","m":"مڽلوروه، مرڠكومي سموا اسڤيك كهيدوڤن"},{"t":"علمية","m":"برداسركن ايلمو، بوكن سڠكاءن"},{"t":"فطره","m":"نالوري سمولا جادي منوسيا"},{"t":"سدرهان","m":"سيمبڠ انتارا دنيا دان اخيرة"},{"t":"سجاݢت","m":"سسواي اونتوق سموا بڠسا، زمان دان تمڤت"},{"t":"صبغة الله","m":"چلوڤن اتاو اچوان الله ياڠ ترباءيق"},{"t":"وحي","m":"سومبر اوندڠ٢ إسلام درڤد الله"},{"t":"سورة النحل ٣٦","m":"رسول دأوتوس كڤد ستياڤ اومت"},{"t":"اجتهاد","m":"اوسها علماء منچاري حكوم باݢي مسئله بارو"}],"susun":[{"tajuk":"سوسون اوروتن سومبر هوكوم إسلام:","betul":["القرءان","السنة","اجماع","قياس","اجتهاد علماء"]},{"tajuk":"سوسون ڤروسيس سأورڠ مسلم مياكيني كليبيهن إسلام:","betul":["مڠنل عقيدة ياڠ بنر","مماهمي چيري٢ إسلام","ممبنديڠ دڠن اجرن لاءين","يقين إسلام ڤاليڠ لڠكڤ","برڤيݢڠ تݢوه دڠن إسلام"]}],"kenal":[{"q":"كنل ڤستي چيري إسلام ياڠ برمقصود برسومبركن الله:","o":["شمول","ربانية","علمية","سدرهان"],"a":1},{"q":"كنل ڤستي چيري إسلام ياڠ برمقصود مڽلوروه:","o":["ربانية","سجاݢت","شمول","فطره"],"a":2},{"q":"كنل ڤستي چيري إسلام ياڠ برداسركن ايلمو:","o":["علمية","سدرهان","شمول","ربانية"],"a":0},{"q":"كنل ڤستي چيري إسلام ياڠ سيمبڠ انتارا دنيا دان اخيرة:","o":["سجاݢت","سدرهان","علمية","فطره"],"a":1},{"q":"كنل ڤستي سومبر اوتام اوندڠ٢ إسلام:","o":["فيكيرن منوسيا","وحي درڤد الله","عادت لام","ڤرستوجوان راماي"],"a":1},{"q":"كنل ڤستي كلمهن اوتام اوندڠ٢ چيڤتاءن منوسيا:","o":["ترلالو ڤنجڠ","برأوبه٢ دان تيدق سمڤورنا","سوسه دباچ","تيدق برتوليس"],"a":1},{"q":"كنل ڤستي مقصود صبغة الله:","o":["نام سورة","چلوڤن اتاو اچوان الله","ساتو جنيس عبادة","كتاب لام"],"a":1},{"q":"كنل ڤستي سورة ياڠ مڽاتاكن رسول دأوتوس ڤد ستياڤ اومت:","o":["النحل","البقرة","الحجرات","يوسف"],"a":0},{"q":"كنل ڤستي چيري إسلام ياڠ سلاري دڠن نالوري سمولا جادي منوسيا:","o":["سجاݢت","فطره","علمية","ربانية"],"a":1},{"q":"كنل ڤستي ڤرنياتاءن ياڠ منونجوقكن إسلام برسيفت سجاݢت:","o":["هاڽ اونتوق اورڠ عرب","سسواي اونتوق سموا بڠسا دان زمان","هاڽ اونتوق اورڠ دواس","هاڽ د نݢارا إسلام"],"a":1}],"nyata":[{"q":"ڽاتاكن ليما چيري كأيستيميواءن إسلام.","a":"ربانية، شمول، علمية، سسواي دڠن فطره، دان سدرهان (سرتا سجاݢت)."},{"q":"ڽاتاكن مقصود ربانية.","a":"إسلام برسومبركن الله ﷻ، بوكن چيڤتاءن منوسيا."},{"q":"ڽاتاكن مقصود شمول.","a":"إسلام مرڠكومي سموا اسڤيك كهيدوڤن، روحاني دان جسماني، دنيا دان اخيرة."},{"q":"ڽاتاكن مقصود علمية.","a":"إسلام برداسركن ايلمو ياڠ صحيح، بوكن سڠكاءن اتاو خيالن."},{"q":"ڽاتاكن مقصود إسلام سسواي دڠن فطره منوسيا.","a":"اجرن إسلام سلاري دڠن نالوري دان كڤرلوان سمولا جادي منوسيا."},{"q":"ڽاتاكن ساتو ڤربيذاءن انتارا اوندڠ٢ منوسيا دان اوندڠ٢ إسلام.","a":"اوندڠ٢ منوسيا برسومبركن عقل ياڠ ترهد دان برأوبه٢؛ اوندڠ٢ إسلام برسومبركن وحي ياڠ ككل."},{"q":"ڽاتاكن مڠاڤ اوندڠ٢ چيڤتاءن منوسيا تيدق سمڤورنا.","a":"كران ايا حاصيل فيكيرن منوسيا ياڠ ترهد دان موده ديڤڠاروهي كڤنتيڠن ترتنتو."},{"q":"ڽاتاكن مقصود صبغة الله.","a":"چلوڤن اتاو اچوان الله، ياءيت چارا هيدوڤ ياڠ ترباءيق باݢي منوسيا."},{"q":"ڽاتاكن دليل بهاوا رسول دأوتوس كڤد ستياڤ اومت.","a":"«وَلَقَدْ بَعَثْنَا فِى كُلِّ أُمَّةٍ رَّسُولًا» — سورة النحل، اية ٣٦."},{"q":"ڽاتاكن مقصود إسلام برسيفت سجاݢت.","a":"إسلام سسواي دأمالكن اوليه سموا بڠسا، ڤد ستياڤ زمان دان د مان-مان تمڤت."}],"contoh":[{"q":"بريكن ساتو چونتوه ياڠ منونجوقكن إسلام برسيفت شمول.","a":"إسلام مڠاتور عبادة، اخلاق، كلوارݢ، ڤرنياݢاءن دان ڤرݢاولن سچارا لڠكڤ."},{"q":"بريكن ساتو چونتوه ياڠ منونجوقكن إسلام برسيفت علمية.","a":"إسلام مڠݢلقكن منونتوت ايلمو دان ملارڠ برتقليد بوتا تنڤا بوقتي."},{"q":"بريكن ساتو چونتوه إسلام سسواي دڠن فطره منوسيا.","a":"إسلام ممبنركن ڤركهوينن سباݢاي جالن سمولا جادي مموليهارا كتورونن."},{"q":"بريكن ساتو چونتوه إسلام برسيفت سدرهان.","a":"إسلام مڽوروه بكرجا اونتوق دنيا سرتا برعبادة اونتوق اخيرة سچارا سيمبڠ."},{"q":"بريكن ساتو چونتوه إسلام برسيفت سجاݢت.","a":"اورڠ إسلام تردڤت د سلوروه دنيا دڠن عقيدة دان قبلة ياڠ سام."},{"q":"بريكن ساتو چونتوه هوكوم إسلام ياڠ ككل تيدق برأوبه.","a":"كواجيڤن منونايكن صلاة ليما واكتو سجق زمان رسول الله ﷺ هيڠݢ كيني."},{"q":"بريكن ساتو چونتوه اوندڠ٢ چيڤتاءن منوسيا ياڠ برأوبه.","a":"اوندڠ٢ لالو لينتس دان چوكاي ياڠ ديڤيندا مڠيكوت كڤرلوان سماس."},{"q":"بريكن ساتو چونتوه ڤركارا ياڠ منونجوقكن إسلام برسومبركن وحي.","a":"هوكوم حلال دان حرام ديتنتوكن اوليه القرءان دان السنة، بوكن اوليه منوسيا."},{"q":"بريكن ساتو چونتوه ڤرانن اجتهاد ڤد زمان سكارڠ.","a":"علماء منتڤكن حكوم باݢي ڤركارا بارو سڤرتي معاملة ڤربڠكن مودرن."},{"q":"بريكن ساتو چونتوه كليبيهن إسلام درڤد اجرن لاءين.","a":"إسلام لڠكڤ مرڠكومي عقيدة، عبادة، اخلاق دان اوندڠ٢ هيدوڤ سچارا سمڤورنا."}],"situasi":[{"q":"كاون اندا بركات إسلام سسواي هاڽ اونتوق زمان دهولو. باݢايمان اندا منجواب؟","a":"إسلام برسيفت سجاݢت دان ككل، سسواي اونتوق سموا زمان كران سومبرڽ وحي الله."},{"q":"سسأورڠ بركات هوكوم إسلام بوليه دأوبه مڠيكوت كهيندق راماي. بتولكن.","a":"هوكوم اصل درڤد وحي تيدق بوليه دأوبه؛ اجتهاد هاڽ باݢي ڤركارا بارو ياڠ تياد ناص جلس."},{"q":"اندا دتاڽ مڠاڤ اورڠ إسلام برسمبهيڠ سام چاراڽ د سلوروه دنيا. اڤ جواڤن اندا؟","a":"كران إسلام برسيفت ربانية دان سجاݢت — سومبرڽ ساتو، ياءيت وحي درڤد الله."},{"q":"راكن اندا هاڽ منومڤوكن دنيا دان ملوڤاكن عبادة. اڤ ناصيحت اندا؟","a":"إسلام برسيفت سدرهان — كيت ڤرلو سيمبڠ انتارا اوروسن دنيا دان اخيرة."},{"q":"اندا دتاڽ اڤ بيذاڽ اوندڠ٢ إسلام دڠن اوندڠ٢ چيڤتاءن منوسيا. جلسكن ريڠكس.","a":"اوندڠ٢ إسلام درڤد وحي، ككل دان اديل؛ اوندڠ٢ منوسيا درڤد عقل ترهد، برأوبه دان اد كلمهن."},{"q":"سسأورڠ مڠاتاكن إسلام مڽكت كماجوان ساءينس. باݢايمان اندا منجلسكن؟","a":"سبالیقڽ، إسلام برسيفت علمية دان مڠݢلقكن منونتوت ايلمو — چونتوهڽ سومبڠن ابن سينا."},{"q":"اندا برادا د نݢارا اسيڠ دڠن بودايا برلاءينن. باݢايمان إسلام ممندو اندا؟","a":"إسلام برسيفت سجاݢت؛ اصولڽ تتڤ سام والاو د مان جوا كيت برادا."},{"q":"كاون اندا مڠاجق مڠيكوت اجرن ياڠ برچڠݢه دڠن القرءان. اڤ تيندقن اندا؟","a":"منولقڽ كران عقيدة ياڠ صح مستي برداسركن القرءان دان السنة سهاج."},{"q":"اندا دمينتا منجلسكن مقصود «صبغة الله» كڤد ادئيق اندا. اڤ ڤنجلسن موده اندا؟","a":"چلوڤن الله — ياءيت چارا هيدوڤ إسلام ياڠ ترباءيق دان ڤاليڠ اينده باݢي منوسيا."},{"q":"سسأورڠ بركات سموا اݢام سام سهاج. باݢايمان اندا منجواب دڠن سوڤن؟","a":"منجلسكن دڠن هورمت بهاوا إسلام برسومبركن وحي، لڠكڤ دان سمڤورنا سباݢاي چارا هيدوڤ."}],"betul":[{"q":"«ربانية برمقصود إسلام اداله چيڤتاءن منوسيا.»","a":"ساله — ربانية برمقصود إسلام برسومبركن الله ﷻ."},{"q":"«شمول برمقصود إسلام هاڽ مڠاتور اوروسن عبادة.»","a":"ساله — شمول برمقصود مرڠكومي سموا اسڤيك كهيدوڤن."},{"q":"«اوندڠ٢ چيڤتاءن منوسيا ككل دان تيدق ڤرنه برأوبه.»","a":"ساله — ايا برأوبه٢ مڠيكوت زمان دان تمڤت سرتا ممڤوڽاءي كلمهن."},{"q":"«علمية برمقصود إسلام برداسركن سڠكاءن دان انداين.»","a":"ساله — علمية برمقصود برداسركن ايلمو ياڠ صحيح."},{"q":"«إسلام مڠاجر كيت برسيكڤ ملامڤاو دالم برعبادة سهيڠݢ ملوڤاكن دنيا.»","a":"ساله — إسلام برسيفت سدرهان، سيمبڠ انتارا دنيا دان اخيرة."},{"q":"«إسلام هاڽ سسواي اونتوق بڠسا عرب سهاج.»","a":"ساله — إسلام برسيفت سجاݢت، سسواي اونتوق سموا بڠسا دان تمڤت."},{"q":"«اوندڠ٢ إسلام برسومبركن ڤرستوجوان راماي.»","a":"ساله — اوندڠ٢ إسلام برسومبركن وحي درڤد الله."},{"q":"«صبغة الله برمقصود نام سالاه ساتو سورة دالم القرءان.»","a":"ساله — صبغة الله برمقصود چلوڤن اتاو اچوان الله، ياءيت چارا هيدوڤ إسلام."},{"q":"«إسلام برتنتڠن دڠن فطره سمولا جادي منوسيا.»","a":"ساله — إسلام سلاري دان سسواي دڠن فطره منوسيا."},{"q":"«رسول هاڽ دأوتوس كڤد اومت نبي محمد ﷺ سهاج.»","a":"ساله — رسول دأوتوس كڤد ستياڤ اومت (سورة النحل اية ٣٦)."}]}};
+
+const BANK3 = {"f1":{"sebab":{"kesan":["شهادهڽ تيدق سمڤورنا","دي ديكيرا كافير","دي مندڤت جامينن كسلامتن","عملڽ سيا-سيا"],"sebab":["كران عمل تيدق منيرتاي ڤڠاكوان","كران منولق كبنرن شهادة","كران مڠهاياتي شهادة دڠن سمڤورنا","كران ملاكوكن شرك كڤد الله"],"q":[{"q":"احمد منيبوت شهادة تتاڤي سڠاج منيڠݢلكن صلاة.","ka":0,"sa":0},{"q":"سأورڠ منولق سام سكالي كبنرن دوا كليمه شهادة.","ka":1,"sa":1},{"q":"فاطمة برشهادة، منونايكن صلاة دان برأخلاق موليا.","ka":2,"sa":2},{"q":"سأورڠ منيبوت شهادة تتاڤي ممينتا ڤرتولوڠن كڤد بندا برتواه.","ka":3,"sa":3},{"q":"سأورڠ مڠهافل كليمه شهادة تتاڤي تيدق ڤرنه مڠعملكنڽ.","ka":0,"sa":0},{"q":"سأورڠ مڠاكو دڠن ليده، يقين دڠن هاتي دان بوقتيكن دڠن ڤربواتن.","ka":2,"sa":2},{"q":"سأورڠ برشهادة تتاڤي مڽمبه سلاءين الله.","ka":3,"sa":3},{"q":"سأورڠ مندڠر دعوة إسلام لالو مڠيڠكاريڽ دڠن سومبوڠ.","ka":1,"sa":1},{"q":"علي برشهادة، منطاعتي الله دان مڠيكوت سنة رسول.","ka":2,"sa":2},{"q":"سأورڠ برايمان دالم هاتي تتاڤي تيدق ملاكوكن سبارڠ كواجيڤن.","ka":0,"sa":0}]},"kelas":{"bins":["اقرار","تصديق","عمل"],"items":[{"t":"منيبوت دوا كليمه شهادة دڠن ليده","b":0},{"t":"مياكيني دالم هاتي بهاوا الله ايت اسا","b":1},{"t":"منونايكن صلاة ليما واكتو","b":2},{"t":"مڠوچڤ شهادة سماس مماسوق إسلام","b":0},{"t":"ممبنركن بهاوا نبي محمد ﷺ ايت رسول الله","b":1},{"t":"برڤواسا د بولن رمضان","b":2},{"t":"ملفظكن كليمه توحيد دڠن جلس","b":0},{"t":"ڤرچاي سڤنوه هاتي كڤد جنجي الله","b":1},{"t":"منولوڠ ايبو باڤ دان برصدقه","b":2},{"t":"مڽبوت أشهد أن لا إله إلا الله","b":0}]},"tindak":[{"q":"كاون اندا مڠاجق منيڤو دالم ڤڤريقساءن كران سوالن ترلالو سوكر.","o":["منيڤو سكالي اين سهاج كران ترداسق","منولق دڠن سوڤن دان منجواب دڠن كماموان سنديري","ڤورا٢ ستوجو تتاڤي تيدق منيڤو","ملاڤوركن كاون ايت سرتا-مرتا تنڤا مناسيحتيڽ"],"a":1,"prinsip":"عمل شهادة — اورڠ برشهادة سدر الله سنتياس مليهت، والاوڤون ݢورو تيدق مليهت."},{"q":"اندا ترجومڤا دومڤيت برئيسي واڠ د كاوسن سكوله.","o":["مڠمبيلڽ كران تيدق تاهو ڤميليقڽ","مڽرهكن كڤد ڤيهق سكوله اونتوق دكمباليكن","ممبياركنڽ د سيتو","مڠمبيل سديكيت سهاج سباݢاي اوڤه"],"a":1,"prinsip":"عمل شهادة — كجوجورن اداله بوقتي ڤڠاكوان شهادة."},{"q":"سأورڠ راكن بركات دي برايمان دالم هاتي، جادي تيدق ڤرلو برصلاة.","o":["برستوجو كران ايمان ايت دالم هاتي","مناسيحتيڽ بهاوا ايمان مستي دبوقتيكن دڠن عمل","ممبياركنڽ كران ايت اوروسنڽ","مڠهينا ديريڽ د هادڤن كاون لاءين"],"a":1,"prinsip":"روكون شهادة — تصديق مستي دلڠكڤي دڠن عمل."},{"q":"اندا لوڤا منونايكن صلاة عصر كران ترلالو سيبوق برماءين.","o":["منيڠݢلكنڽ كران واكتو تله لڤس","مڠقضاءكنڽ سرتا-مرتا دان برأزم منجاݢ واكتو","مڠݢنديكنڽ دڠن صدقه سهاج","منوڠݢو هاري بريكوتڽ"],"a":1,"prinsip":"تڠݢوڠجواب شهادة — كواجيڤن صلاة ككل دان ڤرلو دتونايكن."},{"q":"كاون اندا مڠعجيق راكن ياڠ راجين كه سورو.","o":["ايكوت مڠعجيق سوڤايا تيدق دسيسيهكن","مننتڠ دڠن سوڤن دان ممبيلا راكن ترسبوت","بردیام ديري سهاج","منجاءوهكن ديري درڤد كدوا-دواڽ"],"a":1,"prinsip":"كبرانين — ممڤرتاهنكن كبنرن اداله چيري اورڠ برشهادة."},{"q":"سأورڠ ڤنجاج تر سيلڤ ممبري واڠ بقي ترلبيه كڤد اندا.","o":["مڽيمڤنڽ كران ايت كسيلاڤنڽ","مموليڠكنڽ سرتا-مرتا","مڠوناكنڽ اونتوق برصدقه","ممبهاݢيكنڽ دڠن كاون"],"a":1,"prinsip":"عمل شهادة — امانه دان جوجور دالم سموا كأداءن."},{"q":"باڤ اندا مڽوروه اندا ملاكوكن ڤركارا ياڠ ديلارڠ اوليه الله.","o":["منوروتيڽ كران واجب تاعت كڤد باڤ","منولق دڠن سوڤن دان تتڤ برأخلاق باءيق","منولق دڠن مارح دان مننڠكن سوارا","ملاريكن ديري درڤد رومه"],"a":1,"prinsip":"شهادة — تياد كتاعتن كڤد مخلوق دالم مأصية كڤد الله."},{"q":"سأورڠ راكن بارو مماسوق إسلام دان ممينتا بيمبيڠن اندا.","o":["مڽوروهڽ مڠهافل باڽق دعاء دهولو","مڠاجرڽ مماهمي مقصود شهادة دان چارا مڠعملكنڽ","ممبياركنڽ بلاجر سنديري","مڽوروهڽ برتاڽ اورڠ لاءين"],"a":1,"prinsip":"شهادة — كفهمن دان ڤڠهاياتن لبيه اوتام درڤد هافلن سمات."},{"q":"اندا دتاور واڠ باڽق دڠن شرط مڽمبوڽيكن كبنرن.","o":["منريما كران جوملهڽ باڽق","منولق كران رزقي حلال لبيه بركة","منريما تتاڤي برصدقه سباهاݢين","منريما جك تياد سسياڤ تاهو"],"a":1,"prinsip":"عمل شهادة — كياكينن بهاوا رزقي داتڠ درڤد الله."},{"q":"راكن اندا بركات شهادة چوكوڤ دسبوت سكالي سماس كچيل.","o":["برستوجو كران شهادة ممڠ سكالي سهاج","مڽاتاكن شهادة ممباوا تڠݢوڠجواب سڤنجڠ حايت","ممبياركن ڤندڤتڽ","مڽوروهڽ برشهادة سماس تووا نتي"],"a":1,"prinsip":"تڠݢوڠجواب شهادة — برترسن سڤنجڠ كهيدوڤن."}],"salah":[{"kata":["شهادتين","برمقصود","تيݢ","كليمه","ڤڠاكوان"],"salah":2,"ganti":["دوا","امڤت","ليما","انم"],"a":0},{"kata":["اقرار","برمقصود","ممبنركن","دڠن","هاتي"],"salah":2,"ganti":["منيبوت دڠن ليده","مڠهافل","منولس","مندڠر"],"a":0},{"kata":["تصديق","برمقصود","منيبوت","دڠن","ليده"],"salah":2,"ganti":["مياكيني دڠن هاتي","برجالن","ممباچ كوات","مليهت"],"a":0},{"kata":["عمل","برمقصود","مڠهافل","كليمه","شهادة"],"salah":2,"ganti":["ممبوقتيكن دڠن ڤربواتن","مندڠر","منولس سمولا","مڽاڽيكن"],"a":0},{"kata":["اورڠ","ياڠ","منولق","شهادة","ديكيرا","مسلم"],"salah":5,"ganti":["كافير","مؤمن","صالح","عابد"],"a":0},{"kata":["كليمه","ڤرتام","شهادة","برتاليان","دڠن","كرسولن"],"salah":5,"ganti":["كأساءن الله","هاري اخيرة","كتاب٢ الله","ملائكة"],"a":0},{"kata":["روكون","شهادة","اد","امڤت","ڤركارا"],"salah":3,"ganti":["تيݢ","ليما","انم","دوا"],"a":0},{"kata":["منطاعتي","رسول","برلاونن","دڠن","منطاعتي","الله"],"salah":2,"ganti":["سام دڠن","تربات درڤد","تيدق برهوبوڠ دڠن","لبيه رنده درڤد"],"a":0},{"kata":["اورڠ","برشهادة","مندڤت","جامينن","كسلامتن","دنيا","سهاج"],"salah":6,"ganti":["دنيا دان اخيرة","اخيرة سهاج","هرتا","ڤڠكت"],"a":0},{"kata":["دليل","شهادة","ترداڤت","دالم","سورة","يوسف","اية","٨٠"],"salah":5,"ganti":["النساء","النحل","البقرة","الحجرات"],"a":0}]},"f2":{"sebab":{"kesan":["دي منجادي اورڠ ياڠ برتقوى","دي برجاي منچاڤاي چيتا-چيتاڽ","دي دبنچي اوليه اورڠ لاءين","دي ممڤرتاهنكن كبنرن"],"sebab":["كران منطاعتي الله سام اد دليهت اتاو تيدق","كران ݢيݢيه دان تيدق ڤوتوس اسا","كران برسيكڤ سومبوڠ دان مݢه ديري","كران برأني منغهادڤي چابرن"],"q":[{"q":"سأورڠ منيڠݢلكن دوسا والاوڤون برادا سندرين.","ka":0,"sa":0},{"q":"ابن سينا مڠولڠ ممباچ كتاب ٤٠ كالي سهيڠݢ فهم.","ka":1,"sa":1},{"q":"سأورڠ سنتياس ممݢه٢كن ككاياءن كلوارݢڽ.","ka":2,"sa":2},{"q":"بلال بن رباح تاهن ديسيقسا تتاڤي تتڤ برشهادة.","ka":3,"sa":3},{"q":"سأورڠ مورد مڠولڠكاجي ستياڤ مالم والاوڤون لتيه.","ka":1,"sa":1},{"q":"سأورڠ مڠهينا راكن ياڠ لبيه ميسكين درڤداڽ.","ka":2,"sa":2},{"q":"سأورڠ منولق راسواه والاوڤون تياد سسياڤ مليهت.","ka":0,"sa":0},{"q":"سأورڠ مورد تمڤيل مڽاتاكن كبنرن اونتوق ممبيلا راكنڽ.","ka":3,"sa":3},{"q":"سأورڠ تروس براوسها والاوڤون ݢاݢل بربراڤ كالي.","ka":1,"sa":1},{"q":"سأورڠ منجاݢ صلاتڽ والاوڤون سيبوق دان تياد سسياڤ منݢور.","ka":0,"sa":0}]},"kelas":{"bins":["برأني","تقوى","سنتياس برأوسها","تواضع"],"items":[{"t":"مننتڠ ڤربواتن بولي د سكوله","b":0},{"t":"تيدق ملاكوكن دوسا والاوڤون برسندرين","b":1},{"t":"مڠولڠكاجي ڤلاجرن سوكر برولڠ كالي","b":2},{"t":"تيدق مڠهينا راكن ياڠ ميسكين","b":3},{"t":"بركات بنر والاوڤون ڤاهيت","b":0},{"t":"منولق ماكنن ياڠ ميراݢوكن حلالڽ","b":1},{"t":"تروس منچوبا سلڤس ݢاݢل اوجين","b":2},{"t":"برشكور دان تيدق مڽومبوڠ سلڤس منڠ","b":3},{"t":"منولق اجقن ڤونتيڠ سكوله والاوڤون دأعجيق","b":0},{"t":"منجاݢ صلاة ڤد سموا كأداءن","b":1}]},"tindak":[{"q":"اندا مندڤت كڤوتوسن ترباءيق دالم كلس.","o":["ممبريتاهو سموا اورڠ باهاوا اندا ڤاليڠ ڤنداي","برشكور كڤد الله دان ممبنتو راكن ياڠ لمه","مراهسياكنڽ درڤد سموا راكن","مڠهينا راكن ياڠ مندڤت مركه رنده"],"a":1,"prinsip":"تواضع — كجاياءن اداله نعمة درڤد الله، بوكن سبب اونتوق سومبوڠ."},{"q":"اندا ݢاݢل دالم اوجين بوات كالي كدوا.","o":["برهنتي منچوبا كران راس تيدق ماموڤ","منمبه اوسها دان بردعاء سڤرتي كݢيݢيهن ابن سينا","مڽالهكن ݢورو دان سوالن","مڽالين جواڤن راكن ڤد ماس هادڤن"],"a":1,"prinsip":"سنتياس برأوسها — لارڠن برڤوتوس اسا درڤد رحمة الله."},{"q":"اندا مليهت راكن دتودوه ملاكوكن كساله ن ياڠ دي تيدق بوات.","o":["برديام ديري سوڤايا تيدق تربابيت","تمڤيل مڽاتاكن كبنرن اونتوق ممبيلاڽ","مڽوكوڠ تودوهن ايت كران راماي برستوجو","مننتوكن ڤيهق ياڠ لبيه كوات"],"a":1,"prinsip":"برأني — سڠݢوڤ مڽاتاكن كبنرن والاوڤون سوكر."},{"q":"اندا ديبري تڠݢوڠجواب مڽيمڤن دويت تابوڠ كلس.","o":["مڠݢوناكنڽ دهولو دان مڠڠتيكن كمودين","منجاݢ امانه ايت سڤنوهڽ تنڤا مڠوسيقڽ","مڽرهكنڽ كڤد كاون ياڠ لاءين","مڽيمڤنڽ تنڤا رکود"],"a":1,"prinsip":"تقوى — امانه دتونايكن كران سدر الله مليهت."},{"q":"اندا دأولوق كران بريباده د سكوله.","o":["برهنتي بريباده سوڤايا تيدق دأولوق","تروس بريباده دڠن تݢوه سڤرتي بلال","ممبالس اولوقن دڠن اولوقن","مڽمبوڽيكن عبادة سلاما-لاماڽ"],"a":1,"prinsip":"برأني — كتݢوهن ايمان مڠاتسي عجيقن مخلوق."},{"q":"اندا دتاور جواڤن ڤڤريقساءن سچارا راهسيا سبلوم اوجين.","o":["منريماڽ كران تياد سسياڤ تاهو","منولقڽ كران الله مليهت سݢالا ڤربواتن","منريما تتاڤي تيدق مڠݢوناكنڽ","ممبريكنڽ كڤد راكن لاءين"],"a":1,"prinsip":"مراقبة — راس سنتياس ديڤرهاتي اوليه الله."},{"q":"سأورڠ راكن سنتياس مݢه دڠن ككاياءن كلوارݢڽ.","o":["ممبالس دڠن مݢهكن ككاياءن اندا ڤولا","مڠيڠتكنڽ بهاوا هرتا ايت ڤينجمن درڤد الله","منجاءوهيڽ تنڤا سبارڠ ناصيحت","ممبنركن سيكڤڽ كران دي ممڠ كاي"],"a":1,"prinsip":"تواضع — سݢالا نعمة اداله ڤينجمن درڤد الله."},{"q":"اندا دمينتا برأوچڤ د هادڤن راماي تتاڤي راس تاكوت.","o":["منولق سام سكالي كران مالو","برلاتيه دان بردعاء سرتا تمڤيل دڠن يقين","مڽوروه اورڠ لاءين ݢنتيكن اندا","تمڤيل تنڤا ڤرسدياءن لڠسوڠ"],"a":1,"prinsip":"برأني — كبرانين لاهير درڤد كياكينن دان ڤرسدياءن."},{"q":"اندا مليهت راكن منچونتيق دالم ڤڤريقساءن.","o":["ايكوت منچونتيق كران دي ڤون بوات","مناسيحتيڽ سچارا باءيق دان ملاڤور جك دي بردݢيل","مڽباركن ڤركارا ايت كڤد سموا كاون","ممبياركن سهاج كران بوكن اوروسن اندا"],"a":1,"prinsip":"تقوى دان برأني — منچݢه كموڠكرن دڠن حكمه."},{"q":"اندا مڠهادڤي ڤلاجرن ياڠ سڠت سوكر دان راس ايڠين برڤوتوس اسا.","o":["منيڠݢلكن ڤلاجرن ايت ترتروس","مڠولڠ بلاجر سچارا برڤريڠكت سرتا ممينتا بيمبيڠن","مڽالين نوتا راكن سهاج","منوڠݢو سهيڠݢ ݢورو مڽلسايكنڽ"],"a":1,"prinsip":"سنتياس برأوسها — كسبرن دالم منونتوت ايلمو."}],"salah":[{"kata":["تواضع","برمقصود","براس","لبيه","باءيق","درڤد","اورڠ","لاءين"],"salah":2,"ganti":["رنده ديري","سومبوڠ","برأني","ݢيݢيه"],"a":0},{"kata":["تقوى","هاڽ","ڤرلو","دأمالكن","د","مسجد"],"salah":1,"ganti":["ڤرلو دأمالكن د مان-مان","تيدق ڤرلو","ديلارڠ","سوكر"],"a":0},{"kata":["ابن","سينا","مڠولڠ","ممباچ","سبڽق","١٠","كالي"],"salah":5,"ganti":["٤٠","٢٠","٣٠","٥٠"],"a":0},{"kata":["مراقبة","برمقصود","راس","تاكوت","كڤد","منوسيا"],"salah":5,"ganti":["ديڤرهاتي اوليه الله","ديڤرهاتي ݢورو","تاكوت كݢلڤن","مالو برچاكڤ"],"a":0},{"kata":["اورڠ","ڤاليڠ","مليا","دسيسي","الله","اياله","ياڠ","ڤاليڠ","كاي"],"salah":8,"ganti":["برتقوى","ڤنداي","كوات","تركنل"],"a":0},{"kata":["دليل","تقوى","ترداڤت","دالم","سورة","النساء","اية","١٣"],"salah":5,"ganti":["الحجرات","النحل","البقرة","يوسف"],"a":0},{"kata":["بلال","بن","رباح","منولق","شهادهڽ","سلڤس","ديسيقسا"],"salah":3,"ganti":["ممڤرتاهنكن","ملوڤاكن","مڽمبوڽيكن","منوكر"],"a":0},{"kata":["برأني","برمقصود","بربوات","سسوكا","هاتي","تنڤا","برفيكير"],"salah":2,"ganti":["برتيندق بنر دڠن كياكينن","مڠيكوت كاون","ملاون سموا اورڠ","برچاكڤ كوات"],"a":0},{"kata":["الفارابي","اداله","ݢورو","كڤد","اريسطوطل"],"salah":2,"ganti":["ڤنوليس هوراين كتاب","انق مورد","صحابة","موسوه"],"a":0},{"kata":["اورڠ","برأني","تيدق","تاكوت","كڤد","الله"],"salah":2,"ganti":["تتڤ تاكوت","سلالو لوڤا","جارڠ","تيدق ڤرچاي"],"a":0}]},"f3":{"sebab":{"kesan":["ڤربواتنڽ منجادي عبادة","ڤربواتنڽ تيدق دتريما","دي منجادي قدوه حسنة","دي ملاكوكن دوسا"],"sebab":["كران دلاكوكن دڠن نية دان منوروتي شريعة","كران منيالهي هوكوم شرع","كران منونجوقكن تلادن باءيق كڤد اورڠ لاءين","كران مننتڠ لارڠن الله"],"q":[{"q":"علي بكرجا منچاري رزقي حلال دڠن نية منچاري كريضاءن الله.","ka":0,"sa":0},{"q":"سأورڠ منچوري واڠ اونتوق دبريكن كڤد اورڠ ميسكين.","ka":1,"sa":1},{"q":"سأورڠ كتوا كلس سنتياس جوجور دان اديل سهيڠݢ ديچونتوهي راكن.","ka":2,"sa":2},{"q":"سأورڠ مڠومڤت كأيبن راكنڽ كڤد اورڠ لاءين.","ka":3,"sa":3},{"q":"عائشة بلاجر بروڠݢوه-سوڠݢوه دڠن نية منونتوت ايلمو كران الله.","ka":0,"sa":0},{"q":"سأورڠ برنياݢ دڠن منيڤو تيمبڠن ڤمبلي.","ka":1,"sa":1},{"q":"سأورڠ مورد سنتياس منڤتي ماس سهيڠݢ راكن ترايكوت.","ka":2,"sa":2},{"q":"سأورڠ سڠاج ممندڠ ڤركارا ياڠ ديحرامكن الله.","ka":3,"sa":3},{"q":"سأورڠ ممبرسيهكن سكوله دڠن نية منجاݢ امانه.","ka":0,"sa":0},{"q":"سأورڠ برصدقه دڠن واڠ حاصيل تيڤوان.","ka":1,"sa":1}]},"kelas":{"bins":["عبادة خصوص","عبادة عموم"],"items":[{"t":"منونايكن صلاة ليما واكتو","b":0},{"t":"بلاجر دڠن راجين د سكوله","b":1},{"t":"برڤواسا د بولن رمضان","b":0},{"t":"منولوڠ ايبو باڤ د رومه","b":1},{"t":"منونايكن حج ك مكه","b":0},{"t":"بكرجا منچاري رزقي حلال","b":1},{"t":"مڠلواركن زكاة فطره","b":0},{"t":"ممبرسيهكن كاوسن سكوله","b":1},{"t":"ممباچ تحيات دالم صلاة","b":0},{"t":"مڽمبوڠ سيلاتورحيم دڠن جيرن","b":1}]},"tindak":[{"q":"اندا سدڠ بلاجر دان واكتو مغرب ماسوق.","o":["مڽمبوڠ بلاجر سهيڠݢ سلساي دهولو","منونايكن صلاة دهولو كمودين مڽمبوڠ بلاجر","منيڠݢلكن كدوا-دواڽ","مڠقضاء صلاة كسوقن هاري"],"a":1,"prinsip":"عبادة خصوص واجب دتونايكن ڤد واكتوڽ."},{"q":"اندا دتاور ڤكرجاءن ساڠت لومايان تتاڤي سومبر واڠڽ ميراݢوكن.","o":["منريماڽ كران ݢاجي تيڠݢي","منولقڽ كران ورع منونتوت برهاتي٢","منريما تتاڤي برصدقه سباهاݢين","منوڠݢو سهيڠݢ اد اورڠ منݢور"],"a":1,"prinsip":"ورع — برهاتي٢ انتارا حلال، حرام دان شبهة."},{"q":"راكن اندا ممبوك چريتا بوروق تنتڠ كاون لاءين.","o":["مندڠر دان منمبه چريتا ايت","مڠهنتيكن ڤربوالن ايت دان منوكر توڤيق","مڽمڤايكنڽ كڤد اورڠ لاءين","مراكمكن ڤربوالن ترسبوت"],"a":1,"prinsip":"مموليهارا ليده — لارڠن مڠومڤت (سورة الحجرات اية ١٢)."},{"q":"ايبو مماڠݢيل كتيك اندا سدڠ برماءين دڠن كاون.","o":["ممبياركن سهيڠݢ ڤرماءينن تامت","سݢرا مڽهوت دان منمويڽ","ممينتا كاون منجوابكن","ڤورا٢ تيدق مندڠر"],"a":1,"prinsip":"ڤرانن انق — تاعت كڤد ايبو باڤ."},{"q":"اندا ملیهت راكن ديسيسيهكن كران كلوارݢڽ ميسكين.","o":["ايكوت مڽيسيهكنڽ","برماءين برسامڽ دان مننتڠ سيكڤ ايت","ممبياركن سهاج","ممبري واڠ سوڤايا دي دياءم"],"a":1,"prinsip":"اخلاق موليا — كموليأن دنيلاي دڠن تقوى، بوكن هرتا."},{"q":"باڤ اندا ڤولڠ لتيه سلڤس بكرجا سهارين.","o":["ممينتا واڠ سرتا-مرتا","مڽمبوتڽ دڠن سلام دان مريڠنكن بيبنڽ","ممبوك تيليۏيشين دڠن كوات","ممبياركنڽ تنڤا سباراڠ سڤا"],"a":1,"prinsip":"اخلاق تراهدڤ كلوارݢ — برباكتي كڤد ايبو باڤ."},{"q":"اندا ديڤيليه منجادي كتوا كلس.","o":["مڠݢوناكن كدودوقن اونتوق كڤنتيڠن ديري","منونجوقكن چونتوه جوجور، منڤتي ماس دان اديل","مڠاراهكن راكن ملاكوكن سموا كرجا","ممیليه كاون راڤت سهاج سباݢاي ڤمبنتو"],"a":1,"prinsip":"قدوه حسنة — منجادي چونتوه تلادن ياڠ باءيق."},{"q":"كاون بركات بلاجر بوكن عبادة كران ايا بوكن صلاة.","o":["برستوجو دڠنڽ","مڽاتاكن بلاجر اداله عبادة عموم ياڠ دريضاءي الله","ممبياركن ڤندڤتڽ","مڽوروهڽ برهنتي بلاجر"],"a":1,"prinsip":"عبادة عموم — سموا ڤربواتن باءيق ياڠ منوروتي شرع."},{"q":"اندا ترنمڤق سمڤه برسليراقن د كاوسن سورو سكوله.","o":["ممبياركن كران بوكن اندا ياڠ ممبواڠ","ممونݢوتڽ كران منجاݢ كبرسيهن اداله عبادة","مڽالهكن كلس لاءين","ملاڤور تنڤا سبارڠ تيندقن"],"a":1,"prinsip":"عبادة عموم — كبرسيهن سباهاݢين درڤد ايمان."},{"q":"اندا مندڤت بارڠ ڤينجمن راكن دان ترلوڤا مموليڠكنڽ.","o":["مڽيمڤنڽ سهيڠݢ دي مننتوت","مموليڠكنڽ سݢرا دالم كأداءن باءيق دان مموهون معاف","مڠاتاكن بارڠ ايت هيلڠ","مڠݢنتيكنڽ دڠن بارڠ لاءين تنڤا ممبريتاهو"],"a":1,"prinsip":"امانه — منونايكن حق اورڠ لاءين."}],"salah":[{"kata":["ميزان","برمقصود","بوكو","چاتتن","عمل"],"salah":2,"ganti":["نراچا اتاو الت تيمبڠ","تمڤت عبادة","نام سورة","كتاب حديث"],"a":0},{"kata":["عقيدة","ياڠ","بنر","برداسركن","عادت","دان","السنة"],"salah":4,"ganti":["القرءان","ڤندڤت راماي","بودايا","ميمڤي"],"a":0},{"kata":["بكرجا","منچاري","رزقي","حلال","بوكن","عبادة"],"salah":4,"ganti":["اداله عبادة عموم","اداله دوسا","تيدق ڤرلو","ديلارڠ"],"a":0},{"kata":["عبادة","خصوص","بوليه","دلاكوكن","مڠيكوت","چارا","سنديري"],"salah":5,"ganti":["چارا ياڠ ديتتڤكن نبي ﷺ","چارا موده","چارا عادت","چارا بارو"],"a":0},{"kata":["ورع","برمقصود","سوك","ممبري","صدقه"],"salah":2,"ganti":["برهاتي٢ انتارا حلال دان حرام","برچاكڤ بنر","رنده ديري","سبر"],"a":0},{"kata":["مڠومڤت","دبنركن","جك","چريتاڽ","بنر"],"salah":1,"ganti":["تتڤ ديلارڠ","دݢالقكن","دواجيبكن","دهاروسكن"],"a":0},{"kata":["انق","تيدق","ڤرلو","مندواكن","ايبو","باڤڽ"],"salah":1,"ganti":["واجب","جارڠ","دلارڠ","ايڠن"],"a":0},{"kata":["اخلاق","موليا","برسومبركن","عادت","مشاركت"],"salah":3,"ganti":["القرءان دان السنة","بودايا بارت","اوندڠ٢ نݢارا","ڤندڤت راماي"],"a":0},{"kata":["صلاة","تيدق","ممڤوڽاءي","كسن","ترهادڤ","اخلاق"],"salah":1,"ganti":["منچݢه كجي دان موڠكر","منمبه بيبن","مڽوسهكن","ملالايكن"],"a":0},{"kata":["ڤرانن","ايبو","اياله","منچاري","رزقي","دان","مميمڤين","كلوارݢ"],"salah":3,"ganti":["منديديق دان مڽايڠي انق","برنياݢ","برتوكڠ","برݢوتوڠ"],"a":0}]},"f4":{"sebab":{"kesan":["هوكومڽ ككل دان تيدق برأوبه","هوكومڽ برأوبه مڠيكوت زمان","إسلام سسواي د سلوروه دنيا","إسلام مڽيمبڠكن دنيا دان اخيرة"],"sebab":["كران برسومبركن وحي درڤد الله","كران برسومبركن عقل منوسيا ياڠ ترهد","كران برسيفت سجاݢت اونتوق سموا بڠسا","كران برسيفت سدرهان دان تيدق ملامڤاو"],"q":[{"q":"كواجيڤن صلاة ليما واكتو ككل سجق زمان رسول الله ﷺ هيڠݢ كيني.","ka":0,"sa":0},{"q":"اوندڠ٢ لالو لينتس دان چوكاي ديڤيندا درڤد ماس ك سماس.","ka":1,"sa":1},{"q":"اورڠ إسلام د سلوروه دنيا مڠادڤ قبلة ياڠ سام.","ka":2,"sa":2},{"q":"إسلام مڽوروه بكرجا اونتوق دنيا دان برعبادة اونتوق اخيرة.","ka":3,"sa":3},{"q":"هوكوم حلال دان حرام تيدق بوليه دأوبه اوليه سسياڤ ڤون.","ka":0,"sa":0},{"q":"اوندڠ٢ چيڤتاءن منوسيا موده ديڤڠاروهي كڤنتيڠن ترتنتو.","ka":1,"sa":1},{"q":"إسلام دأمالكن اوليه ڤلباݢاي بڠسا دان كتورونن.","ka":2,"sa":2},{"q":"إسلام ملارڠ ملامڤاو دالم برعبادة سهيڠݢ مڠاباي كن كلوارݢ.","ka":3,"sa":3},{"q":"عقيدة توحيد ككل سام سجق نبي ادم هيڠݢ نبي محمد ﷺ.","ka":0,"sa":0},{"q":"اوندڠ٢ سسبواه نݢارا برأوبه اڤابيلا كراجاءن برتوكر.","ka":1,"sa":1}]},"kelas":{"bins":["ربانية","شمول","علمية","سجاݢت"],"items":[{"t":"سومبر إسلام اياله وحي درڤد الله","b":0},{"t":"إسلام مڠاتور عبادة، اخلاق دان ڤرنياݢاءن","b":1},{"t":"إسلام مڠݢلقكن منونتوت ايلمو دان ملارڠ تقليد بوتا","b":2},{"t":"إسلام دأمالكن اوليه سموا بڠسا د دنيا","b":3},{"t":"القرءان دتورونكن اوليه الله، بوكن كارڠن منوسيا","b":0},{"t":"إسلام مڠاتور اوروسن كلوارݢ دان نݢارا","b":1},{"t":"إسلام مننتوت بوقتي دان دليل ياڠ صحيح","b":2},{"t":"اورڠ إسلام د تيمور دان بارت مڠعملكن عقيدة ياڠ سام","b":3},{"t":"هوكوم شرع ديتنتوكن اوليه الله، بوكن منوسيا","b":0},{"t":"إسلام مليڤوتي روحاني دان جسماني منوسيا","b":1}]},"tindak":[{"q":"كاون اندا بركات إسلام سسواي هاڽ اونتوق زمان دهولو.","o":["برستوجو كران زمان تله برأوبه","منجلسكن إسلام برسيفت سجاݢت دان ككل سڤنجڠ زمان","ممبياركن ڤندڤتڽ","مڠاتاكن دي كافير"],"a":1,"prinsip":"سجاݢت — إسلام سسواي اونتوق سموا زمان دان تمڤت."},{"q":"سسأورڠ مڠاتاكن هوكوم إسلام بوليه دأوبه مڠيكوت اوندي راماي.","o":["برستوجو كران دموكراسي","منجلسكن هوكوم درڤد وحي تيدق بوليه دأوبه","مڠاجق مڠوندي","ممبياركن سهاج"],"a":1,"prinsip":"ربانية — سومبر هوكوم إسلام اداله وحي، بوكن عقل منوسيا."},{"q":"راكن اندا هاڽ منومڤوكن ڤلاجرن دنيا دان مڠاباي كن عبادة.","o":["ممبياركن كران ڤلاجرن ڤنتيڠ","مڠيڠتكنڽ سوڤايا سيمبڠ انتارا دنيا دان اخيرة","مڽوروهڽ برهنتي بلاجر","مڠيكوت چاراڽ ڤولا"],"a":1,"prinsip":"سدرهان — كسيمبڠن انتارا كڤرلوان دنيا دان اخيرة."},{"q":"سسأورڠ مڠاتاكن إسلام مڽكت كماجوان ساءينس.","o":["برستوجو كران ساءينس دان اݢام برلاءينن","منجلسكن إسلام برسيفت علمية دان مڠݢلقكن ايلمو","مڠيلق درڤد برچاكڤ","مڠاتاكن ساءينس تيدق ڤنتيڠ"],"a":1,"prinsip":"علمية — إسلام برداسركن ايلمو دان مڠݢلقكن ڤنيليدیقن."},{"q":"اندا برادا د نݢارا اسيڠ ياڠ بوداياڽ برلاءينن.","o":["منيڠݢلكن اجرن إسلام سمنتارا","برڤيݢڠ كڤد اصول إسلام والاو د مان برادا","مڽمبوڽيكن ايدينتيتي إسلام سلاما-لاماڽ","مڠيكوت سموا بودايا تمڤتن"],"a":1,"prinsip":"سجاݢت — اصول إسلام تتڤ سام د مان-مان."},{"q":"كاون مڠاجق مڠيكوت اجرن ياڠ برچڠݢه دڠن القرءان.","o":["منچوباڽ دهولو اونتوق تاهو","منولق كران عقيدة مستي برداسركن القرءان دان السنة","مڠيكوت جك راماي ملاكوكنڽ","مڽرهكن كڤوتوسن كڤد كاون"],"a":1,"prinsip":"عقيدة صحيح — برسومبركن القرءان دان السنة سهاج."},{"q":"ادئيق اندا برتاڽ اڤ ايت «صبغة الله».","o":["مڽوروهڽ برتاڽ ݢورو سهاج","منجلسكن ايا برمقصود چلوڤن اتاو اچوان الله ياڠ ترباءيق","مڠاتاكن ايا تيدق ڤنتيڠ","ممبريكنڽ كتاب تبل اونتوق دباچ"],"a":1,"prinsip":"صبغة الله — چارا هيدوڤ إسلام سباݢاي اچوان ترباءيق."},{"q":"اندا دتاڽ مڠاڤ اوندڠ٢ إسلام لبيه سمڤورنا درڤد اوندڠ٢ منوسيا.","o":["كران ايا لبيه لام","كران ايا برسومبركن وحي، ككل دان اديل اونتوق سموا","كران ايا لبيه تݢس","كران راماي مڠعملكنڽ"],"a":1,"prinsip":"ربانية — سومبر وحي منجاميين ككالن دان كأديلن."},{"q":"سسأورڠ بركات اݢام هاڽ اوروسن هاتي، تيدق ڤرلو مننتوكن چارا هيدوڤ.","o":["برستوجو دڠنڽ","منجلسكن إسلام برسيفت شمول، مليڤوتي سلوروه كهيدوڤن","ممبياركن سهاج","مڠاتاكن دي تيدق برايمان"],"a":1,"prinsip":"شمول — إسلام مرڠكومي سموا اسڤيك كهيدوڤن."},{"q":"اندا مندڤتي ساتو مسئله بارو ياڠ تياد دسبوت سچارا خصوص دالم القرءان.","o":["مڠاتاكن إسلام تيدق لڠكڤ","مروجوع كڤد علماء ياڠ برئجتهاد برداسركن القرءان دان السنة","ممبوات كڤوتوسن سنديري","ممبياركن مسئله ايت"],"a":1,"prinsip":"إسلام لڠكڤ — اجتهاد ملڠكڤكن حكوم باݢي مسئله بارو."}],"salah":[{"kata":["ربانية","برمقصود","إسلام","چيڤتاءن","منوسيا"],"salah":3,"ganti":["برسومبركن الله","برسومبركن عادت","كارڠن علماء","حاصيل اجتهاد"],"a":0},{"kata":["شمول","برمقصود","إسلام","هاڽ","مڠاتور","عبادة"],"salah":3,"ganti":["مرڠكومي سموا اسڤيك كهيدوڤن","تربات كڤد صلاة","اونتوق اورڠ دواس","اونتوق زمان دهولو"],"a":0},{"kata":["اوندڠ٢","چيڤتاءن","منوسيا","ككل","دان","تيدق","برأوبه"],"salah":3,"ganti":["برأوبه٢ دان تيدق سمڤورنا","سمڤورنا","اديل سڤنوهڽ","درڤد وحي"],"a":0},{"kata":["علمية","برمقصود","إسلام","برداسركن","سڠكاءن"],"salah":4,"ganti":["ايلمو ياڠ صحيح","عادت لام","ڤرايسان","ميمڤي"],"a":0},{"kata":["إسلام","مڠاجر","كيت","برسيكڤ","ملامڤاو","دالم","برعبادة"],"salah":4,"ganti":["سدرهان","مالس","سومبوڠ","ترݢسا"],"a":0},{"kata":["إسلام","هاڽ","سسواي","اونتوق","بڠسا","عرب"],"salah":1,"ganti":["سسواي اونتوق سموا بڠسا","سسواي اونتوق اورڠ كاي","سسواي اونتوق ݢورو","سسواي اونتوق لالاكي"],"a":0},{"kata":["اوندڠ٢","إسلام","برسومبركن","ڤرستوجوان","راماي"],"salah":3,"ganti":["وحي درڤد الله","عادت مشاركت","فيكيرن راج","كبياساءن لام"],"a":0},{"kata":["صبغة","الله","برمقصود","نام","سورة","دالم","القرءان"],"salah":3,"ganti":["چلوڤن اتاو اچوان الله","نام ملائكة","نام كتاب","نام نبي"],"a":0},{"kata":["إسلام","برتنتڠن","دڠن","فطره","منوسيا"],"salah":1,"ganti":["سلاري دڠن","منولق","مڠاباي كن","مڽكت"],"a":0},{"kata":["رسول","هاڽ","دأوتوس","كڤد","اومت","نبي","محمد","ﷺ"],"salah":1,"ganti":["دأوتوس كڤد ستياڤ اومت","تيدق ڤرنه دأوتوس","دأوتوس دوا كالي","دأوتوس كڤد ملائكة"],"a":0}]}};
+
+const D4 = {"NOTA":{"f1":{"ringkas":[{"t":"شهادتين","h":"دوا كليمه ڤڠاكوان","s":" ياڠ منجادي كونچي ماسوق إسلام. كليمه ڤرتام مڠاكو تياد توهن ملائينكن الله؛ كليمه كدوا مڠاكو نبي محمد ﷺ ڤسوروه الله."},{"t":"","h":"شهادة بوكن سكادر سبوتن","s":". اي مستي دسرتاي كياكينن هاتي دان دبوقتيكن دڠن ڤربواتن سهارين. اينيله ڤربيذاءن انتارا اورڠ ياڠ سكادر تاهو دڠن اورڠ ياڠ بنر٢ برايمان."},{"t":"","h":"شهادة ممباوا تڠݢوڠجواب","s":" سڤنجڠ حايت — منطاعتي الله، مڠيكوت سنة رسول، دان مڽمڤايكن كبنرن كڤد اورڠ لاءين."}],"kunci":["شهادتين = دوا كليمه: كأساءن الله + كرسولن نبي محمد ﷺ","روكون شهادة اد تيݢ: اقرار، تصديق، عمل","منريما شهادة → جامينن كسلامتن دنيا دان اخيرة","منولق شهادة → ديكيرا كافير، منريما عذاب د اخيرة","منطاعتي رسول = منطاعتي الله (سورة النساء ٨٠)"],"jadual":[{"tajuk":"تيݢ روكون شهادة","kepala":["روكون","دڠن اڤ","چونتوه"],"baris":[["اقرار","ليده","منيبوت دوا كليمه شهادة"],["تصديق","هاتي","مياكيني الله ايت اسا"],["عمل","اڠݢوتا بادن","منونايكن صلاة، برڤواسا"]]},{"tajuk":"كسن منريما دان منولق شهادة","kepala":["كأداءن","كسن د دنيا","كسن د اخيرة"],"baris":[["منريما شهادة","امان، براخلاق، جامينن كسلامتن","مندڤت شرݢا"],["منولق شهادة","ݢليسه، تيدق تنڠ","منداڤت عذاب نراك"]]}],"tips":[{"t":"سيڠكتن «إ‌.ت.ع»","s":"اِقرار (ليده) → تَصديق (هاتي) → عَمل (بادن). اوروتنڽ درڤد مولوت، ك هاتي، ك بادن."},{"t":"چارا ايڠت","s":"«ساي چاكڤ، ساي ڤرچاي، ساي بوات» — تيݢ اياة اين مواكيلي تيݢ روكون شهادة."},{"t":"دالم ڤڤريقساءن","s":"جك سوالن تاڽ «مڠاڤ شهادة تيدق چوكوڤ دسبوت سهاج؟» — جواڤنڽ سنتياس مروجوع كڤد روكون عمل."}],"peta":{"pusat":"شهادتين","cabang":[{"t":"مقصود","anak":["تياد توهن ملائينكن الله","نبي محمد ﷺ رسول الله"]},{"t":"روكون","anak":["اقرار — ليده","تصديق — هاتي","عمل — بادن"]},{"t":"كسن منريما","anak":["جامينن كسلامتن","رحمة الله","شرݢا"]},{"t":"كسن منولق","anak":["ديكيرا كافير","ݢليسه د دنيا","عذاب د اخيرة"]}]}},"f2":{"ringkas":[{"t":"","h":"امڤت صفة","s":" اوتام تربنتوق ڤد اورڠ ياڠ بنر٢ برشهادة: برأني، برتقوى، سنتياس برأوسها، دان تواضع."},{"t":"","h":"صفة اين بوكن تئوري","s":" — ستياڤ ساتو دبوقتيكن اوليه كيسه بنر: بلال تاهن ديسيقسا، ابو بكر منمني هجرة، ابن سينا مڠولڠ ممباچ ٤٠ كالي."},{"t":"","h":"اصل سݢالا صفة اين اياله كياكينن","s":" بهاوا هاڽ الله ياڠ ممبري منفعة دان مضارة — كران ايت اورڠ برشهادة تيدق تاكوت كڤد مخلوق."}],"kunci":["برأني = تاكوت هاڽ كڤد الله، بوكن كڤد مخلوق","تقوى = ملقسانا سوروهن + منجاءوهي لارڠن","مراقبة = راس سنتياس ديڤرهاتي الله (اصل كڤد تقوى)","سنتياس برأوسها = ݢيݢيه، تيدق برڤوتوس اسا","تواضع = رنده ديري كران سموا نعمة ايت ڤينجمن"],"jadual":[{"tajuk":"امڤت صفة دان بوقتيڽ","kepala":["صفة","مقصود","توكوه / دليل"],"baris":[["برأني","سڠݢوڤ ممڤرتاهنكن كبنرن","بلال بن رباح، ابو بكر، اسماء"],["تقوى","تاعت الله، جاءوهي لارڠن","سورة الحجرات ١٣"],["سنتياس برأوسها","ݢيݢيه منونتوت ايلمو","ابن سينا (٤٠ كالي) · سورة يوسف ٨٧"],["تواضع","رنده ديري، تيدق سومبوڠ","سورة الشعراء ٢١٥"]]},{"tajuk":"كيسه ڤنتيڠ ياڠ ڤرلو دايڠت","kepala":["توكوه","ڤريستيوا","صفة"],"baris":[["بلال بن رباح","ديسيقسا تتاڤي تتڤ برشهادة","برأني"],["ابو بكر","منمني رسول ﷺ د ݢوا ثور","برأني"],["اسماء بنت ابو بكر","مڠهنتر ماكنن سماس هجرة","برأني"],["ابن سينا","مڠولڠ ممباچ اريسطوطل ٤٠ كالي","سنتياس برأوسها"]]}],"tips":[{"t":"سيڠكتن «ب.ت.ا.ت»","s":"بَرأني · تَقوى · اُسها · تَواضع. ايڠت سباݢاي: «بودق تكون اوسها تواضع»."},{"t":"ايڠت نومبور","s":"ابن سينا = ٤٠ كالي. سورة الحجرات = اية ١٣. دوا نومبور اين كرڤ كلوار."},{"t":"بيذاكن","s":"تقوى = ڤربواتن (تاعت). مراقبة = ڤرايسان (راس ديڤرهاتي). مراقبة ملاهيركن تقوى."}],"peta":{"pusat":"صفة اورڠ برشهادة","cabang":[{"t":"برأني","anak":["تاكوت هاڽ كڤد الله","بلال · ابو بكر · اسماء"]},{"t":"تقوى","anak":["تاعت سوروهن","جاءوهي لارڠن","مراقبة"]},{"t":"سنتياس برأوسها","anak":["ݢيݢيه منونتوت ايلمو","ابن سينا ٤٠ كالي","جاڠن ڤوتوس اسا"]},{"t":"تواضع","anak":["رنده ديري","سموا نعمة ڤينجمن","سموا منوسيا سام تارف"]}]}},"f3":{"ringkas":[{"t":"","h":"ميزان برمقصود نراچا","s":" — إسلام منجادي الت تيمبڠ اونتوق مننتوكن سسواتو ڤربواتن ايت بتول اتاو ساله."},{"t":"","h":"عمل دنيلاي دڠن دوا ڤركارا","s":": نية ياڠ بتول دان تيندقن ياڠ منوروتي شريعة. كورڠ ساتو، عملڽ تيدق سمڤورنا."},{"t":"","h":"فصل اين اد ليما اونيت","s":" — ميزان، عقيدة، عبادة، اخلاق دان كلوارݢ — ياءيت ݢمبرن لڠكڤ إسلام سباݢاي چارا هيدوڤ."}],"kunci":["ميزان = نراچا / الت تيمبڠ عمل","عمل برلندسكن إسلام = نية + تيندقن","عقيدة صح مستي درڤد القرءان دان السنة سهاج","عبادة تربهاݢي دوا: خصوص دان عموم","سڤولوه اخلاق موليا برسومبركن القرءان دان سنة","كلوارݢ: باڤ (رزقي/ڤميمڤين) · ايبو (ديديق/كاسيه) · انق (تاعت/دعاء)"],"jadual":[{"tajuk":"دوا جنيس عبادة","kepala":["","عبادة خصوص","عبادة عموم"],"baris":[["مقصود","ديتتڤكن چاراڽ اوليه نبي ﷺ","ڤربواتن ياڠ دريضاءي الله"],["چونتوه","صلاة، ڤواسا، زكاة، حج","بلاجر، بكرجا، برصدقه"],["شرط","مستي ايكوت چارا ياڠ ديتتڤكن","نية بتول + تيدق منيالهي شرع"]]},{"tajuk":"سڤولوه اخلاق موليا","kepala":["#","اخلاق","مقصود ريڠكس"],"baris":[["١","ورع","برهاتي٢ حلال دان حرام"],["٢","منوندوقكن ڤندڠن","منجاݢ مات درڤد حرام"],["٣","مموليهارا ليده","الق فتنه دان مڠومڤت"],["٤","مالو","مالو بوات جاهت كران الله مليهت"],["٥","لمه لمبوت دان سبر","تيدق چڤت مارح"],["٦","امانه دان منڤتي جنجي","منجاݢ كڤرچاياءن"],["٧","تواضع","رنده ديري"],["٨","بروڠݢوه (جوجور)","تلوس دالم كات دان ڤربواتن"],["٩","ڤموره","سوك برصدقه"],["١٠","قدوه حسنة","چونتوه تلادن ياڠ باءيق"]]},{"tajuk":"ڤرانن اهلي كلوارݢ","kepala":["اهلي","ڤرانن اوتام"],"baris":[["باڤ","منچاري رزقي حلال · كتوا كلوارݢ"],["ايبو","منديديق انق · مڽورهكن كاسيه سايڠ"],["انق","تاعت كڤد ايبو باڤ · مندواكن مريك"]]}],"tips":[{"t":"سيڠكتن ٥ اونيت «م.ع.ع.ا.ك»","s":"مِيزان · عَقيدة · عِبادة · اَخلاق · كَلوارݢ."},{"t":"چارا بيذاكن عبادة","s":"تاڽ ديري: «ادكه نبي ﷺ تتڤكن چاراڽ؟» يا = خصوص. تيدق، تتاڤي باءيق = عموم."},{"t":"سڤولوه اخلاق — كومڤولن ٣-٣-٣-١","s":"جاݢ ديري (١-٣) · سيكڤ هاتي (٤-٦) · سيكڤ سوسيال (٧-٩) · ڤونچق: قدوه حسنة (١٠)."}],"peta":{"pusat":"إسلام سباݢاي ميزان","cabang":[{"t":"ميزان","anak":["نراچا بتول/ساله","نية + تيندقن"]},{"t":"عقيدة","anak":["القرءان","السنة"]},{"t":"عبادة","anak":["خصوص — صلاة، ڤواسا","عموم — بلاجر، بكرجا"]},{"t":"اخلاق","anak":["١٠ صفة موليا","سومبر: القرءان دان سنة"]},{"t":"كلوارݢ","anak":["باڤ — رزقي","ايبو — ديديقن","انق — تاعت"]}]}},"f4":{"ringkas":[{"t":"","h":"إسلام اداله چارا هيدوڤ ياڠ لڠكڤ","s":" دان سمڤورنا، سسواي اونتوق سموا منوسيا ڤد ستياڤ زمان دان تمڤت."},{"t":"","h":"انم چيري كأيستيميواءن إسلام","s":": ربانية، شمول، علمية، سسواي فطره، سدرهان دان سجاݢت."},{"t":"","h":"ڤربيذاءن اوتام","s":" دڠن اوندڠ٢ چيڤتاءن منوسيا تراوليه ڤد سومبرڽ — وحي ياڠ ككل بربنديڠ عقل ياڠ ترهد."}],"kunci":["ربانية = برسومبركن الله، بوكن چيڤتاءن منوسيا","شمول = مڽلوروه، مرڠكومي سموا اسڤيك","علمية = برداسركن ايلمو، بوكن سڠكاءن","سسواي فطره = سلاري نالوري سمولا جادي","سدرهان = سيمبڠ دنيا دان اخيرة","سجاݢت = اونتوق سموا بڠسا، زمان دان تمڤت","صبغة الله = چلوڤن / اچوان الله ياڠ ترباءيق"],"jadual":[{"tajuk":"انم چيري كأيستيميواءن إسلام","kepala":["چيري","مقصود","چونتوه"],"baris":[["ربانية","سومبرڽ الله","القرءان دتورونكن اوليه الله"],["شمول","مڽلوروه","اتور عبادة، اخلاق، كلوارݢ، نݢارا"],["علمية","برداسركن ايلمو","ݢالقكن منونتوت ايلمو"],["فطره","سلاري نالوري","ڤركهوينن، كڤرلوان اساس"],["سدرهان","سيمبڠ","بكرجا + برعبادة"],["سجاݢت","سموا بڠسا/زمان","قبلة سام د سلوروه دنيا"]]},{"tajuk":"اوندڠ٢ إسلام لاون اوندڠ٢ منوسيا","kepala":["اسڤيك","اوندڠ٢ إسلام","اوندڠ٢ منوسيا"],"baris":[["سومبر","وحي درڤد الله","فيكيرن منوسيا ياڠ ترهد"],["سيفت","ككل، تيدق برأوبه","برأوبه ايكوت زمان"],["كأديلن","اديل اونتوق سموا","موده ديڤڠاروهي كڤنتيڠن"],["كسمڤورناءن","لڠكڤ دان سمڤورنا","اد كلمهن"]]}],"tips":[{"t":"سيڠكتن ٦ چيري «ر.ش.ع.ف.س.س»","s":"رَبانية · شُمول · عِلمية · فِطره · سَدرهان · سَجاݢت."},{"t":"چارا ايڠت ڤربيذاءن","s":"إسلام = وحي (ككل). منوسيا = عقل (برأوبه). ساتو ڤركاتاءن اين چوكوڤ اونتوق منجواب باڽق سوالن ڤربنديڠن."},{"t":"دليل ڤنتيڠ","s":"صبغة → سورة البقرة ١٣٨. ڤڠوتوسن رسول → سورة النحل ٣٦."}],"peta":{"pusat":"كيقينن ترهادڤ إسلام","cabang":[{"t":"ربانية","anak":["سومبر: وحي الله","بوكن چيڤتاءن منوسيا"]},{"t":"شمول دان سجاݢت","anak":["سموا اسڤيك هيدوڤ","سموا بڠسا دان زمان"]},{"t":"علمية دان فطره","anak":["برداسركن ايلمو","سلاري نالوري منوسيا"]},{"t":"ڤربنديڠن اوندڠ٢","anak":["إسلام: ككل، اديل","منوسيا: برأوبه، اد كلمهن"]}]}}},"GLOSARI":[{"i":"شهادتين","f":1,"d":"دوا كليمه ڤڠاكوان: تياد توهن ملائينكن الله، دان نبي محمد ﷺ ڤسوروه الله."},{"i":"اقرار","f":1,"d":"منيبوت اتاو ملفظكن دوا كليمه شهادة دڠن ليده."},{"i":"تصديق","f":1,"d":"ممبنركن دان مياكيني ايسي شهادة دڠن هاتي."},{"i":"عمل","f":1,"d":"ممبوقتيكن ڤڠاكوان شهادة دڠن ڤربواتن اڠݢوتا بادن."},{"i":"كسقسين","f":1,"d":"ڤڠاكوان اتاو ڤرساكسين ترهادڤ سسواتو كبنرن."},{"i":"ملفظكن","f":1,"d":"مڽبوت دڠن جلس مڠݢوناكن ليده."},{"i":"كافير","f":1,"d":"اورڠ ياڠ منولق اتاو مڠيڠكاري كبنرن شهادة."},{"i":"مسلم","f":1,"d":"اورڠ ياڠ منريما إسلام دان مڠاكو دوا كليمه شهادة."},{"i":"جامينن","f":1,"d":"كڤستين اتاو ڤرليندوڠن — د سيني، كسلامتن دنيا دان اخيرة."},{"i":"عذاب","f":1,"d":"سيقساءن ياڠ دكناكن اوليه الله كأتس اورڠ ياڠ اڠكر."},{"i":"طاعت","f":1,"d":"ڤاتوه دان منوروت سݢالا ڤرينته."},{"i":"برأني","f":2,"d":"سڠݢوڤ برتيندق دان ممڤرتاهنكن كبنرن والاوڤون مڠهادڤي چابرن."},{"i":"تقوى","f":2,"d":"ملقسانكن سݢالا سوروهن الله دان منجاءوهي سݢالا لارڠنڽ."},{"i":"مراقبة","f":2,"d":"راس سنتياس دأواسي دان ديڤرهاتي اوليه الله ڤد ستياڤ ماس."},{"i":"تواضع","f":2,"d":"سيكڤ رنده ديري دان تيدق سومبوڠ سسام منوسيا."},{"i":"تكبور","f":2,"d":"سومبوڠ دان ممݢه٢كن ديري — لاون كڤد تواضع."},{"i":"منفعة","f":2,"d":"كباءيقن اتاو فاءيده ياڠ دڤرأوليه."},{"i":"مضارة","f":2,"d":"كبوروقن اتاو كموداراتن."},{"i":"يقين","f":2,"d":"ڤرچاي سڤنوهڽ تنڤا سبارڠ كراݢوان."},{"i":"رضا","f":2,"d":"منريما دڠن هاتي ترڤوك سݢالا كتنتوان الله."},{"i":"رزقي","f":2,"d":"سݢالا ڤمبرين الله كڤد مخلوقڽ — رزقي، ايلمو، كسيهتن."},{"i":"استقامة","f":2,"d":"برترسن دان تݢوه دالم ملاكوكن كباءيقن."},{"i":"صبر","f":2,"d":"تابه مڠهادڤي اوجين تنڤا برڤوتوس اسا."},{"i":"ميزان","f":3,"d":"نراچا اتاو الت تيمبڠ — إسلام سباݢاي اوكورن بتول دان ساله."},{"i":"عقيدة","f":3,"d":"كڤرچاياءن ياڠ تݢوه دالم هاتي، برداسركن القرءان دان السنة."},{"i":"عبادة خصوص","f":3,"d":"عبادة واجب ياڠ ديتتڤكن چاراڽ اوليه نبي محمد ﷺ، سڤرتي صلاة."},{"i":"عبادة عموم","f":3,"d":"ڤربواتن هارين ياڠ دريضاءي الله دان تيدق منيالهي شرع."},{"i":"شريعة","f":3,"d":"اوندڠ٢ دان ڤراتورن الله باݢي مڠاتور كهيدوڤن منوسيا."},{"i":"نية","f":3,"d":"كهيندق دالم هاتي اونتوق ملاكوكن سسواتو كران الله."},{"i":"خشوع","f":3,"d":"تنڠ، تومڤوان ڤنوه دان مرنده ديري كتيك برعبادة."},{"i":"إخلاص","f":3,"d":"ملاكوكن سسواتو سمات-مات كران الله، بوكن كران ڤوجين."},{"i":"ورع","f":3,"d":"برهاتي٢ منجاءوهي ڤركارا حرام دان شبهة."},{"i":"شبهة","f":3,"d":"ڤركارا ياڠ ميراݢوكن — تيدق ڤستي حلال اتاو حرامڽ."},{"i":"امانه","f":3,"d":"منونايكن سݢالا تڠݢوڠجواب دان كڤرچاياءن ياڠ دبري."},{"i":"قدوه حسنة","f":3,"d":"چونتوه تلادن ياڠ باءيق اونتوق دايكوتي اورڠ لاءين."},{"i":"ڤموره","f":3,"d":"سوك ممبري، برصدقه دان ممبنتو اورڠ لاءين."},{"i":"مڠومڤت","f":3,"d":"مننجوق كأيبن اورڠ لاءين تنڤا ڤڠتاهوانڽ — ديلارڠ دالم إسلام."},{"i":"فتنه","f":3,"d":"مڽباركن بريتا ڤالسو ياڠ مروسقكن نام باءيق سسأورڠ."},{"i":"معصية","f":3,"d":"ڤربواتن دوسا اتاو ملڠݢر لارڠن الله."},{"i":"اخلاق","f":3,"d":"بوديڤكرتي اتاو تيڠكه لاكو ياڠ منچرمينكن ايمان."},{"i":"ربانية","f":4,"d":"سيفت إسلام ياڠ برسومبركن الله، بوكن چيڤتاءن منوسيا."},{"i":"شمول","f":4,"d":"مڽلوروه — مرڠكومي سموا اسڤيك كهيدوڤن، روحاني دان جسماني."},{"i":"علمية","f":4,"d":"برداسركن ايلمو ياڠ صحيح، بوكن سڠكاءن اتاو خيالن."},{"i":"فطره","f":4,"d":"نالوري اتاو كأداءن سمولا جادي منوسيا سجق دلاهيركن."},{"i":"سدرهان","f":4,"d":"سيمبڠ دان تيدق ملامڤاو انتارا اوروسن دنيا دان اخيرة."},{"i":"سجاݢت","f":4,"d":"سسواي دأمالكن اوليه سموا بڠسا، ڤد ستياڤ زمان دان تمڤت."},{"i":"روحاني","f":4,"d":"بركاءيتن دڠن جيوا، هاتي دان كهيدوڤن باطين."},{"i":"جسماني","f":4,"d":"بركاءيتن دڠن تبوه بادن دان كهيدوڤن ظاهير."},{"i":"منهج","f":4,"d":"چارا، كاءداه اتاو سيستم هيدوڤ ياڠ لڠكڤ."},{"i":"صبغة","f":4,"d":"چلوڤن اتاو اچوان — «صبغة الله» برمقصود چارا هيدوڤ إسلام ياڠ ترباءيق."},{"i":"وحي","f":4,"d":"ڤروتوسن درڤد الله كڤد رسولڽ سباݢاي سومبر هوكوم."},{"i":"اجتهاد","f":4,"d":"اوسها علماء منچاري حكوم باݢي مسئله بارو برڤندوكن القرءان دان السنة."},{"i":"طاغوت","f":4,"d":"سݢالا سمبهن اتاو كواس سلاءين الله ياڠ ديتاعتي سچارا ساله."},{"i":"شرك","f":4,"d":"مڽكوتوكن الله دڠن سسواتو ياڠ لاءين — دوسا ياڠ ڤاليڠ بسر."}]}, NOTA = D4.NOTA, GLOSARI = D4.GLOSARI;
+
+/* ====== ANGKA JAWI ====== */
+const AR = n => String(n).replace(/\d/g, d => "٠١٢٣٤٥٦٧٨٩"[d]);
+const kocok = a => a.map(v=>[Math.random(),v]).sort((x,y)=>x[0]-y[0]).map(p=>p[1]);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* ====== BINA HALAMAN ====== */
+const tabs = document.getElementById('tabs');
+const isi  = document.getElementById('isi');
+
+BANK.forEach((t, ti) => {
+  const b = document.createElement('button');
+  b.className = 'tab'; b.textContent = t.tab;
+  b.setAttribute('role','tab');
+  b.setAttribute('aria-selected', ti === 0 ? 'true' : 'false');
+  b.onclick = () => pilihTopik(ti);
+  tabs.appendChild(b);
+
+  const panel = document.createElement('section');
+  panel.className = 'topik' + (ti === 0 ? ' aktif' : '');
+  panel.id = 'topik-' + t.id;
+  panel.innerHTML = `
+    <div class="topik-kepala">
+      <h2>${esc(t.title)}</h2>
+      <div class="ltn">${esc(t.latin)}</div>
+    </div>
+    ${bhgMCQ(t)}
+    ${bhgTF(t)}
+    ${bhgDD(t)}
+    ${bhgPadan(t)}
+    ${bhgSusun(t)}
+    ${bhgKenal(t)}
+    ${bhgSebab(t)}
+    ${bhgKelas(t)}
+    ${bhgTindak(t)}
+    ${bhgSalah(t)}
+  `;
+  isi.appendChild(panel);
+});
+
+function bhgMCQ(t){
+  return `<div class="bhg" data-set="${t.id}-a" data-jenis="mcq" data-topik="${t.id}">
+    <div class="bhg-kepala">
+      <div class="bhg-huruf">${AR(1)}</div>
+      <h3>ڤيليه جواڤن ياڠ بتول</h3>
+      <p class="arahan">١٠ سوالن · ڤيليه ساتو جواڤن سهاج باݢي ستياڤ سوالن.</p>
+    </div>
+    ${t.mcq.map((m,i) => `
+      <div class="soalan" data-i="${i}">
+        <div class="s-teks"><div class="s-no">${AR(i+1)}.</div><div class="s-body">${esc(m.q)}</div></div>
+        <div class="pilihan">
+          ${m.o.map((o,j) => `
+            <label class="pil"><input type="radio" name="${t.id}-a-${i}" value="${j}"><span>${esc(o)}</span></label>
+          `).join('')}
+        </div>
+        <p class="maklum" hidden></p>
+      </div>`).join('')}
+    ${kakiSet()}
+  </div>`;
+}
+
+function bhgTF(t){
+  return `<div class="bhg" data-set="${t.id}-b" data-jenis="tf" data-topik="${t.id}">
+    <div class="bhg-kepala">
+      <div class="bhg-huruf">${AR(2)}</div>
+      <h3>بتول اتاو ساله</h3>
+      <p class="arahan">١٠ سوالن · تنداكن سام اد ڤرڽاتاءن ايت بتول اتاو ساله.</p>
+    </div>
+    ${t.tf.map((m,i) => `
+      <div class="soalan" data-i="${i}">
+        <div class="s-teks"><div class="s-no">${AR(i+1)}.</div><div class="s-body">${esc(m.q)}</div></div>
+        <div class="bs">
+          <label class="pil"><input type="radio" name="${t.id}-b-${i}" value="1"><span>بتول ✓</span></label>
+          <label class="pil"><input type="radio" name="${t.id}-b-${i}" value="0"><span>ساله ✗</span></label>
+        </div>
+        <p class="maklum" hidden></p>
+      </div>`).join('')}
+    ${kakiSet()}
+  </div>`;
+}
+
+function bhgDD(t){
+  const campur = [...t.dd.bank].sort(() => Math.random() - .5);
+  return `<div class="bhg" data-set="${t.id}-c" data-jenis="dd" data-topik="${t.id}">
+    <div class="bhg-kepala">
+      <div class="bhg-huruf">${AR(3)}</div>
+      <h3>سرت ڤركاتاءن كتمڤت كوسوڠ</h3>
+      <p class="arahan">١٠ سوالن · سرت (drag) ڤركاتاءن كتمڤت كوسوڠ، اتاو تكن ڤركاتاءن كمودين تكن تمڤت كوسوڠ.</p>
+    </div>
+    <div class="bank" data-bank="${t.id}">
+      <p class="bank-label">بڠكو ڤركاتاءن:</p>
+      ${campur.map(w => `<button type="button" class="chip" draggable="true" data-kata="${esc(w)}">${esc(w)}</button>`).join('')}
+    </div>
+    ${t.dd.q.map((m,i) => `
+      <div class="soalan" data-i="${i}">
+        <div class="s-teks"><div class="s-no">${AR(i+1)}.</div>
+          <div class="s-body">${esc(m.t[0])}<span class="lubang" tabindex="0" role="button" data-lubang="${i}"></span>${esc(m.t[1]||'')}</div>
+        </div>
+        <p class="maklum" hidden></p>
+      </div>`).join('')}
+    ${kakiSet()}
+  </div>`;
+}
+
+
+function bhgPadan(t){
+  const d = BANK2[t.id].padan;
+  const pilihan = d.map(p=>p.m).slice().sort(()=>Math.random()-.5);
+  return `<div class="bhg" data-set="${t.id}-d" data-jenis="padan" data-topik="${t.id}">
+    <div class="bhg-kepala">
+      <div class="bhg-huruf">${AR(4)}</div>
+      <h3>ڤادنكن</h3>
+      <p class="arahan">١٠ سوالن · ڤادنكن ستياڤ ايستيله دڠن مقصودڽ ياڠ بتول.</p>
+    </div>
+    ${d.map((p,i)=>`
+      <div class="padan-baris" data-i="${i}">
+        <div class="padan-t">${AR(i+1)}. ${esc(p.t)}</div>
+        <select data-padan="${i}">
+          <option value="">— ڤيليه مقصود —</option>
+          ${pilihan.map(m=>`<option value="${esc(m)}">${esc(m)}</option>`).join('')}
+        </select>
+        <p class="padan-jwp maklum" hidden></p>
+      </div>`).join('')}
+    ${kakiSet()}
+  </div>`;
+}
+
+function bhgSusun(t){
+  const sets = BANK2[t.id].susun;
+  return `<div class="bhg" data-set="${t.id}-e" data-jenis="susun" data-topik="${t.id}">
+    <div class="bhg-kepala">
+      <div class="bhg-huruf">${AR(5)}</div>
+      <h3>سوسون مڠيكوت اوروتن</h3>
+      <p class="arahan">١٠ سوالن · ڤيليه نومبور اوروتن ياڠ بتول (١ = ڤرتام).</p>
+    </div>
+    ${sets.map((s,si)=>{
+      const campur = s.betul.slice().sort(()=>Math.random()-.5);
+      return `<div class="susun-set" data-set-i="${si}">
+        <p class="susun-tajuk">${esc(s.tajuk)}</p>
+        ${campur.map(teks=>`
+          <div class="susun-baris">
+            <select data-susun="${si}" data-teks="${esc(teks)}">
+              <option value="">؟</option>
+              ${s.betul.map((_,k)=>`<option value="${k+1}">${AR(k+1)}</option>`).join('')}
+            </select>
+            <div class="susun-teks">${esc(teks)}</div>
+          </div>`).join('')}
+      </div>`;
+    }).join('')}
+    ${kakiSet()}
+  </div>`;
+}
+
+function bhgKenal(t){
+  const d = BANK2[t.id].kenal;
+  return `<div class="bhg" data-set="${t.id}-f" data-jenis="kenal" data-topik="${t.id}">
+    <div class="bhg-kepala">
+      <div class="bhg-huruf">${AR(6)}</div>
+      <h3>كنل ڤستي</h3>
+      <p class="arahan">١٠ سوالن · كنل ڤستي جواڤن ياڠ بتول.</p>
+    </div>
+    ${d.map((m,i)=>`
+      <div class="soalan" data-i="${i}">
+        <div class="s-teks"><div class="s-no">${AR(i+1)}.</div><div class="s-body">${esc(m.q)}</div></div>
+        <div class="pilihan">
+          ${m.o.map((o,j)=>`<label class="pil"><input type="radio" name="${t.id}-f-${i}" value="${j}"><span>${esc(o)}</span></label>`).join('')}
+        </div>
+        <p class="maklum" hidden></p>
+      </div>`).join('')}
+    ${kakiSet()}
+  </div>`;
+}
+
+
+function bhgSebab(t){
+  const d = BANK3[t.id].sebab;
+  return `<div class="bhg" data-set="${t.id}-g" data-jenis="sebab" data-topik="${t.id}">
+    <div class="bhg-kepala">
+      <div class="bhg-huruf">${AR(7)}</div>
+      <h3>كسن دان سبب</h3>
+      <p class="arahan">١٠ سوالن · ڤيليه كسن ياڠ بتول دان سببڽ. كدوا-دوا مستي بتول اونتوق مندڤت مركه.</p>
+    </div>
+    ${d.q.map((m,i)=>`
+      <div class="soalan" data-i="${i}">
+        <div class="s-teks"><div class="s-no">${AR(i+1)}.</div><div class="s-body">${esc(m.q)}</div></div>
+        <div class="dua-pilih">
+          <label class="mini">كسن:
+            <select data-sebab="${i}" data-jns="k">
+              <option value="">— ڤيليه كسن —</option>
+              ${d.kesan.map((o,j)=>`<option value="${j}">${esc(o)}</option>`).join('')}
+            </select></label>
+          <label class="mini">سبب:
+            <select data-sebab="${i}" data-jns="s">
+              <option value="">— ڤيليه سبب —</option>
+              ${d.sebab.map((o,j)=>`<option value="${j}">${esc(o)}</option>`).join('')}
+            </select></label>
+        </div>
+        <p class="maklum" hidden></p>
+      </div>`).join('')}
+    ${kakiSet()}
+  </div>`;
+}
+
+function bhgKelas(t){
+  const d = BANK3[t.id].kelas;
+  return `<div class="bhg" data-set="${t.id}-h" data-jenis="kelas" data-topik="${t.id}">
+    <div class="bhg-kepala">
+      <div class="bhg-huruf">${AR(8)}</div>
+      <h3>كلاسيفيكاسي</h3>
+      <p class="arahan">١٠ سوالن · لتقكن ستياڤ ڤرنياتاءن د باوه كومڤولن ياڠ بتول.</p>
+    </div>
+    ${d.items.map((m,i)=>`
+      <div class="soalan" data-i="${i}">
+        <div class="s-teks"><div class="s-no">${AR(i+1)}.</div><div class="s-body">${esc(m.t)}</div></div>
+        <div class="pilihan">
+          ${d.bins.map((b,j)=>`<label class="pil pil-bin"><input type="radio" name="${t.id}-h-${i}" value="${j}"><span>${esc(b)}</span></label>`).join('')}
+        </div>
+        <p class="maklum" hidden></p>
+      </div>`).join('')}
+    ${kakiSet()}
+  </div>`;
+}
+
+function bhgTindak(t){
+  const d = BANK3[t.id].tindak;
+  return `<div class="bhg" data-set="${t.id}-i" data-jenis="tindak" data-topik="${t.id}">
+    <div class="bhg-kepala">
+      <div class="bhg-huruf">${AR(9)}</div>
+      <h3>سيتواسي — ڤيليه تيندقن ترباءيق</h3>
+      <p class="arahan">١٠ سوالن · باچ سيتواسي، ڤيليه تيندقن ياڠ ڤاليڠ تڤت مڠيكوت اجرن إسلام.</p>
+    </div>
+    ${d.map((m,i)=>`
+      <div class="soalan" data-i="${i}">
+        <div class="s-teks"><div class="s-no">${AR(i+1)}.</div><div class="s-body">${esc(m.q)}</div></div>
+        <div class="pilihan">
+          ${kocok(m.o.map((o,j)=>({o,j}))).map(p=>`<label class="pil" data-j="${p.j}"><input type="radio" name="${t.id}-i-${i}" value="${p.j}"><span>${esc(p.o)}</span></label>`).join('')}
+        </div>
+        <p class="maklum" hidden></p>
+      </div>`).join('')}
+    ${kakiSet()}
+  </div>`;
+}
+
+function bhgSalah(t){
+  const d = BANK3[t.id].salah;
+  return `<div class="bhg" data-set="${t.id}-j" data-jenis="salah" data-topik="${t.id}">
+    <div class="bhg-kepala">
+      <div class="bhg-huruf">${AR(10)}</div>
+      <h3>كسن ساله</h3>
+      <p class="arahan">١٠ سوالن · تكن ڤركاتاءن ياڠ منجاديكن ايات ايت ساله، كمودين ڤيليه ݢنتيڽ.</p>
+    </div>
+    ${d.map((m,i)=>`
+      <div class="soalan" data-i="${i}">
+        <div class="s-teks"><div class="s-no">${AR(i+1)}.</div>
+          <div class="s-body ayat-salah" data-ayat="${i}">
+            ${m.kata.map((w,j)=>`<button type="button" class="kata" data-k="${j}">${esc(w)}</button>`).join(' ')}
+          </div>
+        </div>
+        <label class="mini ganti">ݢنتيكن دڠن:
+          <select data-ganti="${i}">
+            <option value="">— ڤيليه ݢنتي —</option>
+            ${kocok(m.ganti.map((g,j)=>({g,j}))).map(p=>`<option value="${p.j}">${esc(p.g)}</option>`).join('')}
+          </select></label>
+        <p class="maklum" hidden></p>
+      </div>`).join('')}
+    ${kakiSet()}
+  </div>`;
+}
+
+function kakiSet(){
+  return `<div class="tindakan">
+    <button type="button" class="btn semak">سمق جواڤن</button>
+    <button type="button" class="btn kedua ulang">چوبا لاݢي</button>
+    <span class="skor" hidden></span>
+  </div>`;
+}
+
+/* ====== KAUNTER KEMAJUAN ====== */
+const skorSet = {};   // data-set -> markah selepas disemak
+
+function bilJawab(bhg){
+  const j = bhg.dataset.jenis;
+  if (j === 'padan')  return [...bhg.querySelectorAll('[data-padan]')].filter(s=>s.value!=='').length;
+  if (j === 'susun')  return [...bhg.querySelectorAll('[data-susun]')].filter(s=>s.value!=='').length;
+  if (j === 'dd')     return [...bhg.querySelectorAll('.lubang')].filter(l=>l.dataset.kata).length;
+  if (j === 'sebab')  return [...bhg.querySelectorAll('.soalan')].filter(sq =>
+      sq.querySelector('[data-jns="k"]').value!=='' && sq.querySelector('[data-jns="s"]').value!=='').length;
+  if (j === 'salah')  return [...bhg.querySelectorAll('.soalan')].filter(sq =>
+      sq.querySelector('.kata.tanda-salah') && sq.querySelector('[data-ganti]').value!=='').length;
+  return [...bhg.querySelectorAll('.soalan')].filter(sq=>sq.querySelector('input:checked')).length;
+}
+
+function binaKaunter(){
+  const wrap = document.getElementById('kFasal');
+  wrap.innerHTML = BANK.map(t=>`
+    <div class="k-blok">
+      <span class="k-nama">${esc(t.tab)}</span>
+      <span class="k-seg" data-topik="${t.id}">
+        ${[...Array(10)].map((_,i)=>`<i data-idx="${i}" title="${esc(t.tab)} · بهاݢين ${AR(i+1)}"></i>`).join('')}
+      </span>
+    </div>`).join('');
+  wrap.addEventListener('click', e=>{
+    const seg = e.target.closest('i'); if(!seg) return;
+    const id = seg.closest('.k-seg').dataset.topik;
+    pilihTopik(BANK.findIndex(x=>x.id===id));
+    setTimeout(()=>{
+      const b = document.querySelectorAll(`#topik-${id} .bhg`)[+seg.dataset.idx];
+      if (b) b.scrollIntoView({block:'start', behavior:'smooth'});
+    }, 120);
+  });
+}
+
+function kemasKini(){
+  let jawab = 0, betulJum = 0, adaSkor = false;
+  BANK.forEach(t=>{
+    const seksyen = document.querySelectorAll(`#topik-${t.id} .bhg`);
+    const segs = document.querySelectorAll(`.k-seg[data-topik="${t.id}"] i`);
+    seksyen.forEach((bhg,i)=>{
+      const n = bilJawab(bhg); jawab += n;
+      const s = segs[i]; if(!s) return;
+      s.classList.remove('isi','ok','sebahagian');
+      const markah = skorSet[bhg.dataset.set];
+      if (markah !== undefined){
+        adaSkor = true; betulJum += markah;
+        s.classList.add(markah === 10 ? 'ok' : 'sebahagian');
+        s.title = `${t.tab} · بهاݢين ${AR(i+1)} — سكور ${AR(markah)}/١٠`;
+      } else if (n === 10){
+        s.classList.add('isi');
+        s.title = `${t.tab} · بهاݢين ${AR(i+1)} — لڠكڤ، بلوم دسمق`;
+      } else if (n > 0){
+        s.classList.add('isi'); s.style.opacity = .45;
+        s.title = `${t.tab} · بهاݢين ${AR(i+1)} — ${AR(n)}/١٠`;
+      } else { s.style.opacity = ''; s.title = `${t.tab} · بهاݢين ${AR(i+1)}`; }
+      if (n === 10 || markah !== undefined) s.style.opacity = '';
+    });
+  });
+  document.getElementById('kBesar').textContent = AR(jawab) + ' / ٤٠٠';
+  const kb = document.getElementById('kBetul');
+  kb.hidden = !adaSkor;
+  if (adaSkor) kb.textContent = '✓ بتول: ' + AR(betulJum);
+}
+
+document.addEventListener('change', kemasKini);
+document.addEventListener('click', e => {
+  if (e.target.closest('.pil, .lubang, .chip, .kata, .ulang')) setTimeout(kemasKini, 0);
+});
+
+/* ====== TAB ====== */
+function pilihTopik(ti){
+  [...tabs.children].forEach((b,i)=>b.setAttribute('aria-selected', i===ti?'true':'false'));
+  [...isi.children].forEach((p,i)=>p.classList.toggle('aktif', i===ti));
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+
+/* ====== HALAMAN: NOTA ====== */
+function binaNota(){
+  const tabs = document.getElementById('tabsNota');
+  const isi  = document.getElementById('isiNota');
+  BANK.forEach((t, ti) => {
+    const b = document.createElement('button');
+    b.className='tab'; b.textContent=t.tab; b.setAttribute('role','tab');
+    b.setAttribute('aria-selected', ti===0?'true':'false');
+    b.onclick = ()=>{
+      [...tabs.children].forEach((x,i)=>x.setAttribute('aria-selected', i===ti?'true':'false'));
+      [...isi.children].forEach((p,i)=>p.classList.toggle('aktif', i===ti));
+      window.scrollTo({top:0,behavior:'smooth'});
+    };
+    tabs.appendChild(b);
+
+    const n = NOTA[t.id];
+    const sec = document.createElement('section');
+    sec.className = 'topik' + (ti===0?' aktif':'');
+    sec.innerHTML = `
+      <div class="topik-kepala">
+        <h2>${esc(t.title)}</h2>
+        <div class="ltn">${esc(t.latin)}</div>
+      </div>
+
+      <div class="dalil">
+        <h3>دليل ڤنتيڠ</h3>
+        ${t.dalil.map(d=>`
+          <div class="dalil-item">
+            <p class="ayat">${esc(d.ayat)}</p>
+            <p class="rujuk">${esc(d.rujuk)}</p>
+            <p class="makna">${esc(d.makna)}</p>
+          </div>`).join('')}
+      </div>
+
+      <div class="n-blok">
+        <div class="n-kepala"><span class="n-ikon">✎</span><h3>ريڠكسن</h3></div>
+        <div class="n-ringkas">
+          ${n.ringkas.map(r=>`<p>${esc(r.t)}<mark>${esc(r.h)}</mark>${esc(r.s)}</p>`).join('')}
+        </div>
+      </div>
+
+      <div class="n-blok">
+        <div class="n-kepala"><span class="n-ikon">◆</span><h3>ايسي ڤنتيڠ</h3></div>
+        <ul class="n-kunci">${n.kunci.map(k=>`<li>${esc(k)}</li>`).join('')}</ul>
+      </div>
+
+      <div class="n-blok">
+        <div class="n-kepala"><span class="n-ikon">▤</span><h3>جادول رومسن</h3></div>
+        ${n.jadual.map(j=>`
+          <div class="n-jadual">
+            <h4>${esc(j.tajuk)}</h4>
+            <div class="jd-bungkus"><table>
+              <thead><tr>${j.kepala.map(c=>`<th>${esc(c)}</th>`).join('')}</tr></thead>
+              <tbody>${j.baris.map(b=>`<tr>${b.map(c=>`<td>${esc(c)}</td>`).join('')}</tr>`).join('')}</tbody>
+            </table></div>
+          </div>`).join('')}
+      </div>
+
+      <div class="n-blok">
+        <div class="n-kepala"><span class="n-ikon">✦</span><h3>ڤيتا منده</h3></div>
+        <div class="peta">
+          <div class="peta-pusat">${esc(n.peta.pusat)}</div>
+          ${n.peta.cabang.map(c=>`
+            <div class="peta-cabang">
+              <div class="peta-c-tajuk">${esc(c.t)}</div>
+              <div class="peta-anak">${c.anak.map(a=>`<span>${esc(a)}</span>`).join('')}</div>
+            </div>`).join('')}
+        </div>
+      </div>
+
+      <div class="n-blok">
+        <div class="n-kepala"><span class="n-ikon">★</span><h3>تيڤ ڤمبلاجرن</h3></div>
+        ${n.tips.map(p=>`<div class="n-tip"><b>${esc(p.t)}</b><span>${esc(p.s)}</span></div>`).join('')}
+      </div>`;
+    isi.appendChild(sec);
+  });
+}
+
+/* ====== HALAMAN: GLOSARI ====== */
+let gTapis = 0;
+function binaGlosari(){
+  const isi = document.getElementById('isiGlosari');
+  isi.innerHTML = `
+    <div class="topik-kepala"><h2>ݢلوساري ايستيله</h2><div class="ltn">Glosari Istilah Akidah</div></div>
+    <div class="g-alat">
+      <input id="cari" type="search" placeholder="چاري ايستيله اتاو مقصود…" aria-label="چاري ايستيله">
+      <div class="g-tapis" id="gTapis">
+        <button class="g-btn" data-f="0" aria-pressed="true">سموا</button>
+        ${BANK.map((t,i)=>`<button class="g-btn" data-f="${i+1}" aria-pressed="false">${esc(t.tab)}</button>`).join('')}
+      </div>
+    </div>
+    <p class="g-kira" id="gKira"></p>
+    <div class="g-senarai" id="gSenarai"></div>`;
+
+  document.getElementById('cari').addEventListener('input', lukisGlosari);
+  document.getElementById('gTapis').addEventListener('click', e=>{
+    const b = e.target.closest('.g-btn'); if(!b) return;
+    gTapis = +b.dataset.f;
+    document.querySelectorAll('#gTapis .g-btn').forEach(x=>
+      x.setAttribute('aria-pressed', x===b ? 'true':'false'));
+    lukisGlosari();
+  });
+  lukisGlosari();
+}
+
+function lukisGlosari(){
+  const q = (document.getElementById('cari').value||'').trim();
+  const senarai = GLOSARI.filter(g =>
+    (gTapis === 0 || g.f === gTapis) &&
+    (q === '' || g.i.includes(q) || g.d.includes(q))
+  );
+  document.getElementById('gKira').textContent =
+    'مموڤركن ' + AR(senarai.length) + ' درڤد ' + AR(GLOSARI.length) + ' ايستيله';
+  document.getElementById('gSenarai').innerHTML = senarai.length
+    ? senarai.map(g=>`
+        <div class="g-item">
+          <div class="g-atas">
+            <span class="g-istilah">${esc(g.i)}</span>
+            <span class="g-fasal">فصل ${AR(g.f)}</span>
+          </div>
+          <p class="g-def">${esc(g.d)}</p>
+        </div>`).join('')
+    : `<p class="g-kosong">تياد ايستيله ياڠ سڤادن. چوبا كات كونچي لاءين.</p>`;
+}
+
+/* ====== TUKAR HALAMAN ====== */
+function tukarHalaman(nama){
+  document.querySelectorAll('.hal-tab').forEach(b=>
+    b.setAttribute('aria-selected', b.dataset.hal===nama ? 'true':'false'));
+  const peta = {
+    kuiz:    ['navKuiz','isi'],
+    nota:    ['navNota','isiNota'],
+    glosari: [null,'isiGlosari']
+  };
+  Object.entries(peta).forEach(([k,[nav,body]])=>{
+    if (nav) document.getElementById(nav).hidden = (k!==nama);
+    document.getElementById(body).hidden = (k!==nama);
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('.hal-tab').forEach(b=>
+  b.onclick = ()=>tukarHalaman(b.dataset.hal));
+
+binaNota(); binaGlosari();
+
+binaKaunter(); kemasKini();
+
+/* ====== SERET & LEPAS ====== */
+let dipilih = null;
+document.addEventListener('click', e => {
+  const chip = e.target.closest('.chip');
+  if (chip && !chip.disabled){
+    if (dipilih === chip){ chip.classList.remove('dipilih'); dipilih = null; }
+    else { if(dipilih) dipilih.classList.remove('dipilih'); dipilih = chip; chip.classList.add('dipilih'); }
+    return;
+  }
+  const lub = e.target.closest('.lubang');
+  if (lub){
+    if (lub.dataset.kata){ pulangKata(lub); return; }
+    if (dipilih){ letakKata(lub, dipilih); dipilih.classList.remove('dipilih'); dipilih = null; }
+  }
+});
+document.addEventListener('keydown', e => {
+  if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('lubang')){
+    e.preventDefault(); e.target.click();
+  }
+});
+document.addEventListener('dragstart', e => {
+  const chip = e.target.closest('.chip');
+  if (chip && !chip.disabled){ dipilih = chip; e.dataTransfer.setData('text/plain', chip.dataset.kata); }
+});
+document.addEventListener('dragover', e => {
+  const lub = e.target.closest('.lubang');
+  if (lub){ e.preventDefault(); lub.classList.add('sasar'); }
+});
+document.addEventListener('dragleave', e => {
+  const lub = e.target.closest('.lubang'); if (lub) lub.classList.remove('sasar');
+});
+document.addEventListener('drop', e => {
+  const lub = e.target.closest('.lubang');
+  if (lub && dipilih){ e.preventDefault(); lub.classList.remove('sasar');
+    letakKata(lub, dipilih); dipilih.classList.remove('dipilih'); dipilih = null; }
+});
+
+function letakKata(lub, chip){
+  const bhg = lub.closest('.bhg');
+  if (lub.dataset.kata) pulangKata(lub);           // kosongkan dulu
+  lub.dataset.kata = chip.dataset.kata;
+  lub.textContent = chip.dataset.kata;
+  lub.dataset.chipId = chip.dataset.id || (chip.dataset.id = 'c' + Math.random().toString(36).slice(2));
+  chip.disabled = true;
+}
+function pulangKata(lub){
+  const bhg = lub.closest('.bhg');
+  const chip = bhg.querySelector(`.chip[data-id="${lub.dataset.chipId}"]`);
+  if (chip) chip.disabled = false;
+  delete lub.dataset.kata; delete lub.dataset.chipId;
+  lub.textContent = ''; lub.classList.remove('betul','salah');
+}
+
+/* ====== TEKAN PERKATAAN SALAH ====== */
+document.addEventListener('click', e => {
+  const k = e.target.closest('.kata');
+  if(!k) return;
+  const ayat = k.closest('.ayat-salah');
+  const sudah = k.classList.contains('tanda-salah');
+  ayat.querySelectorAll('.kata').forEach(x=>x.classList.remove('tanda-salah'));
+  if(!sudah) k.classList.add('tanda-salah');
+  kemasKini();
+});
+
+/* ====== SEMAK & ULANG ====== */
+document.addEventListener('click', e => {
+  if (e.target.classList.contains('semak')) semak(e.target.closest('.bhg'));
+  if (e.target.classList.contains('ulang')) ulang(e.target.closest('.bhg'));
+});
+
+function semak(bhg){
+  const t = BANK.find(x => x.id === bhg.dataset.topik);
+  const jenis = bhg.dataset.jenis;
+  let betul = 0;
+
+  /* --- jenis baharu --- */
+  if (jenis === 'sebab'){
+    const d = BANK3[t.id].sebab;
+    bhg.querySelectorAll('.soalan').forEach(sq => {
+      const i = +sq.dataset.i, m = d.q[i];
+      const sk = sq.querySelector('[data-jns="k"]'), ss = sq.querySelector('[data-jns="s"]');
+      const okK = sk.value !== '' && +sk.value === m.ka;
+      const okS = ss.value !== '' && +ss.value === m.sa;
+      [[sk,okK],[ss,okS]].forEach(([el,ok])=>{
+        el.classList.remove('betul','salah'); el.classList.add(ok?'betul':'salah');
+      });
+      const ok = okK && okS, mk = sq.querySelector('.maklum');
+      mk.hidden = false; mk.className = 'maklum ' + (ok?'ok':'no');
+      mk.textContent = ok ? '✓ بتول'
+        : '✗ ساله — كسن: ' + d.kesan[m.ka] + ' | سبب: ' + d.sebab[m.sa];
+      if (ok) betul++;
+    });
+    return siapSkor(bhg, betul);
+  }
+  if (jenis === 'kelas'){
+    const d = BANK3[t.id].kelas;
+    bhg.querySelectorAll('.soalan').forEach(sq => {
+      const i = +sq.dataset.i, m = d.items[i];
+      const pilih = sq.querySelector('input:checked');
+      const ok = pilih && +pilih.value === m.b;
+      sq.querySelectorAll('.pil').forEach((p,j)=>{
+        p.classList.remove('betul','salah');
+        if (j === m.b) p.classList.add('betul');
+        else if (pilih && +pilih.value === j) p.classList.add('salah');
+      });
+      const mk = sq.querySelector('.maklum');
+      mk.hidden = false; mk.className = 'maklum ' + (ok?'ok':'no');
+      mk.textContent = ok ? '✓ بتول' : '✗ ساله — جواڤن: ' + d.bins[m.b];
+      if (ok) betul++;
+    });
+    return siapSkor(bhg, betul);
+  }
+  if (jenis === 'tindak'){
+    const d = BANK3[t.id].tindak;
+    bhg.querySelectorAll('.soalan').forEach(sq => {
+      const i = +sq.dataset.i, m = d[i];
+      const pilih = sq.querySelector('input:checked');
+      const ok = pilih && +pilih.value === m.a;
+      sq.querySelectorAll('.pil').forEach((p,j)=>{
+        p.classList.remove('betul','salah','jawapan');
+        const dipilihIni = pilih && +pilih.value === j;
+        if (j === m.a) p.classList.add(dipilihIni ? 'betul' : 'jawapan');
+        else if (dipilihIni) p.classList.add('salah');
+      });
+      const mk = sq.querySelector('.maklum');
+      mk.hidden = false; mk.className = 'maklum ' + (ok?'ok':'no');
+      mk.textContent = (ok ? '✓ بتول — ' : '✗ ساله — جواڤن: ' + m.o[m.a] + ' — ') + m.prinsip;
+      if (ok) betul++;
+    });
+    return siapSkor(bhg, betul);
+  }
+  if (jenis === 'salah'){
+    const d = BANK3[t.id].salah;
+    bhg.querySelectorAll('.soalan').forEach(sq => {
+      const i = +sq.dataset.i, m = d[i];
+      const ditanda = sq.querySelector('.kata.tanda-salah');
+      const sel = sq.querySelector('[data-ganti]');
+      const okKata = ditanda && +ditanda.dataset.k === m.salah;
+      const okGanti = sel.value !== '' && +sel.value === m.a;
+      sq.querySelectorAll('.kata').forEach(k=>{
+        k.classList.remove('betul','salah','jawapan');
+        const ini = +k.dataset.k === m.salah;
+        if (ini && okKata)       k.classList.add('betul');   // dipilih & betul
+        else if (ini)            k.classList.add('jawapan'); // jawapan sebenar
+        else if (ditanda === k)  k.classList.add('salah');   // pilihan yang salah
+      });
+      sel.classList.remove('betul','salah'); sel.classList.add(okGanti?'betul':'salah');
+      const ok = okKata && okGanti, mk = sq.querySelector('.maklum');
+      mk.hidden = false; mk.className = 'maklum ' + (ok?'ok':'no');
+      mk.textContent = ok ? '✓ بتول'
+        : '✗ ساله — ڤركاتاءن ساله: «' + m.kata[m.salah] + '» ݢنتيڽ: ' + m.ganti[m.a];
+      if (ok) betul++;
+    });
+    return siapSkor(bhg, betul);
+  }
+  if (jenis === 'padan'){
+    const d = BANK2[t.id].padan;
+    bhg.querySelectorAll('[data-padan]').forEach(sel => {
+      const i = +sel.dataset.padan, ok = sel.value === d[i].m;
+      sel.classList.remove('betul','salah'); sel.classList.add(ok?'betul':'salah');
+      const mk = sel.closest('.padan-baris').querySelector('.maklum');
+      mk.hidden = false; mk.className = 'padan-jwp maklum ' + (ok?'ok':'no');
+      mk.textContent = ok ? '✓ بتول' : '✗ ساله — جواڤن: ' + d[i].m;
+      if (ok) betul++;
+    });
+    return siapSkor(bhg, betul);
+  }
+  if (jenis === 'susun'){
+    const sets = BANK2[t.id].susun;
+    bhg.querySelectorAll('[data-susun]').forEach(sel => {
+      const s = sets[+sel.dataset.susun];
+      const kedudukan = s.betul.indexOf(sel.dataset.teks) + 1;
+      const ok = +sel.value === kedudukan;
+      sel.classList.remove('betul','salah'); sel.classList.add(ok?'betul':'salah');
+      if (!ok) sel.title = 'جواڤن: ' + kedudukan;
+      if (ok) betul++;
+    });
+    return siapSkor(bhg, betul);
+  }
+  if (jenis === 'kenal'){
+    const d = BANK2[t.id].kenal;
+    bhg.querySelectorAll('.soalan').forEach(sq => {
+      const i = +sq.dataset.i, m = d[i];
+      const pilih = sq.querySelector('input:checked');
+      const ok = pilih && +pilih.value === m.a;
+      sq.querySelectorAll('.pil').forEach((p,j)=>{
+        p.classList.remove('betul','salah','jawapan');
+        const dipilihIni = pilih && +pilih.value === j;
+        if (j === m.a) p.classList.add(dipilihIni ? 'betul' : 'jawapan');
+        else if (dipilihIni) p.classList.add('salah');
+      });
+      const mk = sq.querySelector('.maklum');
+      mk.hidden = false; mk.className = 'maklum ' + (ok?'ok':'no');
+      mk.textContent = ok ? '✓ بتول' : '✗ ساله — جواڤن: ' + m.o[m.a];
+      if (ok) betul++;
+    });
+    return siapSkor(bhg, betul);
+  }
+
+  bhg.querySelectorAll('.soalan').forEach(sq => {
+    const i = +sq.dataset.i;
+    const maklum = sq.querySelector('.maklum');
+    let ok = false, betulTeks = '';
+
+    if (jenis === 'mcq'){
+      const m = t.mcq[i];
+      const pilih = sq.querySelector('input:checked');
+      ok = pilih && +pilih.value === m.a;
+      betulTeks = m.o[m.a];
+      sq.querySelectorAll('.pil').forEach((p, j) => {
+        p.classList.remove('betul','salah','jawapan');
+        const dipilihIni = pilih && +pilih.value === j;
+        if (j === m.a) p.classList.add(dipilihIni ? 'betul' : 'jawapan');
+        else if (dipilihIni) p.classList.add('salah');
+      });
+    }
+    else if (jenis === 'tf'){
+      const m = t.tf[i];
+      const pilih = sq.querySelector('input:checked');
+      ok = pilih && (pilih.value === '1') === m.a;
+      betulTeks = m.a ? 'بتول' : 'ساله';
+      sq.querySelectorAll('.pil').forEach((p, j) => {
+        p.classList.remove('betul','salah');
+        const nilaiP = j === 0;                      // pilihan pertama = بتول
+        if (nilaiP === m.a) p.classList.add('betul');
+        else if (pilih && (pilih.value === '1') === nilaiP) p.classList.add('salah');
+      });
+    }
+    else {
+      const m = t.dd.q[i];
+      const lub = sq.querySelector('.lubang');
+      ok = lub.dataset.kata === m.a;
+      betulTeks = m.a;
+      lub.classList.remove('betul','salah');
+      lub.classList.add(ok ? 'betul' : 'salah');
+    }
+
+    if (ok) betul++;
+    maklum.hidden = false;
+    maklum.className = 'maklum ' + (ok ? 'ok' : 'no');
+    maklum.textContent = ok ? '✓ بتول' : '✗ ساله — جواڤن: ' + betulTeks;
+  });
+
+  skorSet[bhg.dataset.set] = betul;
+  kemasKini();
+  const skor = bhg.querySelector('.skor');
+  skor.hidden = false;
+  skor.textContent = 'سكور: ' + AR(betul) + ' / ١٠';
+  skor.classList.toggle('penuh', betul === 10);
+  skor.scrollIntoView({block:'nearest', behavior:'smooth'});
+}
+
+function siapSkor(bhg, betul){
+  skorSet[bhg.dataset.set] = betul;
+  kemasKini();
+  const skor = bhg.querySelector('.skor');
+  skor.hidden = false;
+  skor.textContent = 'سكور: ' + AR(betul) + ' / ١٠';
+  skor.classList.toggle('penuh', betul === 10);
+  skor.scrollIntoView({block:'nearest', behavior:'smooth'});
+}
+
+function ulang(bhg){
+  delete skorSet[bhg.dataset.set];
+  bhg.querySelectorAll('.kata').forEach(k=>k.classList.remove('tanda-salah','betul','salah','jawapan'));
+  bhg.querySelectorAll('select').forEach(s => { s.value=''; s.classList.remove('betul','salah'); s.removeAttribute('title'); });
+  bhg.querySelectorAll('textarea').forEach(x => x.value='');
+  bhg.querySelectorAll('.model,.tanda').forEach(x => x.hidden = true);
+  bhg.querySelectorAll('.tbtn').forEach(x => x.classList.remove('pilih-ok','pilih-no'));
+  bhg.querySelectorAll('input:checked').forEach(i => i.checked = false);
+  bhg.querySelectorAll('.pil').forEach(p => p.classList.remove('betul','salah','jawapan'));
+  bhg.querySelectorAll('.lubang').forEach(l => {
+    delete l.dataset.kata; delete l.dataset.chipId;
+    l.textContent = ''; l.classList.remove('betul','salah');
+  });
+  bhg.querySelectorAll('.chip').forEach(c => { c.disabled = false; c.classList.remove('dipilih'); });
+  bhg.querySelectorAll('.maklum').forEach(m => { m.hidden = true; m.textContent = ''; });
+  const s = bhg.querySelector('.skor'); s.hidden = true; s.classList.remove('penuh');
+  dipilih = null;
+  kemasKini();
+  bhg.scrollIntoView({block:'start', behavior:'smooth'});
+}
+</script>
+</body>
+</html>
